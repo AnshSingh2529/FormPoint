@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+        <shape android:shape="rectangle">
+
+            <stroke
+                android:width="2dp"
+                android:color="@color/colorOnPrimary" />
+            <corners android:radius="5.6dp" />
+
+        </shape>
+    </item>
+
+    <item>
+        <vector
+            android:width="30dp"
+            android:height="30dp"
+            android:viewportWidth="512"
+            android:viewportHeight="512">
+            <path
+                android:fillColor="@color/colorOnPrimary"
+                android:pathData="M365.24,353.73a202.66,202.66 0,0 1,-2.76 -34.3v-107.2q0,-43.87 -28.9,-67.39t-75.66,-23.5q-48.93,0 -79.26,23.86T150,201.92l0.48,1.44h67.39q0,-14.38 9.23,-22.66t26.26,-8.28q19.42,0 29.26,10.32t9.83,29v20.63h-39.33q-56.35,0 -85.73,21T138,312.48q0,36.21 22.06,57.19t62.83,21q24.47,0 42.21,-12.47a95.93,95.93 0,0 0,28.54 -31.42,130.09 130.09,0 0,0 4,20.15 147.08,147.08 0,0 0,6.59 18.7L374,385.63a171.12,171.12 0,0 1,-8.76 -31.9zM292.45,308.64q-5.28,12 -19.66,21.1a59.66,59.66 0,0 1,-32.62 9.12q-15.1,0 -23.62,-7.8t-8.51,-21A36.24,36.24 0,0 1,219.43 283q11.38,-11 33.69,-11h39.33z" />
+        </vector>
+    </item>
+
+
+</layer-list>

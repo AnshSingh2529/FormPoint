@@ -1,0 +1,56 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FormPoint" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/outfit_semibold</item>
+        <item name="android:statusBarColor">@color/colorOnPrimary</item>
+        <item name="android:navigationBarColor">@color/colorOfBackground</item>
+    </style>
+
+    <style name="Theme.FormPoint" parent="Base.Theme.FormPoint" />
+
+    <style name="edit_text_style">
+
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/textColorSecondary</item>
+        <item name="android:drawableTint">@color/textColorSecondary</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="eye_button_style_shape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">48dp</item>
+    </style>
+
+    <style name="Widget.App.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TabLayout</item>
+        <!--        <item name="tabTextAppearance">@style/TextAppearance.App.Button</item>-->
+        <item name="tabTextAppearance">@style/TextAppearance.App.LabelLarge</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App.TabLayout" parent="">
+        <item name="colorPrimary">@color/colorOnPrimary</item>
+        <item name="colorSurface">@color/colorOnSecondary</item>
+        <item name="colorOnSurface">@color/colorOnPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="app_bar_text_style">
+
+        <item name="android:textColor">@color/colorOnSecondary</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+
+    </style>
+
+    <style name="CornerSize">
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>

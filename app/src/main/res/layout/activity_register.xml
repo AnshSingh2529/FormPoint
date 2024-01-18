@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOfBackground"
+    android:overScrollMode="never"
+    tools:context=".ui.activity.RegisterActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_220sdp"
+            android:src="@drawable/illustration_register_page"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            style="@style/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="@dimen/_8sdp"
+            android:hint="Full Name"
+            android:inputType="text"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/editTextText2"
+            style="@style/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="@dimen/_8sdp"
+            android:ems="10"
+            android:hint="Mobile No."
+            android:inputType="text"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/editTextText"
+            app:layout_constraintStart_toStartOf="@+id/editTextText"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+        <EditText
+            android:id="@+id/editTextText3"
+            style="@style/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="@dimen/_8sdp"
+            android:ems="10"
+            android:hint="Email (optional)"
+            android:inputType="text"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/editTextText2"
+            app:layout_constraintStart_toStartOf="@+id/editTextText2"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@id/editTextText3"
+            app:layout_constraintStart_toStartOf="@+id/editTextText3"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText3">
+
+            <EditText
+                android:id="@+id/regPass"
+                style="@style/edit_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/_8sdp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/eyePass"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:src="@drawable/ic_closed_eye"
+                app:tint="@color/textColorSecondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+            <EditText
+                android:id="@+id/regCnfPass"
+                style="@style/edit_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/_8sdp"
+                android:ems="10"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/eyeCnfPass"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:src="@drawable/ic_closed_eye"
+                app:tint="@color/textColorSecondary" />
+
+        </RelativeLayout>
+
+
+        <com.skydoves.elasticviews.ElasticCardView
+            android:id="@+id/createAccBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_32sdp"
+            app:cardBackgroundColor="@color/colorOnPrimary"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_12sdp"
+                android:text="Create Account"
+                android:textColor="@color/colorOnSecondary"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+
+        </com.skydoves.elasticviews.ElasticCardView>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccBtn">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Already have account? "
+                android:textColor="@color/textColorSecondary" />
+
+            <com.skydoves.elasticviews.ElasticLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_48sdp">
+
+                <TextView
+                    android:id="@+id/toLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login Now"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textStyle="bold" />
+
+            </com.skydoves.elasticviews.ElasticLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

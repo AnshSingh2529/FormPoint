@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/icon_hindi" />
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2dp"
+                android:color="@color/colorOnPrimary" />
+            <corners android:radius="5.6dp" />
+        </shape>
+    </item>
+</layer-list>

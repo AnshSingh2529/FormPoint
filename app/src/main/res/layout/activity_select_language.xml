@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOfBackground"
+    tools:context=".ui.activity.SelectLanguageActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_230sdp"
+        android:src="@drawable/illu_choose_language"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="Choose Language"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+
+    <RadioGroup
+        android:id="@+id/language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/hindiLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:text="हिन्दी"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_14ssp"
+            android:drawableStart="@drawable/radio_button"
+            android:button="@android:color/transparent"
+            android:drawablePadding="@dimen/_12sdp"
+            android:drawableEnd="@drawable/drawable_language"
+            android:background="@drawable/bg_radio_back"
+            android:layoutDirection="rtl" />
+
+
+        <RadioButton
+            android:id="@+id/englishLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:text="English"
+            android:padding="@dimen/_10sdp"
+            android:drawableStart="@drawable/radio_button"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:textSize="@dimen/_14ssp"
+            android:button="@android:color/transparent"
+            android:drawablePadding="@dimen/_12sdp"
+            android:background="@drawable/bg_radio_back"
+            android:drawableEnd="@drawable/drawable_eng_lang"
+            android:layoutDirection="rtl" />
+
+    </RadioGroup>
+
+
+    <com.skydoves.elasticviews.ElasticCardView
+        android:id="@+id/selecButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/colorOnPrimary"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Select"
+            android:textColor="@color/colorOnSecondary"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+
+    </com.skydoves.elasticviews.ElasticCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

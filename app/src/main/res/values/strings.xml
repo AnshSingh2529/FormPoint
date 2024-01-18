@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Form Online</string>
+    <string name="login">Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="searchbar_hint">Search anything</string>
+</resources>
