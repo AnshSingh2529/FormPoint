@@ -36,6 +36,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+
         <TextView
             android:id="@+id/notificationHeading"
             android:layout_width="wrap_content"
@@ -362,7 +363,7 @@
             android:id="@+id/videoHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Video"
+            android:text="Videos"
             android:textColor="@color/textColorSecondary"
             android:textSize="@dimen/_16ssp"
             app:layout_constraintStart_toStartOf="parent"

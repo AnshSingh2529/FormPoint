@@ -33,9 +33,9 @@
     </style>
 
     <style name="ThemeOverlay.App.TabLayout" parent="">
-        <item name="colorPrimary">@color/colorOnPrimary</item>
+        <item name="colorPrimary">@color/colorOnSecondary</item>
         <item name="colorSurface">@color/colorOnSecondary</item>
-        <item name="colorOnSurface">@color/colorOnPrimary</item>
+        <item name="colorOnSurface">@color/colorOnSecondary</item>
     </style>
 
     <style name="TextAppearance.App.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
@@ -49,7 +49,7 @@
 
     </style>
 
-    <style name="CornerSize">
+    <style name="circular_image_view">
         <item name="cornerSize">50%</item>
     </style>
 

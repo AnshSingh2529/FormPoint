@@ -1,12 +1,15 @@
 package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.R
-import aman.major.formpoint.adapter.ViewPagerAdapter
 import aman.major.formpoint.databinding.ActivityMainBinding
+import aman.major.formpoint.ui.fragment.HomeFragment
+import aman.major.formpoint.ui.fragment.VideoFragment
+import aman.major.formpoint.ui.fragment.WalletFragment
 import android.os.Bundle
-import android.view.View
+import android.view.LayoutInflater
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -17,60 +20,57 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.tab_ic_home))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.tab_ic_search))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.tab_ic_video))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.ic_closed_eye))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.ic_closed_eye))
-
-        binding.viewPager2.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        setCustomTabs()
 
 
-        val tabSelectedListener = object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                val position = tab.position
-                binding.viewPager2.setCurrentItem(position)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                // Tab unselected, do something
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-                // Tab reselected, do something
-            }
-        }
-
-
-        binding.tabLayout.addOnTabSelectedListener(tabSelectedListener)
-
-        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
-                when(position){
-                    0-> {
-                        binding.amToolbar.visibility = View.VISIBLE
-                        binding.amToolbar.setTitle("Form Online")
+        binding.tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.position){
+                    0 ->{
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragmentContainerView, HomeFragment())
+                            .commit()
                     }
-                    1-> {
-                        binding.amToolbar.visibility = View.GONE
+                    1 ->{
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragmentContainerView, VideoFragment())
+                            .commit()
                     }
-                    2-> {
-                        binding.amToolbar.visibility = View.VISIBLE
-                        binding.amToolbar.setTitle("All Videos")
-                    }
-                    3-> {
-
-                    }
-                    4-> {
-
+                    2 ->{
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragmentContainerView, WalletFragment())
+                            .commit()
                     }
                 }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
         })
 
+
+    }
+
+    private fun setCustomTabs() {
+        val tabOne = LayoutInflater.from(this).inflate(R.layout.tab_item_layout, null,false)
+        val tabImageViewOne = tabOne.findViewById<ImageView>(R.id.tabImageView)
+        tabImageViewOne.setImageResource(R.drawable.tab_ic_home)
+
+        val tabTwo = LayoutInflater.from(this).inflate(R.layout.tab_item_layout, null,false)
+        val tabImageViewTwo = tabTwo.findViewById<ImageView>(R.id.tabImageView)
+        tabImageViewTwo.setImageResource(R.drawable.tab_ic_video)
+
+        val tabThree = LayoutInflater.from(this).inflate(R.layout.tab_item_layout, null,false)
+        val tabImageViewThree = tabThree.findViewById<ImageView>(R.id.tabImageView)
+        tabImageViewThree.setImageResource(R.drawable.tab_ic_wallet)
+
+        binding.tabLayout.getTabAt(0)?.customView = tabOne
+        binding.tabLayout.getTabAt(1)?.customView = tabTwo
+        binding.tabLayout.getTabAt(2)?.customView = tabThree
     }
 }

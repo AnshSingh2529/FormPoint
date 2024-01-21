@@ -7,5 +7,6 @@
     <color name="textColorPrimary">#000000</color>
     <color name="textColorSecondary">#686868</color>
     <color name="colorOfBackground">#EFEFEF</color>
+    <color name="colorOfUnselectedTab">#EFEFEF</color>
 </resources>
 

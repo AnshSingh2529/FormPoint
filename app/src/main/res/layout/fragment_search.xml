@@ -22,9 +22,10 @@
         <com.google.android.material.search.SearchBar
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="@string/searchbar_hint"
             app:menu="@menu/search_menu"
+            app:navigationIcon="@drawable/ic_search"
             app:navigationIconTint="@color/textColorSecondary"
             app:backgroundTint="@color/colorOnSecondary"/>
     </com.google.android.material.appbar.AppBarLayout>
