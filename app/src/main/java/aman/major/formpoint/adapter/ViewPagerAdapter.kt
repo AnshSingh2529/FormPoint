@@ -1,7 +1,12 @@
 package aman.major.formpoint.adapter
 
+import aman.major.formpoint.ui.fragment.AdmissionFormFragment
+import aman.major.formpoint.ui.fragment.AdmitCardFragment
+import aman.major.formpoint.ui.fragment.GovernmentFormFragment
 import aman.major.formpoint.ui.fragment.HomeFragment
+import aman.major.formpoint.ui.fragment.JobFragment
 import aman.major.formpoint.ui.fragment.ProfileFragment
+import aman.major.formpoint.ui.fragment.ResultFragment
 import aman.major.formpoint.ui.fragment.SearchFragment
 import aman.major.formpoint.ui.fragment.VideoFragment
 import aman.major.formpoint.ui.fragment.WalletFragment
@@ -18,11 +23,11 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> HomeFragment()
-            1 -> SearchFragment()
-            2 -> VideoFragment()
-            3 -> WalletFragment()
-            4 -> ProfileFragment()
+            0 -> AdmitCardFragment()
+            1 -> GovernmentFormFragment()
+            2 -> AdmissionFormFragment()
+            3 -> ResultFragment()
+            4 -> JobFragment()
             else -> {
                 Fragment()
             }

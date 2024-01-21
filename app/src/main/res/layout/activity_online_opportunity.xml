@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOfBackground"
+    tools:context=".ui.activity.OnlineOpportunityActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/du_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="Online Opportunity"
+            android:background="@color/colorOfBackground"
+            app:titleTextAppearance="@style/app_bar_text_style" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/oo_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tabMode="scrollable"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorAnimationMode="linear"
+        android:background="@color/colorOfBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/du_appbar"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/oo_viewpager2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oo_tabLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

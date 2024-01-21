@@ -58,7 +58,8 @@ dependencies {
     implementation ("com.github.skydoves:elasticviews:2.1.0")
 
     /*Image Slider*/
-
     implementation ("com.github.dangiashish:Auto-Image-Slider:1.0.4")
 
+    /*Lottie animation*/
+    implementation ("com.airbnb.android:lottie:3.7.0")
 }

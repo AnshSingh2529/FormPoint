@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.VideoFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Videos"
+        android:textStyle="bold"
+        android:textSize="@dimen/_16ssp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:gravity="center"
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fv_recycler"
@@ -14,4 +25,4 @@
         android:orientation="vertical"
         tools:listitem="@layout/recycler_video_fragment_lay"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -19,8 +19,10 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:layout="@layout/fragment_home" />
 
 
@@ -40,7 +42,7 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 app:cardCornerRadius="24dp"
                 app:strokeColor="@color/colorOnPrimary"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/colorOnPrimary"
                 android:paddingHorizontal="12dp"
                 android:layout_marginBottom="12dp"
                 >
@@ -50,21 +52,24 @@
                     style="@style/Widget.App.TabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:tabGravity="center"
+                    android:background="@android:color/transparent"
                     app:tabIndicator="@drawable/tab_indicator_background"
                     app:tabIndicatorAnimationMode="fade"
                     app:tabIndicatorGravity="top"
-                    android:background="@color/colorOnPrimary"
                     app:tabIndicatorFullWidth="false"
                     app:tabMode="fixed">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout="@layout/tab_item_layout" />
+                        android:layout="@layout/tab_item_layout"
+                        />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
