@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorOfBackground"
     tools:context=".ui.activity.DocumentManageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/du_appbar"
+        android:id="@+id/dm_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,10 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/dm_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="@drawable/ic_back"
+            android:background="@color/colorOfBackground"
             app:title="Choose Document"
+            app:titleCentered="true"
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -27,12 +31,11 @@
         android:id="@+id/dm_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
         android:overScrollMode="never"
-        tools:listitem="@layout/recycler_doc_manage_lay"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/du_appbar"
-        app:spanCount="2" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/dm_appbar"
+        android:orientation="vertical"
+        tools:listitem="@layout/recycler_doc_list_lay" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

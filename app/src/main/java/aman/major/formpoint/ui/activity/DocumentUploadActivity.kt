@@ -14,5 +14,10 @@ class DocumentUploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDocumentUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.duToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
     }
 }

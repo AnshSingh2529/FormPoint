@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
+    android:id="@+id/doc_manage_root"
     app:cardUseCompatPadding="true"
     app:cardBackgroundColor="@color/white">
 
@@ -25,6 +26,7 @@
 
 
         <TextView
+            android:id="@+id/cardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Document Name"

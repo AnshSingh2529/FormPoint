@@ -17,7 +17,7 @@ class RecyclerDocManageAdapter(var context: Context,var list:ArrayList<String>) 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DocVH {
         return DocVH(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_doc_manage_lay, parent, false)
+                .inflate(R.layout.recycler_doc_list_lay, parent, false)
         )
     }
 

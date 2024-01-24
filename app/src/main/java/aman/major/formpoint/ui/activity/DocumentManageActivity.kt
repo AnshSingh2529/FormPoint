@@ -17,6 +17,10 @@ class DocumentManageActivity : AppCompatActivity() {
         binding = ActivityDocumentManageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.dmToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         val list = ArrayList<String>()
         list.add("")
         list.add("")

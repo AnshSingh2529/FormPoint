@@ -2,15 +2,11 @@ package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityMainBinding
-import aman.major.formpoint.ui.fragment.HomeFragment
-import aman.major.formpoint.ui.fragment.VideoFragment
-import aman.major.formpoint.ui.fragment.WalletFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentContainerView
-import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,36 +18,38 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setCustomTabs()
 
+        
 
-        binding.tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.position){
-                    0 ->{
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentContainerView, HomeFragment())
-                            .commit()
-                    }
-                    1 ->{
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentContainerView, VideoFragment())
-                            .commit()
-                    }
-                    2 ->{
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentContainerView, WalletFragment())
-                            .commit()
-                    }
-                }
-            }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
+//        binding.tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                when(tab?.position){
+//                    0 ->{
+//                        supportFragmentManager.beginTransaction()
+//                            .replace(R.id.fragmentContainerView, HomeActivity())
+//                            .commit()
+//                    }
+//                    1 ->{
+//                        supportFragmentManager.beginTransaction()
+//                            .replace(R.id.fragmentContainerView, VideoFragment())
+//                            .commit()
+//                    }
+//                    2 ->{
+//                        supportFragmentManager.beginTransaction()
+//                            .replace(R.id.fragmentContainerView, WalletFragment())
+//                            .commit()
+//                    }
+//                }
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//
+//            }
+//        })
 
 
     }

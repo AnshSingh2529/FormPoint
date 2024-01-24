@@ -3,13 +3,8 @@ package aman.major.formpoint.adapter
 import aman.major.formpoint.ui.fragment.AdmissionFormFragment
 import aman.major.formpoint.ui.fragment.AdmitCardFragment
 import aman.major.formpoint.ui.fragment.GovernmentFormFragment
-import aman.major.formpoint.ui.fragment.HomeFragment
 import aman.major.formpoint.ui.fragment.JobFragment
-import aman.major.formpoint.ui.fragment.ProfileFragment
 import aman.major.formpoint.ui.fragment.ResultFragment
-import aman.major.formpoint.ui.fragment.SearchFragment
-import aman.major.formpoint.ui.fragment.VideoFragment
-import aman.major.formpoint.ui.fragment.WalletFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
