@@ -17,6 +17,7 @@
         >
 
         <ImageView
+            android:id="@+id/cardImg"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:src="@drawable/img"
@@ -33,6 +34,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/_14ssp"
             android:gravity="center"
+            android:textColor="@color/textColorPrimary"
             android:layout_marginBottom="@dimen/_12sdp"
             />
 

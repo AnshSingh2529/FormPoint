@@ -35,7 +35,19 @@
             android:layout_gravity="center"
             android:layout_marginStart="12dp"
             android:padding="3dp"
+            android:visibility="gone"
             android:src="@drawable/ic_notification" />
+
+
+        <ImageView
+            android:id="@+id/languageChange"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:padding="3dp"
+            android:src="@drawable/ic_language" />
+
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ahProfile"
@@ -129,9 +141,8 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/materialCardView"
                 app:layout_constraintStart_toStartOf="parent"
-                >
+                app:layout_constraintTop_toBottomOf="@id/materialCardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -158,7 +169,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_70sdp"
                                 android:padding="12dp"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@drawable/ic_doc_upload" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -166,7 +177,7 @@
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center"
                                 android:text="Document Upload"
-                                android:textColor="@color/textColorSecondary"
+                                android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_13ssp" />
 
                         </LinearLayout>
@@ -192,7 +203,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_70sdp"
                                 android:padding="12dp"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@drawable/ic_form_online" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -200,7 +211,7 @@
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center"
                                 android:text="Form Online"
-                                android:textColor="@color/textColorSecondary"
+                                android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_13ssp" />
 
                         </LinearLayout>
@@ -235,7 +246,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_70sdp"
                                 android:padding="12dp"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@drawable/ic_application_status" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -243,7 +254,7 @@
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center"
                                 android:text="Application Status"
-                                android:textColor="@color/textColorSecondary"
+                                android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_13ssp" />
 
                         </LinearLayout>
@@ -269,7 +280,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_70sdp"
                                 android:padding="12dp"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@drawable/ic_notification_2" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -277,7 +288,7 @@
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center"
                                 android:text="Notification"
-                                android:textColor="@color/textColorSecondary"
+                                android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_13ssp" />
 
                         </LinearLayout>
@@ -313,7 +324,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_70sdp"
                                 android:padding="12dp"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@drawable/ic_otp_menual" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -321,7 +332,7 @@
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center"
                                 android:text="OTP Menual"
-                                android:textColor="@color/textColorSecondary"
+                                android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_13ssp" />
 
                         </LinearLayout>
@@ -347,7 +358,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_70sdp"
                                 android:padding="12dp"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@drawable/ic_watch_video" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -355,7 +366,7 @@
                                 android:layout_marginBottom="12dp"
                                 android:gravity="center"
                                 android:text="Watch Video"
-                                android:textColor="@color/textColorSecondary"
+                                android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_13ssp" />
 
                         </LinearLayout>
@@ -368,145 +379,145 @@
             </LinearLayout>
 
 
-            <!-- <TextView
-                 android:id="@+id/documentMangeHeading"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginStart="@dimen/_8sdp"
-                 android:layout_marginTop="@dimen/_12sdp"
-                 android:text="Document Manage"
-                 android:textColor="@color/textColorSecondary"
-                 android:textSize="@dimen/_16ssp"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            <TextView
+                android:id="@+id/documentMangeHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:text="Document Manage"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-             <TextView
-                 android:id="@+id/ah_doc_manage_vm"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginEnd="@dimen/_8sdp"
-                 android:text="View More"
-                 android:textColor="@color/textColorSecondary"
-                 android:textSize="@dimen/_12ssp"
-                 app:layout_constraintBottom_toBottomOf="@+id/documentMangeHeading"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintTop_toTopOf="@+id/documentMangeHeading" />
-
-
-             <LinearLayout
-                 android:id="@+id/documentManageLay"
-                 android:layout_width="0dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_8sdp"
-                 android:orientation="horizontal"
-                 android:paddingHorizontal="@dimen/_4sdp"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@id/documentMangeHeading">
-
-                 <com.google.android.material.card.MaterialCardView
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="1"
-                     app:cardCornerRadius="@dimen/_8sdp"
-                     app:cardUseCompatPadding="true">
-
-                     <ImageView
-                         android:layout_width="@dimen/_30sdp"
-                         android:layout_height="@dimen/_30sdp"
-                         android:layout_gravity="center"
-                         android:layout_marginTop="@dimen/_8sdp"
-                         android:layout_marginBottom="@dimen/_8sdp"
-                         android:src="@mipmap/ic_launcher" />
-                 </com.google.android.material.card.MaterialCardView>
-
-                 <com.google.android.material.card.MaterialCardView
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="1"
-                     app:cardCornerRadius="@dimen/_8sdp"
-                     app:cardUseCompatPadding="true">
-
-                     <ImageView
-                         android:layout_width="@dimen/_30sdp"
-                         android:layout_height="@dimen/_30sdp"
-                         android:layout_gravity="center"
-                         android:layout_marginTop="@dimen/_8sdp"
-                         android:layout_marginBottom="@dimen/_8sdp"
-                         android:src="@mipmap/ic_launcher" />
-                 </com.google.android.material.card.MaterialCardView>
-
-                 <com.google.android.material.card.MaterialCardView
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="1"
-                     app:cardCornerRadius="@dimen/_8sdp"
-                     app:cardUseCompatPadding="true">
-
-                     <ImageView
-                         android:layout_width="@dimen/_30sdp"
-                         android:layout_height="@dimen/_30sdp"
-                         android:layout_gravity="center"
-                         android:layout_marginTop="@dimen/_8sdp"
-                         android:layout_marginBottom="@dimen/_8sdp"
-                         android:src="@mipmap/ic_launcher" />
-                 </com.google.android.material.card.MaterialCardView>
-
-                 <com.google.android.material.card.MaterialCardView
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="1"
-                     app:cardCornerRadius="@dimen/_8sdp"
-                     app:cardUseCompatPadding="true">
-
-                     <ImageView
-                         android:layout_width="@dimen/_30sdp"
-                         android:layout_height="@dimen/_30sdp"
-                         android:layout_gravity="center"
-                         android:layout_marginTop="@dimen/_8sdp"
-                         android:layout_marginBottom="@dimen/_8sdp"
-                         android:src="@mipmap/ic_launcher" />
-                 </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/ah_doc_manage_vm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="View More"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/documentMangeHeading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/documentMangeHeading" />
 
 
-             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/documentManageLay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/documentMangeHeading">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardUseCompatPadding="true">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:src="@mipmap/ic_launcher" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardUseCompatPadding="true">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:src="@mipmap/ic_launcher" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardUseCompatPadding="true">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:src="@mipmap/ic_launcher" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardUseCompatPadding="true">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:src="@mipmap/ic_launcher" />
+                </com.google.android.material.card.MaterialCardView>
 
 
-             <TextView
-                 android:id="@+id/videoHeading"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginStart="@dimen/_8sdp"
-                 android:layout_marginTop="@dimen/_8sdp"
-                 android:text="Videos"
-                 android:textColor="@color/textColorSecondary"
-                 android:textSize="@dimen/_16ssp"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@id/documentManageLay" />
+            </LinearLayout>
 
 
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginEnd="@dimen/_8sdp"
-                 android:text="View More"
-                 android:textColor="@color/textColorSecondary"
-                 android:textSize="@dimen/_12ssp"
-                 app:layout_constraintBottom_toBottomOf="@+id/videoHeading"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintTop_toTopOf="@+id/videoHeading" />
+            <TextView
+                android:id="@+id/videoHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="Videos"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/documentManageLay" />
 
 
-             <androidx.recyclerview.widget.RecyclerView
-                 android:id="@+id/ah_video_recycler"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:orientation="horizontal"
-                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@id/videoHeading"
-                 tools:listitem="@layout/recycler_video_home_lay" />-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="View More"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/videoHeading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/videoHeading" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ah_video_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/videoHeading"
+                tools:listitem="@layout/recycler_video_home_lay" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

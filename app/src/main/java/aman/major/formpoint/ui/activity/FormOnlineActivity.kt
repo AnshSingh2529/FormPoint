@@ -1,10 +1,11 @@
 package aman.major.formpoint.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import aman.major.formpoint.R
 import aman.major.formpoint.adapter.RecyclerFormOnlineAdapter
 import aman.major.formpoint.databinding.ActivityFormOnlineBinding
+import aman.major.formpoint.modal.FormOnlineModal
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class FormOnlineActivity : AppCompatActivity() {
 
@@ -19,12 +20,12 @@ class FormOnlineActivity : AppCompatActivity() {
             finish()
         }
 
-        val list = ArrayList<String>()
-        list.add("Admit Card")
-        list.add("Government Form")
-        list.add("Admission Form")
-        list.add("Result")
-        list.add("Job")
-        binding.foRecyclerView.adapter = RecyclerFormOnlineAdapter(this,list)
+        val list = ArrayList<FormOnlineModal>()
+        list.add(FormOnlineModal(R.drawable.id_admit_card, "Admit Card"))
+        list.add(FormOnlineModal(R.drawable.ic_govt_form, "Government Form"))
+        list.add(FormOnlineModal(R.drawable.ic_form_online, "Admission Form"))
+        list.add(FormOnlineModal(R.drawable.ic_result, "Result"))
+        list.add(FormOnlineModal(R.drawable.ic_job, "Job"))
+        binding.foRecyclerView.adapter = RecyclerFormOnlineAdapter(this, list)
     }
 }
