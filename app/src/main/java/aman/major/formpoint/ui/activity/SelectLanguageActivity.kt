@@ -16,12 +16,18 @@ class SelectLanguageActivity : AppCompatActivity() {
         binding = ActivitySelectLanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val i = intent.getIntExtra("onLanguageActivity",0)
+
         binding.language.setOnCheckedChangeListener{radio,id->
            binding.selecButton.visibility = View.VISIBLE
         }
 
         binding.selecButton.setOnClickListener {
-            startActivity(Intent(this,LoginActivity::class.java))
+            if (i == 1){
+                startActivity(Intent(this,LoginActivity::class.java))
+            }else{
+                finish()
+            }
         }
 
     }

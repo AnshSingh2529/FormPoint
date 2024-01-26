@@ -14,11 +14,13 @@
         android:layout_height="@dimen/_230sdp"
         android:src="@drawable/illustration_login"
         app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="centerCrop"
+        android:padding="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/lg_mob"
         style="@style/edit_text_style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,14 +37,24 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+    <TextView
+        android:id="@+id/lg_mob_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/lg_mob"
+        app:layout_constraintTop_toBottomOf="@id/lg_mob" />
+
     <RelativeLayout
         android:id="@+id/pass_Layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
+        app:layout_constraintEnd_toEndOf="@+id/lg_mob"
+        app:layout_constraintStart_toStartOf="@+id/lg_mob"
+        app:layout_constraintTop_toBottomOf="@+id/lg_mob_err">
 
         <EditText
             android:id="@+id/lgPass"
@@ -69,6 +81,16 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/lg_pass_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/pass_Layout"
+        app:layout_constraintTop_toBottomOf="@id/pass_Layout" />
+
 
     <TextView
         android:id="@+id/textView2"
@@ -79,7 +101,7 @@
         android:textColor="@color/textColorSecondary"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="@+id/pass_Layout"
-        app:layout_constraintTop_toBottomOf="@+id/pass_Layout" />
+        app:layout_constraintTop_toBottomOf="@+id/lg_pass_err" />
 
 
     <LinearLayout
@@ -101,6 +123,7 @@
             app:cardCornerRadius="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/loginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -109,6 +132,7 @@
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
+
 
 
         </com.skydoves.elasticviews.ElasticCardView>
@@ -195,12 +219,12 @@
             android:textColor="@color/textColorSecondary" />
 
         <com.skydoves.elasticviews.ElasticLayout
+            android:id="@+id/toCreateAcc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/_48sdp">
 
             <TextView
-                android:id="@+id/toCreateAcc"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Create Account"

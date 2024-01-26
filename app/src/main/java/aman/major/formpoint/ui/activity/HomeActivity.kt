@@ -66,7 +66,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         binding.languageChange.setOnClickListener {
-            startActivity(Intent(this,SelectLanguageActivity::class.java))
+            startActivity(Intent(this, SelectLanguageActivity::class.java).putExtra("onLanguageActivity",2))
         }
 
 

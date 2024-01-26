@@ -55,13 +55,16 @@
     </style>
 
     <style name="cardShape">
-
         <item name="cornerFamilyTopLeft">rounded</item>
         <item name="cornerSizeTopLeft">30dp</item>
-
         <item name="cornerFamilyBottomRight">rounded</item>
         <item name="cornerSizeBottomRight">30dp</item>
+    </style>
 
+
+    <style name="error_text_style">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 
 </resources>

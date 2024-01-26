@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOfBackground"
     android:overScrollMode="never"
+    android:orientation="vertical"
     tools:context=".ui.activity.RegisterActivity">
 
 
@@ -14,16 +15,17 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/reg_illustration"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_220sdp"
+            android:layout_height="@dimen/_200sdp"
             android:src="@drawable/illustration_register_page"
             app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/reg_name"
             style="@style/edit_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,12 +37,24 @@
             android:hint="Full Name"
             android:inputType="text"
             android:padding="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintEnd_toEndOf="@+id/reg_illustration"
+            app:layout_constraintStart_toStartOf="@+id/reg_illustration"
+            app:layout_constraintTop_toBottomOf="@+id/reg_illustration" />
+
+
+        <TextView
+            android:id="@+id/reg_name_err"
+            style="@style/error_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/reg_name"
+            app:layout_constraintTop_toBottomOf="@id/reg_name" />
+
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/reg_mob"
             style="@style/edit_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,12 +65,24 @@
             android:hint="Mobile No."
             android:inputType="text"
             android:padding="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText"
-            app:layout_constraintStart_toStartOf="@+id/editTextText"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+            app:layout_constraintEnd_toEndOf="@+id/reg_name"
+            app:layout_constraintStart_toStartOf="@+id/reg_name"
+            app:layout_constraintTop_toBottomOf="@+id/reg_name_err" />
+
+
+        <TextView
+            android:id="@+id/reg_mob_err"
+            style="@style/error_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/reg_mob"
+            app:layout_constraintTop_toBottomOf="@id/reg_mob" />
+
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/reg_email"
             style="@style/edit_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,19 +93,30 @@
             android:hint="Email (optional)"
             android:inputType="text"
             android:padding="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-            app:layout_constraintStart_toStartOf="@+id/editTextText2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+            app:layout_constraintEnd_toEndOf="@+id/reg_mob"
+            app:layout_constraintStart_toStartOf="@+id/reg_mob"
+            app:layout_constraintTop_toBottomOf="@+id/reg_mob_err" />
+
+
+        <TextView
+            android:id="@+id/reg_email_err"
+            style="@style/error_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/reg_email"
+            app:layout_constraintTop_toBottomOf="@id/reg_email" />
 
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/reg_pass_lay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@id/editTextText3"
-            app:layout_constraintStart_toStartOf="@+id/editTextText3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText3">
+            app:layout_constraintEnd_toEndOf="@id/reg_email"
+            app:layout_constraintStart_toStartOf="@+id/reg_email"
+            app:layout_constraintTop_toBottomOf="@+id/reg_email_err">
 
             <EditText
                 android:id="@+id/regPass"
@@ -105,14 +142,25 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/reg_pass_err"
+            style="@style/error_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/reg_pass_lay"
+            app:layout_constraintTop_toBottomOf="@id/reg_pass_lay" />
+
+
         <RelativeLayout
-            android:id="@+id/relativeLayout2"
+            android:id="@+id/cnf_pass_lay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+            app:layout_constraintEnd_toEndOf="@+id/reg_pass_lay"
+            app:layout_constraintStart_toStartOf="@+id/reg_pass_lay"
+            app:layout_constraintTop_toBottomOf="@+id/reg_pass_err">
 
             <EditText
                 android:id="@+id/regCnfPass"
@@ -138,23 +186,33 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/reg_cnf_pass_err"
+            style="@style/error_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/cnf_pass_lay"
+            app:layout_constraintTop_toBottomOf="@id/cnf_pass_lay" />
+
 
         <com.skydoves.elasticviews.ElasticCardView
             android:id="@+id/createAccBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             app:cardBackgroundColor="@color/colorOnPrimary"
             app:cardCornerRadius="@dimen/_8sdp"
-            app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
-            app:layout_constraintStart_toStartOf="@+id/relativeLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+            app:layout_constraintEnd_toEndOf="@+id/cnf_pass_lay"
+            app:layout_constraintStart_toStartOf="@+id/cnf_pass_lay"
+            app:layout_constraintTop_toBottomOf="@+id/reg_cnf_pass_err">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="@dimen/_12sdp"
+                android:padding="@dimen/_10sdp"
                 android:text="Create Account"
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="@dimen/_16sdp"
@@ -182,16 +240,16 @@
                 android:textColor="@color/textColorSecondary" />
 
             <com.skydoves.elasticviews.ElasticLayout
+                android:id="@+id/toLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/_48sdp">
 
                 <TextView
-                    android:id="@+id/toLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Login Now"
                     android:layout_gravity="center"
+                    android:text="Login Now"
                     android:textColor="@color/colorOnPrimary"
                     android:textStyle="bold" />
 
@@ -202,4 +260,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
