@@ -46,6 +46,7 @@
 
 
         <TextView
+            android:id="@+id/formLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Location"
@@ -53,13 +54,13 @@
             android:textSize="@dimen/_10ssp"
             android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginBottom="@dimen/_4sdp"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintBottom_toTopOf="@+id/formPostDate"
+            app:layout_constraintStart_toStartOf="@+id/formPostDate"
             app:layout_constraintTop_toBottomOf="@+id/formTitle" />
 
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/formPostDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_4sdp"

@@ -379,7 +379,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/documentMangeHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -480,7 +480,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
             <TextView
@@ -493,7 +493,7 @@
                 android:textColor="@color/textColorSecondary"
                 android:textSize="@dimen/_16ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/documentManageLay" />
+                app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
 
 
             <TextView

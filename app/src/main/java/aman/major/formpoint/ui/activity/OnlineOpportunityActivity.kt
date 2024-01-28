@@ -2,86 +2,105 @@ package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.R
 import aman.major.formpoint.adapter.RecyclerFormAdapter
-import aman.major.formpoint.adapter.ViewPagerAdapter
-import aman.major.formpoint.databinding.ActivityDocumentManageBinding
 import aman.major.formpoint.databinding.ActivityOnlineOpportunityBinding
+import aman.major.formpoint.helper.RetrofitClient
+import aman.major.formpoint.modal.FormDataModal
+import aman.major.formpoint.modal.ImageDataModal
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OnlineOpportunityActivity : AppCompatActivity() {
 
-    private lateinit var binding:  ActivityOnlineOpportunityBinding
+    private lateinit var binding: ActivityOnlineOpportunityBinding
+
+    private var titleImg: Int = 0
+    var type: String = ""
+
+    var formDataList : ArrayList<ImageDataModal> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOnlineOpportunityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        setUpTabLayoutWithViewPager()
 
-        when(intent.getIntExtra("tabPosition",0)){
+        binding.ooToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
+        when (intent.getIntExtra("tabPosition", 0)) {
             0 -> {
                 binding.ooToolbar.title = "Admit Card"
+                titleImg = R.drawable.id_admit_card
             }
+
             1 -> {
                 binding.ooToolbar.title = "Government Form"
+                titleImg = R.drawable.ic_govt_form
+                type = "government"
+                getAdmissionForm()
             }
+
             2 -> {
                 binding.ooToolbar.title = "Admission Form"
+                titleImg = R.drawable.ic_form_online
+                type = "admission"
+                getAdmissionForm()
             }
+
             3 -> {
                 binding.ooToolbar.title = "Result"
+                titleImg = R.drawable.ic_result
             }
+
             4 -> {
                 binding.ooToolbar.title = "Job"
             }
 
         }
 
-        var list = ArrayList<String>()
-
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-
-        binding.ooRecycler.adapter = RecyclerFormAdapter(list)
 
     }
 
-//    private fun setUpTabLayoutWithViewPager() {
-//
-//        binding.ooTabLayout.addTab(binding.ooTabLayout.newTab().setText("Admit Card"))
-//        binding.ooTabLayout.addTab(binding.ooTabLayout.newTab().setText("Government Form"))
-//        binding.ooTabLayout.addTab(binding.ooTabLayout.newTab().setText("Admission Form"))
-//        binding.ooTabLayout.addTab(binding.ooTabLayout.newTab().setText("Result"))
-//        binding.ooTabLayout.addTab(binding.ooTabLayout.newTab().setText("Job"))
-//
-//        binding.ooViewpager2.adapter = ViewPagerAdapter(supportFragmentManager,lifecycle)
-//
-//        binding.ooTabLayout.setOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                binding.ooViewpager2.currentItem = tab!!.position
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//            }
-//        })
-//
-//        binding.ooViewpager2.registerOnPageChangeCallback(object :
-//            ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                binding.ooTabLayout.selectTab(binding.ooTabLayout.getTabAt(position))
-//            }
-//        })
-//    }
+    private fun getAdmissionForm() {
+        val call = RetrofitClient.getClient().getOnlineForms(type)
+        Log.d("getAdmissionForm", "getAdmissionForm: function call: type $type")
+        call.enqueue(object : Callback<JsonObject>{
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                try {
+                    if(response.isSuccessful){
+                        Log.d("getAdmissionForm", "getAdmissionForm: function call is success ${response.body().toString()}")
+                        val jsonObject : JsonObject? = response.body()
+                        if (jsonObject?.get("status")?.asString.equals("success")){
+                            val dataArray = jsonObject?.get("data")?.asJsonArray
+                            formDataList.clear()
+                            for(i in 0 until dataArray!!.size()){
+                                val dataObj = dataArray.get(0).asJsonObject
+                                val model = Gson().fromJson(dataObj,FormDataModal::class.java)
+                                formDataList.add(ImageDataModal(titleImg,model))
+                            }
+                            Log.d("getAdmissionForm", "getAdmissionForm: function call is list ${formDataList.size}")
+                            binding.ooRecycler.adapter = RecyclerFormAdapter(formDataList)
+                        }
+
+                    }else{
+                        Log.d("getAdmissionForm", "getAdmissionForm: function call is not success ${response.errorBody()?.string()}")
+                    }
+                }catch (e:Exception){
+                    Log.d("getAdmissionForm", "getAdmissionForm: Exception call is fail ${e.localizedMessage}")
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("getAdmissionForm", "getAdmissionForm: Exception call is fail ${t.localizedMessage}")
+            }
+        })
+    }
+
+
 }

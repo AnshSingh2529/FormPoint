@@ -9,6 +9,7 @@ import aman.major.formpoint.modal.UserModal
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -49,7 +50,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(mob: String, pass: String) {
-        var pd = ProgressDialog(this)
+        Log.d("loginUser", "loginUser: function Call: MobNo. ${mob} Password ${pass}")
+        val pd = ProgressDialog(this)
         pd.setMessage("Please wait...")
         pd.setCancelable(false)
         pd.show()
@@ -60,30 +62,39 @@ class LoginActivity : AppCompatActivity() {
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                val response: JsonObject? = response.body()
-                val status = response?.get("status")?.asString
+                try {
+                   if(response.isSuccessful){
+                       Log.d("loginUser", "loginUser onResponse: success "+response.body())
 
-                if (status.equals("success")) {
-                    val data = response?.get("data")?.asJsonObject
-                    SharedPrefManager.getInstance(this@LoginActivity)?.userLogin(
-                        Gson().fromJson(
-                            data,
-                            UserModal::class.java
-                        )
-                    )
-                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                    finish()
+                       val response: JsonObject? = response.body()
+                       val status = response?.get("status")?.asString
+                       if (status.equals("success")) {
+                           val data = response?.get("data")?.asJsonObject
+                           SharedPrefManager.getInstance(this@LoginActivity)?.userLogin(
+                               Gson().fromJson(
+                                   data,
+                                   UserModal::class.java
+                               )
+                           )
+                           startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                           finish()
+                       }
+                       Toast.makeText(
+                           this@LoginActivity,
+                           "${response?.get("msg")?.asString}",
+                           Toast.LENGTH_SHORT
+                       ).show()
+                       pd.dismiss()
+                   }else{
+                       Log.d("loginUser", "loginUser onResponse: not success "+response.errorBody()?.string())
+                   }
+                }catch (e:Exception){
+                    Log.d("loginUser", "loginUser: Exception  ${e.localizedMessage}")
                 }
-                Toast.makeText(
-                    this@LoginActivity,
-                    "${response?.get("msg")?.asString}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                pd.dismiss()
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-
+                Log.d("loginUser", "loginUser: onFailure failed ${t.localizedMessage}")
             }
         })
     }
