@@ -37,6 +37,8 @@ class OnlineOpportunityActivity : AppCompatActivity() {
             0 -> {
                 binding.ooToolbar.title = "Admit Card"
                 titleImg = R.drawable.id_admit_card
+                type = ""
+                getAdmissionForm()
             }
 
             1 -> {
@@ -56,6 +58,8 @@ class OnlineOpportunityActivity : AppCompatActivity() {
             3 -> {
                 binding.ooToolbar.title = "Result"
                 titleImg = R.drawable.ic_result
+                type = ""
+                getAdmissionForm()
             }
 
             4 -> {
@@ -80,12 +84,12 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                             val dataArray = jsonObject?.get("data")?.asJsonArray
                             formDataList.clear()
                             for(i in 0 until dataArray!!.size()){
-                                val dataObj = dataArray.get(0).asJsonObject
+                                val dataObj = dataArray.get(i).asJsonObject
                                 val model = Gson().fromJson(dataObj,FormDataModal::class.java)
                                 formDataList.add(ImageDataModal(titleImg,model))
                             }
                             Log.d("getAdmissionForm", "getAdmissionForm: function call is list ${formDataList.size}")
-                            binding.ooRecycler.adapter = RecyclerFormAdapter(formDataList)
+                            binding.ooRecycler.adapter = RecyclerFormAdapter(this@OnlineOpportunityActivity,formDataList)
                         }
 
                     }else{

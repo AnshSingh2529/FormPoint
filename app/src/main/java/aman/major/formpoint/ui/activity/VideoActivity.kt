@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import aman.major.formpoint.R
 import aman.major.formpoint.adapter.RecyclerVideoFragmentAdapter
+import aman.major.formpoint.helper.Helper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
@@ -25,18 +26,7 @@ class VideoActivity : AppCompatActivity() {
             finish()
         }
 
-        val list : ArrayList<String> = ArrayList()
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-
-        recyclerView.adapter = RecyclerVideoFragmentAdapter(list,this)
-
-
+        Helper.getVideoList(recyclerView,this)
     }
 
 }

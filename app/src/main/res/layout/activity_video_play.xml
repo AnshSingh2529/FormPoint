@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOfBackground"
-    tools:context=".ui.activity.DocumentManageActivity">
+    android:background="@color/black"
+    tools:context=".ui.activity.VideoPlayActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/dm_appbar"
+        android:id="@+id/vp_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,28 +16,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/dm_toolbar"
+            android:id="@+id/vp_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             app:navigationIcon="@drawable/ic_back"
-            android:background="@color/colorOfBackground"
-            app:title="Choose Document"
+            app:title="Video Play"
             app:titleCentered="true"
+            app:titleTextColor="@color/white"
+            app:navigationIconTint="@color/white"
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dm_recyclerView"
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/vp_youtubePlayerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:autoPlay="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dm_appbar" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package aman.major.formpoint.modal
 
+import android.os.Parcelable
+
 data class FormDataModal(
     val img : Int,
     val charges: String,

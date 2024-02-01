@@ -28,10 +28,21 @@ interface ApiServices {
 
     @GET("APIs/slider")
     fun slider() : Call<JsonObject>
-    @GET("APIs/government_form")
+
+    @GET("APIs/youtube")
+    fun video() : Call<JsonObject>
+
+
+    @GET("APIs/forms")
     fun getOnlineForms(
         @Query("type") type:String
     ): Call<JsonObject>
+
+    @FormUrlEncoded
+    @POST("APIs/get_form")
+    fun getSingleFormData(
+        @Field("form_id") id:String
+    ):Call<JsonObject>
 
 
 }

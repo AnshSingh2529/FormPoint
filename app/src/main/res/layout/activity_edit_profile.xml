@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOfBackground"
+    tools:context=".ui.activity.EditProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ep_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/ep_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorOfBackground"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="Edit Profile"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/app_bar_text_style" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ep_profile_img"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:src="@drawable/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ep_appbar"
+        app:shapeAppearance="@style/circular_image_view" />
+
+
+    <com.skydoves.elasticviews.ElasticCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_blank_fragment"
+        app:cardBackgroundColor="@color/colorOnPrimary"
+        app:cardCornerRadius="26dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ep_profile_img"
+        app:layout_constraintEnd_toEndOf="@+id/ep_profile_img"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/ep_profile_img"
+        app:layout_constraintTop_toTopOf="@+id/ep_profile_img"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <ImageView
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/ic_camera"
+            app:tint="@color/colorOnSecondary" />
+
+    </com.skydoves.elasticviews.ElasticCardView>
+
+    <EditText
+        android:id="@+id/ep_name"
+        style="@style/edit_text_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="@dimen/_8sdp"
+        android:hint="Full Name"
+        android:inputType="text"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ep_profile_img" />
+
+
+    <TextView
+        android:id="@+id/ep_name_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/ep_name"
+        app:layout_constraintTop_toBottomOf="@id/ep_name" />
+
+
+    <EditText
+        android:id="@+id/ep_mob"
+        style="@style/edit_text_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawablePadding="@dimen/_8sdp"
+        android:ems="10"
+        android:hint="Mobile No."
+        android:inputType="text"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@+id/ep_name"
+        app:layout_constraintStart_toStartOf="@+id/ep_name"
+        app:layout_constraintTop_toBottomOf="@+id/ep_name_err" />
+
+
+    <TextView
+        android:id="@+id/ep_mob_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/ep_mob"
+        app:layout_constraintTop_toBottomOf="@id/ep_mob" />
+
+
+    <EditText
+        android:id="@+id/ep_email"
+        style="@style/edit_text_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="@dimen/_8sdp"
+        android:ems="10"
+        android:hint="Email (optional)"
+        android:inputType="text"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@+id/ep_mob"
+        app:layout_constraintStart_toStartOf="@+id/ep_mob"
+        app:layout_constraintTop_toBottomOf="@+id/ep_mob_err" />
+
+
+    <TextView
+        android:id="@+id/ep_email_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/ep_email"
+        app:layout_constraintTop_toBottomOf="@id/ep_email" />
+
+
+    <RelativeLayout
+        android:id="@+id/ep_pass_lay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@id/ep_email"
+        app:layout_constraintStart_toStartOf="@+id/ep_email"
+        app:layout_constraintTop_toBottomOf="@+id/ep_email_err">
+
+        <EditText
+            android:id="@+id/epPass"
+            style="@style/edit_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="@dimen/_8sdp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="@dimen/_12sdp" />
+
+        <ImageView
+            android:id="@+id/eyePass"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_closed_eye"
+            app:tint="@color/textColorSecondary" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ep_pass_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/ep_pass_lay"
+        app:layout_constraintTop_toBottomOf="@id/ep_pass_lay" />
+
+
+    <RelativeLayout
+        android:id="@+id/cnf_pass_lay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@+id/ep_pass_lay"
+        app:layout_constraintStart_toStartOf="@+id/ep_pass_lay"
+        app:layout_constraintTop_toBottomOf="@+id/ep_pass_err">
+
+        <EditText
+            android:id="@+id/epCnfPass"
+            style="@style/edit_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="@dimen/_8sdp"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:padding="@dimen/_12sdp" />
+
+        <ImageView
+            android:id="@+id/eyeCnfPass"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_closed_eye"
+            app:tint="@color/textColorSecondary" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ep_cnf_pass_err"
+        style="@style/error_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/cnf_pass_lay"
+        app:layout_constraintTop_toBottomOf="@id/cnf_pass_lay" />
+
+
+    <com.skydoves.elasticviews.ElasticCardView
+        android:id="@+id/ep_save_profile_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:cardBackgroundColor="@color/colorOnPrimary"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="@+id/cnf_pass_lay"
+        app:layout_constraintStart_toStartOf="@+id/cnf_pass_lay"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Save Profile"
+            android:textColor="@color/colorOnSecondary"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+
+    </com.skydoves.elasticviews.ElasticCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

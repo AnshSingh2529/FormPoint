@@ -2,6 +2,7 @@ package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.databinding.ActivityProfileBinding
 import aman.major.formpoint.helper.SharedPrefManager
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -15,6 +16,9 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.profileName.text = SharedPrefManager.getInstance(this@ProfileActivity)?.user?.username
 
+        binding.apToEditProfile.setOnClickListener{
+            startActivity(Intent(this@ProfileActivity, EditProfileActivity::class.java))
+        }
 
     }
 

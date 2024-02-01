@@ -23,7 +23,7 @@ class RetrofitClient {
                 .build()
 
 
-            var retrofit = Retrofit.Builder()
+            val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL)
                 .build()

@@ -1,6 +1,7 @@
 package aman.major.formpoint.ui.activity
 import aman.major.formpoint.adapter.RecyclerVideoHomeAdapter
 import aman.major.formpoint.databinding.ActivityHomeBinding
+import aman.major.formpoint.helper.Helper
 import aman.major.formpoint.helper.RetrofitClient
 import android.content.Intent
 import android.os.Bundle
@@ -26,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
 
 
         getSliderImages()
+        Helper.getVideoList(binding.ahVideoRecycler,this)
+
 
         binding.ahProfile.setOnClickListener{
             startActivity(Intent(this, ProfileActivity::class.java))
@@ -81,6 +84,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun getSliderImages() {
         Log.d("getSliderImages", "getSliderImages: function call ")
