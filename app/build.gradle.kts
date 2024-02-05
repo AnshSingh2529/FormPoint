@@ -76,4 +76,7 @@ dependencies {
     /*For Youtube video Play*/
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
+    /*Pin view*/
+    implementation ("io.github.chaosleung:pinview:1.4.4")
+
 }

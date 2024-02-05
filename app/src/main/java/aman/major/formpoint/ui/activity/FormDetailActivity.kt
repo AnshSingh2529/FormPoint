@@ -4,6 +4,7 @@ import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityFormDetailBinding
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.modal.FormDataModal
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -20,7 +21,6 @@ class FormDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityFormDetailBinding
 
     var id: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFormDetailBinding.inflate(layoutInflater)
@@ -28,6 +28,10 @@ class FormDetailActivity : AppCompatActivity() {
         binding.afdToolbar.setNavigationOnClickListener { finish() }
         id = intent.getStringExtra("formId").toString()
         getFormDetails()
+
+        binding.afdApplyNow.setOnClickListener {
+            startActivity(Intent(this,DocumentUploadActivity::class.java))
+        }
 
     }
 
@@ -50,7 +54,8 @@ class FormDetailActivity : AppCompatActivity() {
                             binding.afdExtraCharges.text = "₹${modal.extra_charges}"
                             val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()
                             binding.afdTotalPrice.text = "₹${totalPrice}"
-                            setEligiblityList(modal.eligibility)
+                           // requiredDocsList = modal.requirements
+                            setEligibilityList(modal.eligibility)
                             setRequiredDocsList(modal.requirements)
 
                         }
@@ -74,7 +79,7 @@ class FormDetailActivity : AppCompatActivity() {
         binding.afdRequiredList.adapter = arrayAdapter
     }
 
-    private fun setEligiblityList(eligibility: List<String>) {
+    private fun setEligibilityList(eligibility: List<String>) {
         val arrayAdapter = ArrayAdapter(this, R.layout.list_view_lay,eligibility)
         binding.afdEligibleList.adapter = arrayAdapter
     }

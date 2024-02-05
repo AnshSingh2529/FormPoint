@@ -25,7 +25,6 @@ class FormOnlineActivity : AppCompatActivity() {
         list.add(FormOnlineModal(R.drawable.ic_govt_form, "Government Form"))
         list.add(FormOnlineModal(R.drawable.ic_form_online, "Admission Form"))
         list.add(FormOnlineModal(R.drawable.ic_result, "Result"))
-        list.add(FormOnlineModal(R.drawable.ic_job, "Job"))
         binding.foRecyclerView.adapter = RecyclerFormOnlineAdapter(this, list)
     }
 }

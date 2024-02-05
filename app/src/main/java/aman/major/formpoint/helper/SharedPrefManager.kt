@@ -15,7 +15,7 @@ class SharedPrefManager {
         editor.putString(KEY_NAME, user.username)
         editor.putString(KEY_MOBILE, user.mobile)
         editor.putString(KEY_EMAIL, user.email)
-       // editor.putString(KEY_TOKEN, user.getToken())
+        editor.putString(KEY_PROFILE, user.profile)
         editor.putString(KEY_PASSWORD, user.password)
         editor.putString(KEY_CREATED_AT, user.created_at)
         editor.putString(KEY_STATUS, user.status)
@@ -35,6 +35,7 @@ class SharedPrefManager {
                 sharedPreferences.getString(KEY_CREATED_AT, null as String?).toString(),
                 sharedPreferences.getString(KEY_EMAIL, null as String?).toString(),
                 sharedPreferences.getString(KEY_ID, null as String?).toString(),
+                sharedPreferences.getString(KEY_PROFILE, null as String?).toString(),
                 sharedPreferences.getString(KEY_MOBILE, null as String?).toString(),
                 sharedPreferences.getString(KEY_PASSWORD, null as String?).toString(),
                 sharedPreferences.getString(KEY_STATUS, null as String?).toString(),
@@ -51,6 +52,7 @@ class SharedPrefManager {
     companion object {
         private const val KEY_EMAIL = "email"
         private const val KEY_ID = "id"
+        private const val KEY_PROFILE = "profile"
         private const val KEY_MOBILE = "mobile"
         private const val KEY_NAME = "name"
         private const val KEY_TOKEN = "token"

@@ -40,24 +40,27 @@
 
         <TextView
             android:id="@+id/rnl_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:text="Notification Title"
             android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_card"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/rnl_msg"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="notification msg"
             android:textColor="@color/textColorSecondary"
             android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="@+id/rnl_title"
             app:layout_constraintStart_toStartOf="@+id/rnl_title"
             app:layout_constraintTop_toBottomOf="@+id/rnl_title" />
 

@@ -19,14 +19,13 @@ class VideoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_video)
 
 
-        val recyclerView = findViewById<RecyclerView>(R.id.va_recycler)
+        val va_recycler = findViewById<RecyclerView>(R.id.va_recycler)
         val va_toolbar = findViewById<MaterialToolbar>(R.id.va_toolbar)
 
         va_toolbar.setNavigationOnClickListener {
             finish()
         }
-
-        Helper.getVideoList(recyclerView,this)
+        Helper.getVideoList(va_recycler,this)
     }
 
 }

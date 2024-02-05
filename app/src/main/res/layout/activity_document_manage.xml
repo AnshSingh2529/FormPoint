@@ -19,25 +19,296 @@
             android:id="@+id/dm_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back"
             android:background="@color/colorOfBackground"
-            app:title="Choose Document"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="Upload Your Documents"
             app:titleCentered="true"
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dm_recyclerView"
-        android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dm_appbar" />
+        app:layout_constraintTop_toBottomOf="@id/dm_appbar"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
+            <LinearLayout
+                android:id="@+id/dm_photo_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="Passport Size Photo"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    app:cardElevation="@dimen/_4sdp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+
+                    <ImageView
+                        android:id="@+id/dm_photo_img_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp" />
+
+
+                    <!-- <com.airbnb.lottie.LottieAnimationView
+                         android:id="@+id/dm_upload_jpg_animation"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_150sdp"
+                         app:lottie_autoPlay="true"
+                         app:lottie_loop="true"
+                         app:lottie_rawRes="@raw/upload_animation" />-->
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dm_aadhar_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="Adhar Card"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    app:cardElevation="@dimen/_4sdp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+
+                    <ImageView
+                        android:id="@+id/dm_aadhar_card_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp" />
+
+
+                    <!-- <com.airbnb.lottie.LottieAnimationView
+                         android:id="@+id/dm_upload_jpg_animation"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_150sdp"
+                         app:lottie_autoPlay="true"
+                         app:lottie_loop="true"
+                         app:lottie_rawRes="@raw/upload_animation" />-->
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dm_signature_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="Upload Signature"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    app:cardElevation="@dimen/_4sdp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+
+                    <ImageView
+                        android:id="@+id/dm_sign_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp" />
+
+
+                    <!-- <com.airbnb.lottie.LottieAnimationView
+                         android:id="@+id/dm_upload_jpg_animation"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_150sdp"
+                         app:lottie_autoPlay="true"
+                         app:lottie_loop="true"
+                         app:lottie_rawRes="@raw/upload_animation" />-->
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/eight_marksheet_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="8th Marksheet"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    app:cardElevation="@dimen/_4sdp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+
+                    <ImageView
+                        android:id="@+id/dm_8th_marksheet"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp" />
+
+
+                    <!-- <com.airbnb.lottie.LottieAnimationView
+                         android:id="@+id/dm_upload_jpg_animation"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_150sdp"
+                         app:lottie_autoPlay="true"
+                         app:lottie_loop="true"
+                         app:lottie_rawRes="@raw/upload_animation" />-->
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dm_incm_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="Upload Signature"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    app:cardElevation="@dimen/_4sdp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+
+                    <ImageView
+                        android:id="@+id/dm_incm_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp" />
+
+
+                    <!-- <com.airbnb.lottie.LottieAnimationView
+                         android:id="@+id/dm_upload_jpg_animation"
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_150sdp"
+                         app:lottie_autoPlay="true"
+                         app:lottie_loop="true"
+                         app:lottie_rawRes="@raw/upload_animation" />-->
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/tab_background_fog"
+        >
+
+        <com.skydoves.elasticviews.ElasticCardView
+            android:id="@+id/dm_upload_docs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/colorOnPrimary"
+            app:cardUseCompatPadding="true"
+            android:layout_margin="@dimen/_12sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/loginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Upload Document"
+                android:textColor="@color/colorOnSecondary"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+
+
+        </com.skydoves.elasticviews.ElasticCardView>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

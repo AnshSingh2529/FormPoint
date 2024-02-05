@@ -22,7 +22,9 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     private var titleImg: Int = 0
     var type: String = ""
 
-    var formDataList : ArrayList<ImageDataModal> = ArrayList()
+    private var status: Int = 0;
+
+    var formDataList: ArrayList<ImageDataModal> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +34,8 @@ class OnlineOpportunityActivity : AppCompatActivity() {
         binding.ooToolbar.setNavigationOnClickListener {
             finish()
         }
-
-        when (intent.getIntExtra("tabPosition", 0)) {
+        status = intent.getIntExtra("tabPosition", 0)
+        when (status) {
             0 -> {
                 binding.ooToolbar.title = "Admit Card"
                 titleImg = R.drawable.id_admit_card
@@ -63,7 +65,17 @@ class OnlineOpportunityActivity : AppCompatActivity() {
             }
 
             4 -> {
-                binding.ooToolbar.title = "Job"
+                binding.ooToolbar.title = "Choose Forms"
+                titleImg = R.drawable.ic_form_online
+                type = ""
+                getAdmissionForm()
+            }
+
+            5 -> {
+                binding.ooToolbar.title = "Choose Form"
+                titleImg = R.drawable.ic_form_online
+                type = ""
+                getAdmissionForm()
             }
 
         }
@@ -74,34 +86,54 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     private fun getAdmissionForm() {
         val call = RetrofitClient.getClient().getOnlineForms(type)
         Log.d("getAdmissionForm", "getAdmissionForm: function call: type $type")
-        call.enqueue(object : Callback<JsonObject>{
+        call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
-                    if(response.isSuccessful){
-                        Log.d("getAdmissionForm", "getAdmissionForm: function call is success ${response.body().toString()}")
-                        val jsonObject : JsonObject? = response.body()
-                        if (jsonObject?.get("status")?.asString.equals("success")){
+                    if (response.isSuccessful) {
+                        Log.d(
+                            "getAdmissionForm",
+                            "getAdmissionForm: function call is success ${
+                                response.body().toString()
+                            }"
+                        )
+                        val jsonObject: JsonObject? = response.body()
+                        if (jsonObject?.get("status")?.asString.equals("success")) {
                             val dataArray = jsonObject?.get("data")?.asJsonArray
                             formDataList.clear()
-                            for(i in 0 until dataArray!!.size()){
+                            for (i in 0 until dataArray!!.size()) {
                                 val dataObj = dataArray.get(i).asJsonObject
-                                val model = Gson().fromJson(dataObj,FormDataModal::class.java)
-                                formDataList.add(ImageDataModal(titleImg,model))
+                                val model = Gson().fromJson(dataObj, FormDataModal::class.java)
+                                formDataList.add(ImageDataModal(titleImg, model))
                             }
-                            Log.d("getAdmissionForm", "getAdmissionForm: function call is list ${formDataList.size}")
-                            binding.ooRecycler.adapter = RecyclerFormAdapter(this@OnlineOpportunityActivity,formDataList)
+                            Log.d(
+                                "getAdmissionForm",
+                                "getAdmissionForm: function call is list ${formDataList.size}"
+                            )
+                            binding.ooRecycler.adapter =
+                                RecyclerFormAdapter(this@OnlineOpportunityActivity, formDataList,status)
                         }
 
-                    }else{
-                        Log.d("getAdmissionForm", "getAdmissionForm: function call is not success ${response.errorBody()?.string()}")
+                    } else {
+                        Log.d(
+                            "getAdmissionForm",
+                            "getAdmissionForm: function call is not success ${
+                                response.errorBody()?.string()
+                            }"
+                        )
                     }
-                }catch (e:Exception){
-                    Log.d("getAdmissionForm", "getAdmissionForm: Exception call is fail ${e.localizedMessage}")
+                } catch (e: Exception) {
+                    Log.d(
+                        "getAdmissionForm",
+                        "getAdmissionForm: Exception call is fail ${e.localizedMessage}"
+                    )
                 }
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.d("getAdmissionForm", "getAdmissionForm: Exception call is fail ${t.localizedMessage}")
+                Log.d(
+                    "getAdmissionForm",
+                    "getAdmissionForm: Exception call is fail ${t.localizedMessage}"
+                )
             }
         })
     }

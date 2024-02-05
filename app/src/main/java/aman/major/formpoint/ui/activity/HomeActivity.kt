@@ -29,6 +29,13 @@ class HomeActivity : AppCompatActivity() {
         getSliderImages()
         Helper.getVideoList(binding.ahVideoRecycler,this)
 
+        binding.searchBar.setOnClickListener{
+            startActivity(Intent(this, SearchActivity::class.java).putExtra("searchKey",0))
+        }
+        binding.ahMic.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java).putExtra("searchKey",1))
+        }
+
 
         binding.ahProfile.setOnClickListener{
             startActivity(Intent(this, ProfileActivity::class.java))
@@ -43,7 +50,13 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this,DocumentManageActivity::class.java))
         }
 
+        binding.ahApplicationStatus.setOnClickListener{
+            startActivity(Intent(this,OnlineOpportunityActivity::class.java).putExtra("tabPosition",4))
+        }
 
+        binding.ahOtpMenual.setOnClickListener{
+            startActivity(Intent(this,OnlineOpportunityActivity::class.java).putExtra("tabPosition",5))
+        }
         
         binding.ahWatchVideo.setOnClickListener{
             startActivity(Intent(this,VideoActivity::class.java))
@@ -54,32 +67,12 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this,NotificationActivity::class.java))
         }
 
-        var list = ArrayList<String>()
-
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-        list.add("")
-
-//        binding.ahVideoRecycler.adapter = RecyclerVideoHomeAdapter(list,this@HomeActivity)
-//
-//
-//        imgList.add(ImageSlidesModel("https://rdso.indianrailways.gov.in/template/site1/images/pmyoga3.jpg",ImageScaleType.FIT))
-//        imgList.add(ImageSlidesModel("https://i.pinimg.com/564x/5b/5c/fd/5b5cfde191a43c7c0084eb1de3828194.jpg",ImageScaleType.FIT))
-//        imgList.add(ImageSlidesModel("https://rdso.indianrailways.gov.in/template/site1/images/Train18.jpg",ImageScaleType.FIT))
-//        imgList.add(ImageSlidesModel("https://rdso.indianrailways.gov.in/template/site1/images/pmyoga3.jpg",ImageScaleType.FIT))
-//        imgList.add(ImageSlidesModel("https://i.pinimg.com/564x/5b/5c/fd/5b5cfde191a43c7c0084eb1de3828194.jpg",ImageScaleType.FIT))
-//        imgList.add(ImageSlidesModel("https://rdso.indianrailways.gov.in/template/site1/images/Train18.jpg",ImageScaleType.FIT))
-//        binding.autoImageSlider.setImageList(imgList)
-
 
         binding.languageChange.setOnClickListener {
             startActivity(Intent(this, SelectLanguageActivity::class.java).putExtra("onLanguageActivity",2))
         }
+
+
 
 
 

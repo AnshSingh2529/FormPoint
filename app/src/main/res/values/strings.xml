@@ -3,5 +3,11 @@
     <string name="login">Login</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="searchbar_hint">Search anything</string>
+    <string name="searchbar_hint">Search here</string>
+
+    <string name="otp_title">Please enter the 4 digit verification code</string>
+    <string name="otp_button_text">VERIFY</string>
+    <string name="resend_msg">Didn’t receive the OTP?</string>
+    <string name="resend_again_msg">Resend again</string>
+    <string name="sent_to_91_xxxx_xxx">sent to +91 XXXX XXX</string>
 </resources>
