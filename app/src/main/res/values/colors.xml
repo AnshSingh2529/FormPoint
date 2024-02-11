@@ -8,6 +8,7 @@
     <color name="textColorSecondary">#686868</color>
     <color name="colorOfBackground">#EFEFEF</color>
     <color name="colorOfUnselectedTab">#EFEFEF</color>
+    <color name="doucmentUploadBack">#FFE0E0</color>
     <color name="red">#E40000</color>
     <color name="green">#8F9E00</color>
 </resources>

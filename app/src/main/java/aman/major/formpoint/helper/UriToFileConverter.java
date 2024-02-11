@@ -16,8 +16,8 @@ public class UriToFileConverter {
 
     public static File convertUriToFile(Context context, Uri uri) {
         String fileName = getFileName(context.getContentResolver(), uri);
-        File outputFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), fileName);
-
+        File picturesDirectory = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File outputFile = new File(picturesDirectory, fileName);
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
             if (inputStream != null) {
@@ -67,5 +67,26 @@ public class UriToFileConverter {
             }
             inputStream.close();
         }
+    }
+
+    public static File convertUriToFile2(Context context, Uri uri) {
+        String fileName = getFileName(context.getContentResolver(), uri);
+        File outputFile = null;
+
+        try {
+            // Create a temporary file in the cache directory
+            File cacheDir = context.getCacheDir();
+            outputFile = File.createTempFile(fileName, null, cacheDir);
+
+            // Write the content of the InputStream to the temporary file
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            if (inputStream != null) {
+                writeInputStreamToFile(inputStream, outputFile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return outputFile;
     }
 }

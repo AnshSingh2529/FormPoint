@@ -52,6 +52,7 @@
         app:layout_constraintStart_toEndOf="@+id/afd_form_img"
         app:layout_constraintTop_toTopOf="@+id/afd_form_img" />
 
+
     <TextView
         android:id="@+id/afd_form_level"
         android:layout_width="wrap_content"
@@ -363,18 +364,17 @@
         android:id="@+id/afd_applyNow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:background="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorOnPrimary"
         app:cardCornerRadius="@dimen/_8sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/loginText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

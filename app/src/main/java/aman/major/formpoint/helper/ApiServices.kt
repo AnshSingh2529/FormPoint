@@ -45,8 +45,16 @@ interface ApiServices {
     @FormUrlEncoded
     @POST("APIs/get_form")
     fun getSingleFormData(
-        @Field("form_id") id:String
+        @Field("form_id") id:String,
+        @Field("user_id") userId:String
     ):Call<JsonObject>
+
+    @FormUrlEncoded
+    @POST("APIs/applied_form_status")
+    fun getAppliedFormData(
+        @Field("user_id") userId:String
+    ):Call<JsonObject>
+
 
     @Multipart
     @POST("APIs/edit_profile")
@@ -61,11 +69,57 @@ interface ApiServices {
     @POST("APIs/upload_document")
     fun uploadDocument(
         @Part("user_id") userId: RequestBody,
-        @Part photo: MultipartBody.Part,
         @Part aadhar: MultipartBody.Part,
+        @Part photo: MultipartBody.Part,
         @Part signature: MultipartBody.Part,
-        @Part marksheeet: MultipartBody.Part,
-        @Part incomeCertificate: MultipartBody.Part
+        @Part eightMarks: MultipartBody.Part,
+        @Part tenthMarks: MultipartBody.Part,
+        @Part twelthMarks: MultipartBody.Part,
+        @Part gradMarks: MultipartBody.Part,
+        @Part postgradMarks: MultipartBody.Part,
+        @Part incm: MultipartBody.Part,
+        @Part residence: MultipartBody.Part,
+        @Part cast: MultipartBody.Part,
+        @Part pancard: MultipartBody.Part,
+        @Part bank: MultipartBody.Part,
+        @Part ews: MultipartBody.Part,
+        @Part ncc: MultipartBody.Part,
+        @Part sports: MultipartBody.Part,
+        @Part nss: MultipartBody.Part,
+        @Part affidevit: MultipartBody.Part,
+        @Part other: MultipartBody.Part,
+    ): Call<JsonObject>
+
+
+    @Multipart
+    @POST("APIs/save_form")
+    fun saveForm(
+        @Part("username") username: RequestBody,
+        @Part("mobile") mobile: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("user_id") userId: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("form_id") formId: RequestBody,
+        @Part("txn_id") txnId: RequestBody,
+        @Part aadhar: MultipartBody.Part,
+        @Part photo: MultipartBody.Part,
+        @Part signature: MultipartBody.Part,
+        @Part eightMarks: MultipartBody.Part,
+        @Part tenthMarks: MultipartBody.Part,
+        @Part twelthMarks: MultipartBody.Part,
+        @Part gradMarks: MultipartBody.Part,
+        @Part postgradMarks: MultipartBody.Part,
+        @Part incm: MultipartBody.Part,
+        @Part residence: MultipartBody.Part,
+        @Part cast: MultipartBody.Part,
+        @Part pancard: MultipartBody.Part,
+        @Part bank: MultipartBody.Part,
+        @Part ews: MultipartBody.Part,
+        @Part ncc: MultipartBody.Part,
+        @Part sports: MultipartBody.Part,
+        @Part nss: MultipartBody.Part,
+        @Part affidevit: MultipartBody.Part,
+        @Part other: MultipartBody.Part,
     ): Call<JsonObject>
 
     @GET("APIs/notification")

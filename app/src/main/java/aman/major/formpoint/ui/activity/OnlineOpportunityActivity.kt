@@ -4,6 +4,7 @@ import aman.major.formpoint.R
 import aman.major.formpoint.adapter.RecyclerFormAdapter
 import aman.major.formpoint.databinding.ActivityOnlineOpportunityBinding
 import aman.major.formpoint.helper.RetrofitClient
+import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.modal.FormDataModal
 import aman.major.formpoint.modal.ImageDataModal
 import android.os.Bundle
@@ -22,7 +23,7 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     private var titleImg: Int = 0
     var type: String = ""
 
-    private var status: Int = 0;
+    private var status: Int = 0
 
     var formDataList: ArrayList<ImageDataModal> = ArrayList()
 
@@ -40,7 +41,7 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                 binding.ooToolbar.title = "Admit Card"
                 titleImg = R.drawable.id_admit_card
                 type = ""
-                getAdmissionForm()
+                getAppliedForm()
             }
 
             1 -> {
@@ -83,6 +84,35 @@ class OnlineOpportunityActivity : AppCompatActivity() {
 
     }
 
+    private fun getAppliedForm() {
+
+        val call = RetrofitClient.getClient()
+            .getAppliedFormData(SharedPrefManager.getInstance(this@OnlineOpportunityActivity)?.user?.id.toString())
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                try {
+                    if (response.isSuccessful) {
+                        val jsonObject = response.body();
+                        if (jsonObject?.get("status")?.asString.equals("success", false)) {
+                            val jsonArray = jsonObject?.get("data")?.asJsonArray
+                            for (i in 0 until jsonArray!!.size()) {
+                                val jsonObject = jsonArray.get(0).asJsonObject
+
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+
+            }
+        })
+
+    }
+
     private fun getAdmissionForm() {
         val call = RetrofitClient.getClient().getOnlineForms(type)
         Log.d("getAdmissionForm", "getAdmissionForm: function call: type $type")
@@ -110,7 +140,11 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                                 "getAdmissionForm: function call is list ${formDataList.size}"
                             )
                             binding.ooRecycler.adapter =
-                                RecyclerFormAdapter(this@OnlineOpportunityActivity, formDataList,status)
+                                RecyclerFormAdapter(
+                                    this@OnlineOpportunityActivity,
+                                    formDataList,
+                                    status
+                                )
                         }
 
                     } else {

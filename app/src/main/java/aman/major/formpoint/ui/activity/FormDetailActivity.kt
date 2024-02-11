@@ -3,6 +3,7 @@ package aman.major.formpoint.ui.activity
 import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityFormDetailBinding
 import aman.major.formpoint.helper.RetrofitClient
+import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.modal.FormDataModal
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +21,10 @@ class FormDetailActivity : AppCompatActivity() {
     private val TAG: String = "getFormDetails"
     lateinit var binding: ActivityFormDetailBinding
 
+    companion object{
+        var requiredDocs: List<String> = ArrayList<String>()
+    }
+
     var id: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +35,14 @@ class FormDetailActivity : AppCompatActivity() {
         getFormDetails()
 
         binding.afdApplyNow.setOnClickListener {
-            startActivity(Intent(this,DocumentUploadActivity::class.java))
+            startActivity(Intent(this,DocumentUploadActivity::class.java).putExtra("formId",id))
         }
 
     }
 
     private fun getFormDetails() {
         Log.d(TAG, "getFormDetails: function call: formId: $id")
-        val call = RetrofitClient.getClient().getSingleFormData(id);
+        val call = RetrofitClient.getClient().getSingleFormData(id,SharedPrefManager.getInstance(this)?.user?.id.toString());
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
@@ -54,7 +59,7 @@ class FormDetailActivity : AppCompatActivity() {
                             binding.afdExtraCharges.text = "₹${modal.extra_charges}"
                             val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()
                             binding.afdTotalPrice.text = "₹${totalPrice}"
-                           // requiredDocsList = modal.requirements
+                            requiredDocs = modal.requirements
                             setEligibilityList(modal.eligibility)
                             setRequiredDocsList(modal.requirements)
 

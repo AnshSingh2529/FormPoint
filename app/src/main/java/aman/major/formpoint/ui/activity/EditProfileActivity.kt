@@ -1,5 +1,6 @@
 package aman.major.formpoint.ui.activity
 
+import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityEditProfileBinding
 import aman.major.formpoint.helper.Helper
 import aman.major.formpoint.helper.PROFILE_IMG_LOC
@@ -9,9 +10,11 @@ import aman.major.formpoint.helper.UriToFileConverter
 import aman.major.formpoint.helper.Validation
 import aman.major.formpoint.modal.UserModal
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -52,7 +55,8 @@ class EditProfileActivity : AppCompatActivity() {
         binding.epName.setText(SharedPrefManager.getInstance(this)?.user?.username)
         binding.epMob.setText(SharedPrefManager.getInstance(this)?.user?.mobile)
         binding.epEmail.setText(SharedPrefManager.getInstance(this)?.user?.email)
-        Glide.with(this@EditProfileActivity).load(PROFILE_IMG_LOC +SharedPrefManager.getInstance(this@EditProfileActivity)?.user?.profile).into(binding.epProfileImg)
+        Glide.with(this@EditProfileActivity).load(PROFILE_IMG_LOC +SharedPrefManager.getInstance(this@EditProfileActivity)?.user?.profile).placeholder(
+            R.drawable.profile_default).into(binding.epProfileImg)
         binding.epChooseImg.setOnClickListener {
             if (checkPermission()) {
                 openImagePicker()
@@ -73,7 +77,10 @@ class EditProfileActivity : AppCompatActivity() {
                 }
 
                 val file = UriToFileConverter.convertUriToFile(this@EditProfileActivity, imgUri)
-
+                Log.d(
+                    "updateProfile",
+                    "updateProfile: button clicked imgUri: $imgUri"
+                )
                 updateProfile(binding.epName.text.toString(), binding.epEmail.text.toString(), file)
             } else {
                 Toast.makeText(this, "Please Select Image", Toast.LENGTH_SHORT).show()
@@ -88,22 +95,41 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun checkPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            this,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+
     }
 
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-            STORAGE_PERMISSION_CODE
-        )
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES),
+                20
+            )
+        }else{
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                20
+            )
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             imgUri = data?.data!!
@@ -127,6 +153,10 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun updateProfile(epName: String, epEmail: String, file: File?) {
+        val dialog = ProgressDialog(this@EditProfileActivity)
+        dialog.setCancelable(false)
+        dialog.setMessage("Updating Profile")
+        dialog.show()
         Log.d(
             "updateProfile",
             "updateProfile: file status: ${file?.exists()} file name ${file?.name}"
@@ -161,6 +191,7 @@ class EditProfileActivity : AppCompatActivity() {
                             "${jsonObject?.get("message")?.asString}",
                             Toast.LENGTH_SHORT
                         ).show()
+                        dialog.dismiss()
                     } else {
                         Log.e("updateProfile", "Unsuccessful response: ${response.code()}")
                     }

@@ -1,12 +1,16 @@
 package aman.major.formpoint.ui.activity
+import aman.major.formpoint.R
 import aman.major.formpoint.adapter.RecyclerVideoHomeAdapter
 import aman.major.formpoint.databinding.ActivityHomeBinding
 import aman.major.formpoint.helper.Helper
+import aman.major.formpoint.helper.PROFILE_IMG_LOC
 import aman.major.formpoint.helper.RetrofitClient
+import aman.major.formpoint.helper.SharedPrefManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.codebyashish.autoimageslider.Enums.ImageScaleType
 import com.codebyashish.autoimageslider.Models.ImageSlidesModel
 import com.google.gson.JsonObject
@@ -19,6 +23,16 @@ class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
 
     var imgList = ArrayList<ImageSlidesModel>()
+
+    override fun onResume() {
+        super.onResume()
+        setProfileImages()
+    }
+
+    private fun setProfileImages() {
+        Glide.with(this@HomeActivity).load(PROFILE_IMG_LOC + SharedPrefManager.getInstance(this@HomeActivity)?.user?.profile).placeholder(
+            R.drawable.profile_default).into(binding.ahProfile)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +52,9 @@ class HomeActivity : AppCompatActivity() {
 
 
         binding.ahProfile.setOnClickListener{
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, EditProfileActivity::class.java))
         }
+
 
 
         binding.ahFormOnline.setOnClickListener{

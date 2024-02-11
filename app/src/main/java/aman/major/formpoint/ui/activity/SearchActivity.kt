@@ -64,15 +64,16 @@ class SearchActivity : AppCompatActivity() {
             if (text.toString().isNullOrEmpty()){
                 binding.asEmptySearchImg.visibility = View.VISIBLE
                 binding.searchResultRecycler.visibility = View.INVISIBLE
+                binding.asInstructionText.visibility = View.VISIBLE
+                binding.asInstructionText.text = "Search For Result"
                 binding.asEmptySearchImg.setImageResource(R.drawable.search_for_result)
             }else{
                 binding.asEmptySearchImg.visibility = View.INVISIBLE
+                binding.asInstructionText.visibility = View.INVISIBLE
                 binding.searchResultRecycler.visibility = View.VISIBLE
                 performFilteringData(text.toString().toLowerCase().trim())
             }
         }
-
-
     }
 
     private fun performFilteringData(text: String) {
@@ -86,11 +87,14 @@ class SearchActivity : AppCompatActivity() {
             }
             if (filterList.size > 0){
                 binding.asEmptySearchImg.visibility = View.INVISIBLE
+                binding.asInstructionText.visibility = View.INVISIBLE
                 binding.searchResultRecycler.visibility = View.VISIBLE
                 binding.searchResultRecycler.adapter = RecyclerSearchAdapter(this@SearchActivity,filterList)
             }else{
                 binding.asEmptySearchImg.visibility = View.VISIBLE
                 binding.searchResultRecycler.visibility = View.INVISIBLE
+                binding.asInstructionText.visibility = View.VISIBLE
+                binding.asInstructionText.text = "No Result Found"
                 binding.asEmptySearchImg.setImageResource(R.drawable.no_reord_found)
             }
         }

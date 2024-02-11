@@ -41,22 +41,15 @@ class RecyclerFormAdapter(var context: Context, var list: ArrayList<ImageDataMod
 
         holder.itemView.setOnClickListener{
             when(status){
-                1 or 2 ->{
+                1 ->{
                     context.startActivity(Intent(context,FormDetailActivity::class.java).putExtra("formId",imgModal.id))
                 }
-                0 ->{
-                    context.startActivity(Intent(context,FormDetailActivity::class.java).putExtra("formId",imgModal.id))
-                }
-                3->{
-                    context.startActivity(Intent(context,FormDetailActivity::class.java).putExtra("formId",imgModal.id))
-                }
-                4->{
+                2 ->{
                     context.startActivity(Intent(context,FormDetailActivity::class.java).putExtra("formId",imgModal.id))
                 }
                 5->{
                     context.startActivity(Intent(context,OtpActivity::class.java).putExtra("formId",imgModal.id))
                 }
-
             }
         }
     }

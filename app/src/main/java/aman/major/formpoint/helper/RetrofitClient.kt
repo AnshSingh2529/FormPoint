@@ -1,10 +1,12 @@
 package aman.major.formpoint.helper
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 class RetrofitClient {
     companion object{
@@ -22,9 +24,13 @@ class RetrofitClient {
                 // Add any other interceptor if needed
                 .build()
 
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
 
             val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(BASE_URL)
                 .build()
             return retrofit.create(ApiServices::class.java)

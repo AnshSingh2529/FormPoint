@@ -35,242 +35,809 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dm_appbar"
-        >
+        app:layout_constraintTop_toBottomOf="@id/dm_appbar">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
 
             <LinearLayout
-                android:id="@+id/dm_photo_lay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/adharLay"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:text="Passport Size Photo"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_4sdp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/adharJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
 
                     <ImageView
-                        android:id="@+id/dm_photo_img_view"
+                        android:id="@+id/adharImg"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp" />
+                        android:layout_height="match_parent"
+                        android:padding="12dp" />
 
 
-                    <!-- <com.airbnb.lottie.LottieAnimationView
-                         android:id="@+id/dm_upload_jpg_animation"
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_150sdp"
-                         app:lottie_autoPlay="true"
-                         app:lottie_loop="true"
-                         app:lottie_rawRes="@raw/upload_animation" />-->
-                </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Adhar Card"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
 
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/photoLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/photoJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/photoImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Photo"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dm_aadhar_lay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/signaturLay"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:text="Adhar Card"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_4sdp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/signatureJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
 
                     <ImageView
-                        android:id="@+id/dm_aadhar_card_img"
+                        android:id="@+id/signImg"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp" />
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"/>
 
 
-                    <!-- <com.airbnb.lottie.LottieAnimationView
-                         android:id="@+id/dm_upload_jpg_animation"
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_150sdp"
-                         app:lottie_autoPlay="true"
-                         app:lottie_loop="true"
-                         app:lottie_rawRes="@raw/upload_animation" />-->
-                </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Signature"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
 
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/eightMarkLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/eightMarkJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/eightmarksImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="8th-Marksheet"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dm_signature_lay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/tenthMarksLay"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:text="Upload Signature"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_4sdp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/tenthMarksJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
 
                     <ImageView
-                        android:id="@+id/dm_sign_img"
+                        android:id="@+id/tenthMarksImg"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp" />
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"/>
 
 
-                    <!-- <com.airbnb.lottie.LottieAnimationView
-                         android:id="@+id/dm_upload_jpg_animation"
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_150sdp"
-                         app:lottie_autoPlay="true"
-                         app:lottie_loop="true"
-                         app:lottie_rawRes="@raw/upload_animation" />-->
-                </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="10th-Marksheet"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
 
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/twelMarksLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/twelMarksJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/twelMarksImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="12th-Marksheet"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/eight_marksheet_lay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/gradmarksLay"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:text="8th Marksheet"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_4sdp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/gradMarksJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
 
                     <ImageView
-                        android:id="@+id/dm_8th_marksheet"
+                        android:id="@+id/gradMarksImg"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp" />
+                        android:layout_height="wrap_content" />
 
 
-                    <!-- <com.airbnb.lottie.LottieAnimationView
-                         android:id="@+id/dm_upload_jpg_animation"
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_150sdp"
-                         app:lottie_autoPlay="true"
-                         app:lottie_loop="true"
-                         app:lottie_rawRes="@raw/upload_animation" />-->
-                </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Graduation-Marksheet"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
 
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/pGradLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/pGradJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/pGradImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Post-Graduation"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dm_incm_lay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/incmLay"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:text="Upload Signature"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_4sdp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dm_upload_jpg_text">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/incmLayJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
 
                     <ImageView
-                        android:id="@+id/dm_incm_img"
+                        android:id="@+id/incmJson"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp" />
+                        android:layout_height="wrap_content" />
 
 
-                    <!-- <com.airbnb.lottie.LottieAnimationView
-                         android:id="@+id/dm_upload_jpg_animation"
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_150sdp"
-                         app:lottie_autoPlay="true"
-                         app:lottie_loop="true"
-                         app:lottie_rawRes="@raw/upload_animation" />-->
-                </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Income-Certificate"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/residencLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/residenceJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/residenceImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Residence-Certificate"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/castLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/castJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/castImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Caste-Certificate"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/pancardLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/pancardJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/panCardImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Pancard"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/bank_passbook_lay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/bankPassBookJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/bankPassbookImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Bank-Passbook"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/ewsLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/ewsJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/ewsImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="EWS"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/ncclay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/nccjson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/nccImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="NCC-Certificate"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/sportsCerfLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/sportsCerfJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/sportsCerfImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Sports-Certificate"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/nssLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/nssJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/nssImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="NSS-Certificate"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/affidevitLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/affedevitJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/affedevitImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Affidavit"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.skydoves.elasticviews.ElasticLayout
+                    android:id="@+id/otherLay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_doc_upload"
+                    android:orientation="horizontal">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/otherJson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_12sdp"
+                        android:scaleType="centerCrop"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/upload_animation" />
+
+                    <ImageView
+                        android:id="@+id/otherImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal |bottom"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Other"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </com.skydoves.elasticviews.ElasticLayout>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"/>
+                android:layout_height="@dimen/_70sdp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -278,21 +845,20 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/tab_background_fog"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.skydoves.elasticviews.ElasticCardView
             android:id="@+id/dm_upload_docs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
             android:background="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/colorOnPrimary"
-            app:cardUseCompatPadding="true"
-            android:layout_margin="@dimen/_12sdp"
-            app:cardCornerRadius="@dimen/_8sdp">
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true">
 
             <TextView
                 android:id="@+id/loginText"
@@ -304,7 +870,6 @@
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
-
 
 
         </com.skydoves.elasticviews.ElasticCardView>
