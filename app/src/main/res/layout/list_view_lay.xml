@@ -2,9 +2,9 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Hello"
-    android:textSize="@dimen/_12ssp"
-    android:padding="@dimen/_4sdp"
-    android:gravity="center_vertical"
+    android:drawableStart="@drawable/ic_diamond"
     android:drawablePadding="@dimen/_4sdp"
-    android:drawableStart="@drawable/ic_diamond"/>
+    android:gravity="center_vertical"
+    android:padding="@dimen/_4sdp"
+    android:text="Hello"
+    android:textSize="@dimen/_12ssp" />

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOfBackground"
-    android:overScrollMode="never"
     android:orientation="vertical"
+    android:overScrollMode="never"
     tools:context=".ui.activity.RegisterActivity">
 
 
@@ -18,9 +18,9 @@
             android:id="@+id/reg_illustration"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
+            android:scaleType="centerCrop"
             android:src="@drawable/illustration_register_page"
             app:layout_constraintEnd_toEndOf="parent"
-            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

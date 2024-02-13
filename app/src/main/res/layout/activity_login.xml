@@ -12,10 +12,10 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_230sdp"
+        android:padding="@dimen/_18sdp"
+        android:scaleType="centerCrop"
         android:src="@drawable/illustration_login"
         app:layout_constraintEnd_toEndOf="parent"
-        android:scaleType="centerCrop"
-        android:padding="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,8 +119,8 @@
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/colorOnPrimary"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="@dimen/_8sdp">
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true">
 
             <TextView
                 android:id="@+id/loginText"
@@ -132,7 +132,6 @@
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
-
 
 
         </com.skydoves.elasticviews.ElasticCardView>
@@ -175,8 +174,7 @@
             android:background="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="#FEFFAC"
             app:cardCornerRadius="@dimen/_8sdp"
-            app:cardUseCompatPadding="true"
-           >
+            app:cardUseCompatPadding="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -196,12 +194,6 @@
     </LinearLayout>
 
 
-
-
-
-
-
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -214,8 +206,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Don't have account? "
             android:gravity="center"
+            android:text="Don't have account? "
             android:textColor="@color/textColorSecondary" />
 
         <com.skydoves.elasticviews.ElasticLayout
@@ -227,8 +219,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Create Account"
                 android:layout_gravity="center"
+                android:text="Create Account"
                 android:textColor="@color/colorOnPrimary"
                 android:textStyle="bold" />
 

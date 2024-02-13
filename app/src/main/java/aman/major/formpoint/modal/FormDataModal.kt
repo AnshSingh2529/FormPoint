@@ -8,6 +8,8 @@ data class FormDataModal(
     val created_at: String,
     val eligibility: List<String>,
     val extra_charges: String,
+    val result_charges: String,
+    val admit_card_charges: String,
     val id: String,
     val level: String,
     val name: String,

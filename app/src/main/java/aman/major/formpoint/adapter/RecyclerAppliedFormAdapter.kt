@@ -1,14 +1,27 @@
 package aman.major.formpoint.adapter
 
 import aman.major.formpoint.R
+import aman.major.formpoint.helper.RetrofitClient
+import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.modal.AppliedFormModal
+import aman.major.formpoint.modal.FormDataModal
+import aman.major.formpoint.ui.activity.ApplicationStatusActivity
+import aman.major.formpoint.ui.activity.FormDetailActivity
+import aman.major.formpoint.ui.activity.OtpActivity
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RecyclerAppliedFormAdapter(
     var context: Context,
@@ -39,7 +52,87 @@ class RecyclerAppliedFormAdapter(
         holder.formTitle.text = modal.formname
         holder.formPostDate.text = modal.created_at
 
+        when (status) {
+            4 -> {
+                holder.titleImg.setImageResource(R.drawable.ic_application_status)
+            }
+
+            5 -> {
+                holder.titleImg.setImageResource(R.drawable.ic_otp_menual)
+            }
+        }
+
+        holder.itemView.setOnClickListener {
+            when (status) {
+                4 -> {
+                    context.startActivity(
+                        Intent(
+                            context,
+                            ApplicationStatusActivity::class.java
+                        ).putExtra("formId", modal.form_id)
+                    )
+                }
+
+                5 -> {
+                    context.startActivity(
+                        Intent(
+                            context,
+                            OtpActivity::class.java
+                        ).putExtra("formId", modal.form_id)
+                    )
+                }
+            }
+        }
+
+        getFormDetails(modal.form_id,context,holder)
         //holder.titleImg.setImageResource(R.drawable.)
 
+    }
+
+    private fun getFormDetails(id: String, context: Context, holder: AppliedFormVH) {
+        Log.d("getFormDetails", "getFormDetails: function call: formId: $id")
+        val call = RetrofitClient.getClient()
+            .getSingleFormData(id, SharedPrefManager.getInstance(context)?.user?.id.toString());
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                try {
+                    if (response.isSuccessful) {
+                        Log.d("getFormDetails", "onResponse: response success: ${response.body()}")
+                        val jsonObject = response.body();
+                        if (jsonObject?.get("status")?.asString.equals("success", true)) {
+                            val dataArray = jsonObject?.get("data")?.asJsonArray
+                            val dataObj = dataArray?.get(0)?.asJsonObject
+                            val modal = Gson().fromJson(dataObj, FormDataModal::class.java)
+                            holder.formType.text = modal.type
+                            holder.formLocation.text = "Level: ${modal.level}"
+//                            binding.afdFormName.text = modal.name
+//                            binding.afdFormLevel.text = "Level: ${modal.level}"
+//                            binding.afdGovtPrice.text = "₹${modal.charges}"
+//                            binding.afdExtraCharges.text = "₹${modal.extra_charges}"
+//                            val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()
+//                            binding.afdTotalPrice.text = "₹${totalPrice}"
+//                            FormDetailActivity.requiredDocs = modal.requirements
+//                            setEligibilityList(modal.eligibility)
+//                            setRequiredDocsList(modal.requirements)
+
+                        }
+                    } else {
+                        Log.d(
+                            "getFormDetails",
+                            "onResponse: response not success: ${
+                                response.errorBody()?.string()
+                            } error code: ${response.code()}"
+                        )
+                    }
+                } catch (e: Exception) {
+                    Log.d("getFormDetails", "onResponse: Exception found ${e.localizedMessage}")
+                }
+
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("getFormDetails", "onFailure: ${t.localizedMessage}")
+            }
+        })
     }
 }

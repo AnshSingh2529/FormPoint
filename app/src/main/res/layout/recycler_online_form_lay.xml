@@ -9,6 +9,7 @@
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
     app:strokeColor="@color/colorOnPrimary"
+    android:id="@+id/parent"
     app:strokeWidth="0.8dp">
 
 
@@ -30,60 +31,75 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/formTitle"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:text="Title Of Form"
-            android:textColor="@color/textColorPrimary"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintStart_toEndOf="@+id/titleImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/formLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:text="Location"
-            android:textColor="@color/textColorSecondary"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toTopOf="@+id/formPostDate"
-            app:layout_constraintStart_toStartOf="@+id/formPostDate"
-            app:layout_constraintTop_toBottomOf="@+id/formTitle" />
-
-
-        <TextView
-            android:id="@+id/formPostDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_4sdp"
-            android:drawableStart="@drawable/ic_calendar"
-            android:drawablePadding="4dp"
-            android:drawableTint="@color/textColorSecondary"
-            android:gravity="center"
-            android:text="12-22-2023"
-            android:textColor="@color/textColorSecondary"
-            android:textSize="@dimen/_9ssp"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/formTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
+            app:layout_constraintStart_toEndOf="@+id/titleImage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/formTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title Of Form"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/_14ssp" />
 
 
-        <TextView
-            android:id="@+id/formType"
+            <TextView
+                android:id="@+id/formLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toTopOf="@+id/formPostDate"
+                app:layout_constraintStart_toStartOf="@+id/formPostDate"
+                app:layout_constraintTop_toBottomOf="@+id/formTitle" />
+
+
+            <TextView
+                android:id="@+id/formPostDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:drawablePadding="4dp"
+                android:drawableTint="@color/textColorSecondary"
+                android:gravity="center"
+                android:text="12-22-2023"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/formTitle" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/text_type_background"
-            android:text="Form Type"
-            android:textColor="@color/white"
+            app:cardBackgroundColor="@color/black"
+            app:strokeWidth="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumComponent">
 
+            <TextView
+                android:id="@+id/formType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:padding="6dp"
+                android:text="Form Type"
+                android:textColor="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,18 +25,17 @@
             android:id="@+id/rvh_datetime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#3C000000"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="@dimen/_8sdp"
             android:text="Title"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:background="#3C000000"
-            android:padding="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

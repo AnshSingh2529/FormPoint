@@ -33,8 +33,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:padding="12dp"
                 android:src="@drawable/ic_notification_2"
-                app:shapeAppearanceOverlay="@style/circular_image_view"
-                />
+                app:shapeAppearanceOverlay="@style/circular_image_view" />
         </com.google.android.material.card.MaterialCardView>
 
 

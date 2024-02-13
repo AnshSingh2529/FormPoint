@@ -21,11 +21,11 @@
             android:layout_height="wrap_content"
             android:background="@color/black"
             app:navigationIcon="@drawable/ic_back"
+            app:navigationIconTint="@color/white"
             app:title="Video Play"
             app:titleCentered="true"
-            app:titleTextColor="@color/white"
-            app:navigationIconTint="@color/white"
-            app:titleTextAppearance="@style/app_bar_text_style" />
+            app:titleTextAppearance="@style/app_bar_text_style"
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -38,8 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import aman.major.formpoint.databinding.ActivityDocumentUploadBinding
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.helper.UriToFileConverter
+import aman.major.formpoint.modal.FormDataModal
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,13 +15,18 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.skydoves.elasticviews.ElasticCardView
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -55,6 +61,7 @@ class DocumentUploadActivity : AppCompatActivity() {
     var nss: Uri? = null
     var affeDevitUri: Uri? = null
     var otherUri: Uri? = null
+    var formId: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +69,7 @@ class DocumentUploadActivity : AppCompatActivity() {
         binding = ActivityDocumentUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val formId = intent.getStringExtra("formId")
+        formId = intent.getStringExtra("formId")
 
         val docsArray = arrayOf(
             "Aadhar",
@@ -189,17 +196,9 @@ class DocumentUploadActivity : AppCompatActivity() {
                 and binding.userEmail.text.toString().isNotEmpty()
                 and binding.userEmail.text.toString().isNotEmpty()
                 and binding.userMobile.text.toString().isNotEmpty()
-                and binding.userTxnId.text.toString().isNotEmpty()
+            //and binding.userTxnId.text.toString().isNotEmpty()
             ) {
-                uploadFormInApi(
-                    SharedPrefManager.getInstance(this)?.user?.id.toString(),
-                    binding.userEmail.text.toString(),
-                    binding.userMobile.text.toString(),
-                    formId.toString(),
-                    binding.userName.text.toString(),
-                    binding.userAddress.text.toString(),
-                    binding.userTxnId.text.toString()
-                )
+                handlePaymentBottomSheet()
             } else {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
@@ -207,6 +206,117 @@ class DocumentUploadActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun handlePaymentBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val bottomSheetView = layoutInflater.inflate(R.layout.payment_bottom_sheet, null)
+        bottomSheetDialog.setContentView(bottomSheetView)
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
+        val qrCodeImages = bottomSheetDialog.findViewById<ImageView>(R.id.qrCodeImages)
+        val totalCharge = bottomSheetDialog.findViewById<TextView>(R.id.totalCharge)
+        val govtCharge = bottomSheetDialog.findViewById<TextView>(R.id.govtCharge)
+        val resultCharge = bottomSheetDialog.findViewById<TextView>(R.id.resultCharge)
+        val admitCardCharge = bottomSheetDialog.findViewById<TextView>(R.id.admitCardCharge)
+        val platFormCharge = bottomSheetDialog.findViewById<TextView>(R.id.platFormCharge)
+        val userTxnId = bottomSheetDialog.findViewById<EditText>(R.id.userTxnId)
+        val submitButton = bottomSheetDialog.findViewById<ElasticCardView>(R.id.submitButton)
+
+        getFormsPaymentData(
+            qrCodeImages,
+            totalCharge,
+            govtCharge,
+            resultCharge,
+            admitCardCharge,
+            platFormCharge
+        )
+
+        submitButton?.setOnClickListener {
+            if (userTxnId?.text.toString().isEmpty()) {
+                Toast.makeText(this, "Fill the Txn Id", Toast.LENGTH_SHORT).show()
+            } else if (userTxnId?.text.toString().length != 12) {
+                Toast.makeText(this, "txn Id is of must be 12 digits", Toast.LENGTH_SHORT).show()
+            } else {
+                uploadFormInApi(
+                    SharedPrefManager.getInstance(this)?.user?.id.toString(),
+                    binding.userEmail.text.toString(),
+                    binding.userMobile.text.toString(),
+                    formId.toString(),
+                    binding.userName.text.toString(),
+                    binding.userAddress.text.toString(),
+                    userTxnId?.text.toString()
+                )
+                bottomSheetDialog.dismiss()
+            }
+        }
+    }
+
+    private fun getFormsPaymentData(
+        qrCodeImages: ImageView?,
+        totalCharge: TextView?,
+        govtCharge: TextView?,
+        resultCharge: TextView?,
+        admitCardCharge: TextView?,
+        platFormCharge: TextView?
+    ) {
+        Log.d("getFormDetails", "getFormDetails: function call: formId: $formId")
+        val call = RetrofitClient.getClient()
+            .getSingleFormData(formId.toString(), SharedPrefManager.getInstance(this@DocumentUploadActivity)?.user?.id.toString());
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                try {
+                    if (response.isSuccessful) {
+                        Log.d("getFormDetails", "onResponse: response success: ${response.body()}")
+                        val jsonObject = response.body();
+                        if (jsonObject?.get("status")?.asString.equals("success", true)) {
+                            val dataArray = jsonObject?.get("data")?.asJsonArray
+                            val dataObj = dataArray?.get(0)?.asJsonObject
+                            val modal = Gson().fromJson(dataObj, FormDataModal::class.java)
+
+                            val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()+modal.result_charges.toInt()+modal.admit_card_charges.toInt()
+                            totalCharge?.text = "₹$totalPrice"
+                            govtCharge?.text = "₹"+modal.charges.toString()
+                            resultCharge?.text = "₹"+modal.result_charges.toString()
+                            admitCardCharge?.text = "₹"+modal.admit_card_charges.toString()
+                            platFormCharge?.text = "₹"+modal.extra_charges.toString()
+
+
+                            Glide.with(this@DocumentUploadActivity).load(jsonObject?.get("qr_code_path")?.asString).into(
+                                qrCodeImages!!
+                            )
+
+//                            holder.formType.text = modal.type
+//                            holder.formLocation.text = "Level: ${modal.level}"
+//                            binding.afdFormName.text = modal.name
+//                            binding.afdFormLevel.text = "Level: ${modal.level}"
+//                            binding.afdGovtPrice.text = "₹${modal.charges}"
+//                            binding.afdExtraCharges.text = "₹${modal.extra_charges}"
+//
+//                            binding.afdTotalPrice.text = "₹${totalPrice}"
+//                            FormDetailActivity.requiredDocs = modal.requirements
+//                            setEligibilityList(modal.eligibility)
+//                            setRequiredDocsList(modal.requirements)
+
+                        }
+                    } else {
+                        Log.d(
+                            "getFormDetails",
+                            "onResponse: response not success: ${
+                                response.errorBody()?.string()
+                            } error code: ${response.code()}"
+                        )
+                    }
+                } catch (e: Exception) {
+                    Log.d("getFormDetails", "onResponse: Exception found ${e.localizedMessage}")
+                }
+
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("getFormDetails", "onFailure: ${t.localizedMessage}")
+            }
+        })
     }
 
     private fun uploadFormInApi(
@@ -218,7 +328,7 @@ class DocumentUploadActivity : AppCompatActivity() {
         address: String,
         txnId: String
     ) {
-        var progressDialog = ProgressDialog(this)
+        val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Applying Form")
         progressDialog.show()
         Log.d(
@@ -293,13 +403,13 @@ class DocumentUploadActivity : AppCompatActivity() {
                         )
                         val responseBody = response.body();
                         if (responseBody?.get("res")?.asString.equals("success", false)) {
-                            Toast.makeText(
-                                this@DocumentUploadActivity,
-                                "${responseBody?.get("message")?.asString}",
-                                Toast.LENGTH_SHORT
-                            ).show()
                             handleSuccessBottomSheet()
                         }
+                        Toast.makeText(
+                            this@DocumentUploadActivity,
+                            "${responseBody?.get("message")?.asString}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
                         Log.d(
                             "uploadFormInApi",
@@ -517,7 +627,9 @@ class DocumentUploadActivity : AppCompatActivity() {
 
         val file =
             UriToFileConverter.convertUriToFile2(this@DocumentUploadActivity, Uri.parse(filePath))
-        val requestBody = RequestBody.create(contentResolver.getType(Uri.parse(filePath))?.let { it.toMediaTypeOrNull() },file)
+        val requestBody = RequestBody.create(
+            contentResolver.getType(Uri.parse(filePath))?.let { it.toMediaTypeOrNull() }, file
+        )
         Log.d(
             "prepareFilePart",
             "prepareFilePart: file exist status ${file.exists()} name ${file.name}"

@@ -1,10 +1,12 @@
 package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.R
+import aman.major.formpoint.adapter.RecyclerAppliedFormAdapter
 import aman.major.formpoint.adapter.RecyclerFormAdapter
 import aman.major.formpoint.databinding.ActivityOnlineOpportunityBinding
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
+import aman.major.formpoint.modal.AppliedFormModal
 import aman.major.formpoint.modal.FormDataModal
 import aman.major.formpoint.modal.ImageDataModal
 import android.os.Bundle
@@ -26,6 +28,8 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     private var status: Int = 0
 
     var formDataList: ArrayList<ImageDataModal> = ArrayList()
+
+    var appliedFormList : ArrayList<AppliedFormModal> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,21 +66,21 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                 binding.ooToolbar.title = "Result"
                 titleImg = R.drawable.ic_result
                 type = ""
-                getAdmissionForm()
+                getAppliedForm()
             }
 
             4 -> {
-                binding.ooToolbar.title = "Choose Forms"
-                titleImg = R.drawable.ic_form_online
+                binding.ooToolbar.title = "Applied Forms"
+                titleImg = R.drawable.ic_application_status
                 type = ""
-                getAdmissionForm()
+                getAppliedForm()
             }
 
             5 -> {
-                binding.ooToolbar.title = "Choose Form"
+                binding.ooToolbar.title = "Choose Form For OTP"
                 titleImg = R.drawable.ic_form_online
                 type = ""
-                getAdmissionForm()
+                getAppliedForm()
             }
 
         }
@@ -85,7 +89,7 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     }
 
     private fun getAppliedForm() {
-
+        appliedFormList.clear()
         val call = RetrofitClient.getClient()
             .getAppliedFormData(SharedPrefManager.getInstance(this@OnlineOpportunityActivity)?.user?.id.toString())
         call.enqueue(object : Callback<JsonObject> {
@@ -96,9 +100,11 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                         if (jsonObject?.get("status")?.asString.equals("success", false)) {
                             val jsonArray = jsonObject?.get("data")?.asJsonArray
                             for (i in 0 until jsonArray!!.size()) {
-                                val jsonObject = jsonArray.get(0).asJsonObject
-
+                                val jsonObject = jsonArray.get(i).asJsonObject
+                                val modal = Gson().fromJson(jsonObject,AppliedFormModal::class.java)
+                                appliedFormList.add(modal)
                             }
+                            binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)
                         }
                     }
                 } catch (e: Exception) {

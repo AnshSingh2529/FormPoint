@@ -6,15 +6,22 @@ import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.modal.FormDataModal
 import android.content.Intent
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
+import android.widget.LinearLayout.LayoutParams;
 import retrofit2.Response
+
 
 class FormDetailActivity : AppCompatActivity() {
 
@@ -59,6 +66,7 @@ class FormDetailActivity : AppCompatActivity() {
                             binding.afdExtraCharges.text = "₹${modal.extra_charges}"
                             val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()
                             binding.afdTotalPrice.text = "₹${totalPrice}"
+                            binding.formType.text = modal.type
                             requiredDocs = modal.requirements
                             setEligibilityList(modal.eligibility)
                             setRequiredDocsList(modal.requirements)
@@ -80,12 +88,47 @@ class FormDetailActivity : AppCompatActivity() {
     }
 
     private fun setRequiredDocsList(requirements: List<String>) {
-        val arrayAdapter = ArrayAdapter(this, R.layout.list_view_lay,requirements)
-        binding.afdRequiredList.adapter = arrayAdapter
+      /*  val arrayAdapter = ArrayAdapter(this, R.layout.list_view_lay,requirements)
+        binding.afdRequiredList.adapter = arrayAdapter*/
+
+        val backgroundDrawable = resources.getDrawable(R.drawable.text_type_background, null)
+
+        for (item in requirements){
+            val textView = getTextView(backgroundDrawable,"$item")
+            binding.afdRequiredLay.addView(textView)
+        }
+
+
     }
 
     private fun setEligibilityList(eligibility: List<String>) {
-        val arrayAdapter = ArrayAdapter(this, R.layout.list_view_lay,eligibility)
-        binding.afdEligibleList.adapter = arrayAdapter
+        /* val arrayAdapter = ArrayAdapter(this, R.layout.list_view_lay,eligibility)
+         binding.afdEligibleList.adapter = arrayAdapter*/
+
+        val backgroundDrawable = resources.getDrawable(R.drawable.text_type_background, null)
+
+        for (item in eligibility){
+            val textView = getTextView(backgroundDrawable,"$item")
+            binding.afdEligibleLay.addView(textView)
+        }
+
+
     }
+
+    private fun getTextView(background: Drawable,text :String) :TextView{
+        val textView = TextView(this@FormDetailActivity)
+        textView.text = text
+        textView.background = background
+        val marginParams = MarginLayoutParams(
+            LayoutParams.WRAP_CONTENT,  // Width
+            LayoutParams.WRAP_CONTENT // Height
+        )
+        marginParams.setMargins(0, 8, 12, 0)
+        textView.layoutParams = marginParams
+        textView.setTypeface(null, Typeface.BOLD)
+        textView.setTextColor(ContextCompat.getColor(this@FormDetailActivity,R.color.black))
+        return textView
+    }
+
+
 }

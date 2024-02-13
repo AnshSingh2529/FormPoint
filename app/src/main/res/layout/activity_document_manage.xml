@@ -156,7 +156,7 @@
                         android:id="@+id/signImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="12dp"/>
+                        android:padding="12dp" />
 
 
                     <TextView
@@ -240,7 +240,7 @@
                         android:id="@+id/tenthMarksImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="12dp"/>
+                        android:padding="12dp" />
 
 
                     <TextView
@@ -278,7 +278,7 @@
                         android:id="@+id/twelMarksImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="12dp"/>
+                        android:padding="12dp" />
 
 
                     <TextView
@@ -361,7 +361,7 @@
                         android:id="@+id/pGradImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="12dp"/>
+                        android:padding="12dp" />
 
 
                     <TextView
@@ -489,7 +489,7 @@
                         android:id="@+id/castImg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="12dp"/>
+                        android:padding="12dp" />
 
 
                     <TextView

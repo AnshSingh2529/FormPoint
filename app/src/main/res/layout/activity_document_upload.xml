@@ -106,28 +106,6 @@
                 android:padding="@dimen/_12sdp" />
 
 
-            <EditText
-                android:id="@+id/userTxnId"
-                style="@style/edit_text_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="12dp"
-                android:drawableStart="@drawable/ic_password"
-                android:drawablePadding="@dimen/_8sdp"
-                android:hint="Transaction Id"
-                android:inputType="textPersonName"
-                android:padding="@dimen/_12sdp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:textColor="@color/black"
-                android:text="Note:  Enter the transaction id of your payment"
-                />
-
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -232,6 +210,7 @@
                                 app:lottie_rawRes="@raw/file_upload" />
 
                             <com.skydoves.elasticviews.ElasticButton
+                                android:id="@+id/uploadPhoto"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="bottom|end"
@@ -240,7 +219,6 @@
                                 android:backgroundTint="@color/textColorSecondary"
                                 android:text="Upload File"
                                 android:textColor="@color/colorOnSecondary"
-                                android:id="@+id/uploadPhoto"
                                 app:cornerRadius="8dp" />
 
 

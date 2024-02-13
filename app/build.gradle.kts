@@ -78,4 +78,7 @@ dependencies {
     /*Pin view*/
     implementation ("io.github.chaosleung:pinview:1.4.4")
 
+    /*FlexBox Layout*/
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+
 }

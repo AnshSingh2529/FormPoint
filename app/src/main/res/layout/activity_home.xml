@@ -19,8 +19,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
+
             <TextView
                 android:id="@+id/searchBar"
                 android:layout_width="match_parent"
@@ -51,8 +51,8 @@
             android:layout_gravity="center"
             android:layout_marginStart="12dp"
             android:padding="3dp"
-            android:visibility="gone"
-            android:src="@drawable/ic_notification_2" />
+            android:src="@drawable/ic_notification_2"
+            android:visibility="gone" />
 
 
         <ImageView
@@ -236,6 +236,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -281,10 +282,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:visibility="visible"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="6dp"
-                        android:visibility="visible"
                         app:cardUseCompatPadding="true">
 
                         <LinearLayout

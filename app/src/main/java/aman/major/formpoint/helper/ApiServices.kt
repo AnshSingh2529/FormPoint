@@ -134,7 +134,13 @@ interface ApiServices {
     fun getAllFormsName(
     ): Call<JsonObject>
 
-
+    @FormUrlEncoded
+    @POST("APIs/otp_manual")
+    fun sendOtpToRecieve(
+        @Field("user_id")user_id: String?,
+        @Field("form_id")form_id: String?,
+        @Field("otp")otp: String
+    ): Call<JsonObject>
 
 
 }

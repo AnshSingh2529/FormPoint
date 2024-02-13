@@ -8,8 +8,6 @@
     tools:context=".ui.activity.ProfileActivity">
 
 
-
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
@@ -28,9 +26,9 @@
         android:id="@+id/profileImage"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:src="@drawable/img"
-        android:layout_marginTop="@dimen/_6sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:shapeAppearanceOverlay="@style/circular_image_view" />
@@ -150,8 +148,6 @@
 
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
