@@ -23,7 +23,7 @@
             android:background="@color/colorOfBackground"
             app:navigationIcon="@drawable/ic_back"
             app:navigationIconTint="@color/black"
-            app:title="OTP Manual"
+            app:title="@string/otp_menual"
             app:titleCentered="true"
             app:titleTextAppearance="@style/app_bar_text_style"
             app:titleTextColor="@color/black" />
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/_10sdp"
-            android:text="Submit Otp"
+            android:text="@string/submit_otp"
             android:textColor="@color/colorOnSecondary"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

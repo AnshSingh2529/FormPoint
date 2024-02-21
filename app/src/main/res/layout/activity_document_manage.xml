@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorOfBackground"
             app:navigationIcon="@drawable/ic_back"
-            app:title="Upload Your Documents"
+            app:title="@string/upload_your_documents"
             app:titleCentered="true"
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Adhar Card"
+                        android:text="@string/adhar_card"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -118,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Photo"
+                        android:text="@string/photo"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Signature"
+                        android:text="@string/signature"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="8th-Marksheet"
+                        android:text="@string/_8th_marksheet"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -248,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="10th-Marksheet"
+                        android:text="@string/_10th_marksheet"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -286,7 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="12th-Marksheet"
+                        android:text="@string/_12th_marksheet"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -331,7 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Graduation-Marksheet"
+                        android:text="@string/graduation_marksheet"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -369,7 +369,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Post-Graduation"
+                        android:text="@string/post_graduation"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -414,7 +414,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Income-Certificate"
+                        android:text="@string/income_certificate"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -451,7 +451,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Residence-Certificate"
+                        android:text="@string/residence_certificate"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -497,7 +497,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Caste-Certificate"
+                        android:text="@string/caste_certificate"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -534,7 +534,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Pancard"
+                        android:text="@string/pancard"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -579,7 +579,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Bank-Passbook"
+                        android:text="@string/bank_passbook"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -616,7 +616,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="EWS"
+                        android:text="@string/ews"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -661,7 +661,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="NCC-Certificate"
+                        android:text="@string/ncc_certificate"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -698,7 +698,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Sports-Certificate"
+                        android:text="@string/sports_certificate"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -743,7 +743,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="NSS-Certificate"
+                        android:text="@string/nss_certificate"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -780,7 +780,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Affidavit"
+                        android:text="@string/affidavit"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -826,7 +826,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal |bottom"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="Other"
+                        android:text="@string/other"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_12sdp" />
 
@@ -866,7 +866,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="Upload Document"
+                android:text="@string/upload_document"
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />

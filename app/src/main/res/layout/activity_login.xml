@@ -30,7 +30,7 @@
         android:drawableStart="@drawable/ic_phone"
         android:drawablePadding="@dimen/_8sdp"
         android:ems="10"
-        android:hint="Mobile No"
+        android:hint="@string/mobile_no"
         android:inputType="number"
         android:padding="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"

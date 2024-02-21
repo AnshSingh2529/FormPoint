@@ -42,42 +42,42 @@ class OnlineOpportunityActivity : AppCompatActivity() {
         status = intent.getIntExtra("tabPosition", 0)
         when (status) {
             0 -> {
-                binding.ooToolbar.title = "Admit Card"
-                titleImg = R.drawable.id_admit_card
-                type = ""
-                getAppliedForm()
-            }
-
-            1 -> {
-                binding.ooToolbar.title = "Government Form"
+                binding.ooToolbar.title = resources.getString(R.string.goverment_form)
                 titleImg = R.drawable.ic_govt_form
                 type = "government"
                 getAdmissionForm()
             }
 
-            2 -> {
-                binding.ooToolbar.title = "Admission Form"
+            1 -> {
+                binding.ooToolbar.title = resources.getString(R.string.addmission_form)
                 titleImg = R.drawable.ic_form_online
                 type = "admission"
                 getAdmissionForm()
             }
 
+            2 -> {
+                binding.ooToolbar.title = resources.getString(R.string.admitCard)
+                titleImg = R.drawable.id_admit_card
+                type = ""
+                getAppliedForm()
+            }
+
             3 -> {
-                binding.ooToolbar.title = "Result"
+                binding.ooToolbar.title = resources.getString(R.string.result)
                 titleImg = R.drawable.ic_result
                 type = ""
                 getAppliedForm()
             }
 
             4 -> {
-                binding.ooToolbar.title = "Applied Forms"
+                binding.ooToolbar.title = resources.getString(R.string.appliedForms)
                 titleImg = R.drawable.ic_application_status
                 type = ""
                 getAppliedForm()
             }
 
-            5 -> {
-                binding.ooToolbar.title = "Choose Form For OTP"
+            6 -> {
+                binding.ooToolbar.title = resources.getString(R.string.choose_form_for_otp)
                 titleImg = R.drawable.ic_form_online
                 type = ""
                 getAppliedForm()

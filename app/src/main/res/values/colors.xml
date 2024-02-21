@@ -6,11 +6,11 @@
     <color name="colorOnSecondary">#FFFFFFFF</color>
     <color name="textColorPrimary">#000000</color>
     <color name="textColorSecondary">#686868</color>
-    <color name="colorOfBackground">#EFEFEF</color>
+    <color name="colorOfBackground">#FFF1F1</color>
     <color name="colorOfUnselectedTab">#EFEFEF</color>
     <color name="doucmentUploadBack">#FFE0E0</color>
     <color name="red">#E40000</color>
     <color name="green">#8F9E00</color>
-    <color name="yellow">#F3DA00</color>
+    <color name="yellow">#EED600</color>
 </resources>
 

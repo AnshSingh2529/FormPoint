@@ -8,7 +8,7 @@
     app:cardElevation="5dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    app:strokeColor="@color/colorOnPrimary"
+    app:strokeColor="@color/black"
     android:id="@+id/parent"
     app:strokeWidth="0.8dp">
 

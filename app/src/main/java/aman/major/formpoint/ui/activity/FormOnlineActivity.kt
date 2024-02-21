@@ -21,10 +21,10 @@ class FormOnlineActivity : AppCompatActivity() {
         }
 
         val list = ArrayList<FormOnlineModal>()
-        list.add(FormOnlineModal(R.drawable.id_admit_card, "Admit Card"))
-        list.add(FormOnlineModal(R.drawable.ic_govt_form, "Government Form"))
-        list.add(FormOnlineModal(R.drawable.ic_form_online, "Admission Form"))
-        list.add(FormOnlineModal(R.drawable.ic_result, "Result"))
+        list.add(FormOnlineModal(R.drawable.id_admit_card, resources.getString(R.string.admitCard)))
+        list.add(FormOnlineModal(R.drawable.ic_govt_form, resources.getString(R.string.goverment_form)))
+        list.add(FormOnlineModal(R.drawable.ic_form_online, resources.getString(R.string.addmission_form)))
+        list.add(FormOnlineModal(R.drawable.ic_result, resources.getString(R.string.result)))
         binding.foRecyclerView.adapter = RecyclerFormOnlineAdapter(this, list)
     }
 }

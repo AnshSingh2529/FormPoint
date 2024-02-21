@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:hint="Search Forms..." />
+            android:hint="@string/search_forms" />
 
         <com.skydoves.elasticviews.ElasticImageView
             android:id="@+id/as_mic"

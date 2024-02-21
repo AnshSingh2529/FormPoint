@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorOfBackground"
             app:navigationIcon="@drawable/ic_back"
-            app:title="Online Opportunity"
+            app:title="@string/online_opportunity"
             app:titleCentered="true"
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>

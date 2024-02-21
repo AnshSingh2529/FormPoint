@@ -79,25 +79,12 @@ class RecyclerFormAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            when (status) {
-                1 -> {
-                    context.startActivity(
-                        Intent(
-                            context,
-                            FormDetailActivity::class.java
-                        ).putExtra("formId", imgModal.id)
-                    )
-                }
-
-                2 -> {
-                    context.startActivity(
-                        Intent(
-                            context,
-                            FormDetailActivity::class.java
-                        ).putExtra("formId", imgModal.id)
-                    )
-                }
-            }
+            context.startActivity(
+                Intent(
+                    context,
+                    FormDetailActivity::class.java
+                ).putExtra("formId", imgModal.id)
+            )
         }
     }
 

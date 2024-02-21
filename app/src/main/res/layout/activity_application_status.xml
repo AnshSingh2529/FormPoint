@@ -1,8 +1,403 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorOfBackground"
+    android:orientation="vertical"
     tools:context=".ui.activity.ApplicationStatusActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/as_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/as_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorOfBackground"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/application_status"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/app_bar_text_style" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/as_appbar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/afd_form_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:text="Form name"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/formTypeCard"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/formTypeCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumComponent"
+                    app:strokeWidth="0dp">
+
+                    <TextView
+                        android:id="@+id/formType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:padding="6dp"
+                        android:text="Form Type"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/as_apply_now"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Applied On: 10/22/2222"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardPreventCornerOverlap="true"
+                app:strokeWidth="0dp"
+                android:layout_margin="@dimen/_8sdp"
+                app:strokeColor="@color/textColorSecondary"
+                app:cardBackgroundColor="@color/white"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_8sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/applicants_detail"
+                        android:textSize="@dimen/_16ssp"
+                        android:drawableStart="@drawable/ic_user"
+                        android:textColor="@color/textColorPrimary"
+                        android:drawablePadding="12dp"
+                        />
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/applicants_name"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                        <TextView
+                            android:id="@+id/as_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Applicants name"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mobile_no"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                        <TextView
+                            android:id="@+id/as_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Applicants name"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/email"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                        <TextView
+                            android:id="@+id/as_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Applicants name"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/address"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                        <TextView
+                            android:id="@+id/as_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Applicants name"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transaction_id"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                        <TextView
+                            android:id="@+id/as_txn_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Transaction Id"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/form_status"
+                            android:layout_weight="1"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                        <TextView
+                            android:id="@+id/as_form_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="form_status"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:id="@+id/uploadRecievingLay"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_weight="1">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_marginHorizontal="@dimen/_8ssp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload Reciept"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:textColor="@color/black"/>
+
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_120sdp"
+                            android:layout_marginHorizontal="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:background="@drawable/background_doc_upload">
+
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/aadharJson"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/_12sdp"
+                                android:scaleType="fitStart"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/file_upload" />
+
+                            <com.skydoves.elasticviews.ElasticButton
+                                android:id="@+id/uploadFileButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|end"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginBottom="12dp"
+                                android:backgroundTint="@color/textColorSecondary"
+                                android:text="Upload File"
+                                android:textColor="@color/colorOnSecondary"
+                                app:cornerRadius="8dp" />
+
+
+                            <ImageView
+                                android:id="@+id/uploadImg"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <EditText
+                    android:id="@+id/transactionId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/edit_text_style"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginTop="8dp"
+                    android:inputType="number"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginHorizontal="12dp"
+                    android:hint="Enter your transaction Id"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.skydoves.elasticviews.ElasticCardView
+        android:id="@+id/as_download_reciept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/colorOnPrimary"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:id="@+id/downloadText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/download_reciept"
+            android:textColor="@color/colorOnSecondary"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+
+    </com.skydoves.elasticviews.ElasticCardView>
+
+</RelativeLayout>

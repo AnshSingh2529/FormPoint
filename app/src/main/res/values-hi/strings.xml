@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">फॉर्म ऑनलाइन</string>
+    <string name="login">लॉगिन</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">हैलो ब्लैंक फ्रैगमेंट</string>
+    <string name="searchbar_hint">यहाँ खोजें</string>
+
+    <string name="otp_title">कृपया 4 अंकों का सत्यापन कोड दर्ज करें</string>
+    <string name="otp_button_text">सत्यापित करें</string>
+    <string name="resend_msg">OTP प्राप्त नहीं हुआ है?</string>
+    <string name="resend_again_msg">फिर से भेजें</string>
+    <string name="sent_to_91_xxxx_xxx">भेजा गया +91 XXXX XXX पर</string>
+    <string name="application_status">आवेदन स्थिति</string>
+    <string name="form_online">फॉर्म ऑनलाइन</string>
+    <string name="document_upload">दस्तावेज अपलोड</string>
+    <string name="notification">सूचना</string>
+    <string name="otp_menual">OTP मैन्युअल</string>
+    <string name="watch_video">वीडियो देखें</string>
+    <string name="view_more">और देखें</string>
+    <string name="videos">वीडियो</string>
+    <string name="applicants_detail">आवेदक का विवरण</string>
+    <string name="applicants_name">आवेदक का नाम</string>
+    <string name="mobile_no">मोबाइल नंबर</string>
+    <string name="email">ईमेल</string>
+    <string name="address">पता</string>
+    <string name="transaction_id">लेन-देन आईडी</string>
+    <string name="form_status">फॉर्म स्थिति</string>
+    <string name="download_reciept">रसीद डाउनलोड करें</string>
+    <string name="upload_your_documents">अपने दस्तावेज़ अपलोड करें</string>
+    <string name="adhar_card">आधार कार्ड</string>
+    <string name="photo">फ़ोटो</string>
+    <string name="signature">हस्ताक्षर</string>
+    <string name="_8th_marksheet">8वीं मार्कशीट</string>
+    <string name="_10th_marksheet">10वीं मार्कशीट</string>
+    <string name="_12th_marksheet">12वीं मार्कशीट</string>
+    <string name="graduation_marksheet">स्नातक-मार्कशीट</string>
+    <string name="post_graduation">पोस्ट-ग्रेजुएशन</string>
+    <string name="income_certificate">आय प्रमाणपत्र</string>
+    <string name="residence_certificate">निवास प्रमाणपत्र</string>
+    <string name="caste_certificate">जाति प्रमाणपत्र</string>
+    <string name="pancard">पैनकार्ड</string>
+    <string name="bank_passbook">बैंक पासबुक</string>
+    <string name="ews">आर्थिक रूप से कमजोर</string>
+    <string name="ncc_certificate">एनसीसी प्रमाणपत्र</string>
+    <string name="sports_certificate">खेल प्रमाणपत्र</string>
+    <string name="nss_certificate">एनएसएस प्रमाणपत्र</string>
+    <string name="affidavit">शपथपत्र</string>
+    <string name="other">अन्य</string>
+    <string name="upload_document">दस्तावेज़ अपलोड करें</string>
+    <string name="user_name">उपयोगकर्ता नाम</string>
+    <string name="upload_file">फ़ाइल अपलोड करें</string>
+    <string name="form_name">फ़ॉर्म का नाम</string>
+    <string name="edit_profile">प्रोफाइल संपादित करें</string>
+    <string name="update_profile">प्रोफाइल अपडेट करें</string>
+    <string name="admitCard">प्रवेश पत्र</string>
+    <string name="result">परिणाम</string>
+    <string name="goverment_form">सरकारी फॉर्म</string>
+    <string name="addmission_form">एडमिशन फॉर्म</string>
+    <string name="appliedForms">आवेदन किए गए फॉर्म</string>
+    <string name="choose_form_for_otp">OTP के लिए फॉर्म चुनें</string>
+    <string name="online_opportunity">ऑनलाइन अवसर</string>
+    <string name="submit_otp">OTP सबमिट करें</string>
+    <string name="search_forms">फॉर्म खोजें...</string>
+    <string name="all_videos">सभी वीडियो</string>
+    <string name="success">सफलता</string>
+
+</resources>

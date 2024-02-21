@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/_16sdp"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="@dimen/_8sdp"
-            android:hint="Full Name"
+            android:hint="User Name"
             android:inputType="text"
             android:padding="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/reg_illustration"

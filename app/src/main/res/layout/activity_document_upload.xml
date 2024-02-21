@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Form Name"
+                android:text="@string/form_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold" />
@@ -60,7 +60,7 @@
                 android:layout_marginTop="12dp"
                 android:drawableStart="@drawable/ic_user"
                 android:drawablePadding="@dimen/_8sdp"
-                android:hint="User name"
+                android:hint="@string/user_name"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp" />
 
@@ -74,7 +74,7 @@
                 android:layout_marginTop="12dp"
                 android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="@dimen/_8sdp"
-                android:hint="Mobile"
+                android:hint="@string/mobile_no"
                 android:inputType="phone|number"
                 android:padding="@dimen/_12sdp" />
 
@@ -87,7 +87,7 @@
                 android:layout_marginTop="12dp"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="@dimen/_8sdp"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp" />
 
@@ -101,7 +101,7 @@
                 android:layout_marginTop="12dp"
                 android:drawableStart="@drawable/ic_location_2"
                 android:drawablePadding="@dimen/_8sdp"
-                android:hint="Address"
+                android:hint="@string/address"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp" />
 
@@ -132,7 +132,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Adhar Card"
+                            android:text="@string/adhar_card"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -161,7 +161,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -187,7 +187,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Photo"
+                            android:text="@string/photo"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -217,7 +217,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -243,7 +243,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Signature"
+                            android:text="@string/signature"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -272,7 +272,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -298,7 +298,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Eight Marksheet"
+                            android:text="@string/_8th_marksheet"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -327,7 +327,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -353,7 +353,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="10 th Marksheet"
+                            android:text="@string/_10th_marksheet"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -382,7 +382,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -408,7 +408,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="12th Marksheet"
+                            android:text="@string/_12th_marksheet"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -437,7 +437,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -463,7 +463,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Graduation Marksheet"
+                            android:text="@string/graduation_marksheet"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -492,7 +492,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -518,7 +518,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Post Graduation Marksheet"
+                            android:text="@string/post_graduation"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -547,7 +547,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -573,7 +573,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Income Certificate"
+                            android:text="@string/income_certificate"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -602,7 +602,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -628,7 +628,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Cast Certificate"
+                            android:text="@string/caste_certificate"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -657,7 +657,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -683,7 +683,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Residence Certificate"
+                            android:text="@string/residence_certificate"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -712,7 +712,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -738,7 +738,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Pancard"
+                            android:text="@string/pancard"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -767,7 +767,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -793,7 +793,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Bank Passbook"
+                            android:text="@string/bank_passbook"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -822,7 +822,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -848,7 +848,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="EWS"
+                            android:text="@string/ews"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -877,7 +877,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -903,7 +903,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Ncc Certificate"
+                            android:text="@string/ncc_certificate"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -932,7 +932,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -958,7 +958,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Sports Certificate"
+                            android:text="@string/sports_certificate"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -987,7 +987,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -1013,7 +1013,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Nss Ceritficate"
+                            android:text="@string/nss_certificate"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -1042,7 +1042,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -1068,7 +1068,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Affidevit"
+                            android:text="@string/affidavit"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -1097,7 +1097,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -1124,7 +1124,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Other"
+                            android:text="@string/other"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -1153,7 +1153,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:layout_marginBottom="12dp"
                                 android:backgroundTint="@color/textColorSecondary"
-                                android:text="Upload File"
+                                android:text="@string/upload_file"
                                 android:textColor="@color/colorOnSecondary"
                                 app:cornerRadius="8dp" />
 
@@ -1197,7 +1197,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/_12sdp"
-            android:text="Upload Document"
+            android:text="@string/upload_document"
             android:textColor="@color/colorOnSecondary"
             android:textSize="@dimen/_14ssp" />
     </com.skydoves.elasticviews.ElasticCardView>

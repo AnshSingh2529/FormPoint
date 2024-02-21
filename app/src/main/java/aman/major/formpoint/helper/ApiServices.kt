@@ -142,5 +142,15 @@ interface ApiServices {
         @Field("otp")otp: String
     ): Call<JsonObject>
 
+    @Multipart
+    @POST("APIs/upload_receipt_for_find_doc")
+    fun uploadDocs(
+        @Part("user_id") userId: RequestBody,
+        @Part("form_id") formId: RequestBody,
+        @Part image: MultipartBody.Part,
+        @Part("type") type: RequestBody,
+        @Part("txn_id") txnId: RequestBody
+    ): Call<JsonObject>
+
 
 }

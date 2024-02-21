@@ -57,23 +57,45 @@ class RecyclerAppliedFormAdapter(
                 holder.titleImg.setImageResource(R.drawable.ic_application_status)
             }
 
-            5 -> {
+            6 -> {
                 holder.titleImg.setImageResource(R.drawable.ic_otp_menual)
             }
         }
 
         holder.itemView.setOnClickListener {
             when (status) {
+                2->{
+                    context.startActivity(
+                        Intent(
+                            context,
+                            ApplicationStatusActivity::class.java
+                        ).putExtra("formId", modal.form_id)
+                            .putExtra("flag","admitCard")
+                    )
+                }
+
+                3->{
+                    context.startActivity(
+                        Intent(
+                            context,
+                            ApplicationStatusActivity::class.java
+                        ).putExtra("formId", modal.form_id)
+                            .putExtra("flag","result")
+                    )
+                }
+
+
                 4 -> {
                     context.startActivity(
                         Intent(
                             context,
                             ApplicationStatusActivity::class.java
                         ).putExtra("formId", modal.form_id)
+                            .putExtra("flag","applicationStatus")
                     )
                 }
 
-                5 -> {
+                6 -> {
                     context.startActivity(
                         Intent(
                             context,

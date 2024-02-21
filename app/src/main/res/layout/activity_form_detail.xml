@@ -44,10 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/black"
-                app:strokeWidth="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumComponent">
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumComponent"
+                app:strokeWidth="0dp">
 
                 <TextView
                     android:id="@+id/formType"
@@ -55,10 +55,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:padding="6dp"
-                    android:textSize="@dimen/_12ssp"
-                    android:textAllCaps="true"
                     android:text="Form Type"
-                    android:textColor="@color/white" />
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
             </com.google.android.material.card.MaterialCardView>
 
 
@@ -67,7 +67,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:text="Form name"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/_16ssp"
@@ -85,102 +84,102 @@
                 app:layout_constraintStart_toStartOf="@+id/afd_form_name"
                 app:layout_constraintTop_toBottomOf="@+id/afd_form_name" />
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/afd_imp_date_lay"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="@dimen/_8sdp"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/afd_form_level">-->
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/afd_imp_date_lay"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="@dimen/_8sdp"-->
+            <!--                android:layout_marginTop="12dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/afd_form_level">-->
 
-<!--                <com.google.android.material.card.MaterialCardView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/_8sdp"-->
-<!--                    android:layout_marginEnd="@dimen/_4sdp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    app:cardBackgroundColor="@android:color/transparent"-->
-<!--                    app:cardCornerRadius="8dp"-->
-<!--                    app:cardPreventCornerOverlap="true"-->
-<!--                    app:strokeColor="@color/textColorSecondary"-->
-<!--                    app:strokeWidth="0.5dp">-->
+            <!--                <com.google.android.material.card.MaterialCardView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginTop="@dimen/_8sdp"-->
+            <!--                    android:layout_marginEnd="@dimen/_4sdp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    app:cardBackgroundColor="@android:color/transparent"-->
+            <!--                    app:cardCornerRadius="8dp"-->
+            <!--                    app:cardPreventCornerOverlap="true"-->
+            <!--                    app:strokeColor="@color/textColorSecondary"-->
+            <!--                    app:strokeWidth="0.5dp">-->
 
-<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content">-->
+            <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/afd_imp_heading"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/_8sdp"-->
-<!--                            android:layout_marginTop="@dimen/_8sdp"-->
-<!--                            android:text="Important Dates"-->
-<!--                            android:textColor="@color/textColorPrimary"-->
-<!--                            android:textSize="@dimen/_12ssp"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/afd_imp_heading"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginStart="@dimen/_8sdp"-->
+            <!--                            android:layout_marginTop="@dimen/_8sdp"-->
+            <!--                            android:text="Important Dates"-->
+            <!--                            android:textColor="@color/textColorPrimary"-->
+            <!--                            android:textSize="@dimen/_12ssp"-->
+            <!--                            app:layout_constraintStart_toStartOf="parent"-->
+            <!--                            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/afd_application_Heading"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="@dimen/_6sdp"-->
-<!--                            android:text="Application Begin"-->
-<!--                            android:textColor="@color/textColorSecondary"-->
-<!--                            android:textSize="@dimen/_8ssp"-->
-<!--                            app:layout_constraintStart_toStartOf="@id/afd_imp_heading"-->
-<!--                            app:layout_constraintTop_toBottomOf="@id/afd_imp_heading" />-->
-
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/afd_last_date_Heading"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="@dimen/_6sdp"-->
-<!--                            android:text="Last Date apply Online"-->
-<!--                            android:textColor="@color/textColorSecondary"-->
-<!--                            android:textSize="@dimen/_8ssp"-->
-<!--                            app:layout_constraintStart_toStartOf="@id/afd_application_begin_date"-->
-<!--                            app:layout_constraintTop_toBottomOf="@id/afd_application_begin_date" />-->
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/afd_application_Heading"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginTop="@dimen/_7sdp"-->
+            <!--                            android:text="Application Begin"-->
+            <!--                            android:textColor="@color/textColorSecondary"-->
+            <!--                            android:textSize="@dimen/_8ssp"-->
+            <!--                            app:layout_constraintStart_toStartOf="@id/afd_imp_heading"-->
+            <!--                            app:layout_constraintTop_toBottomOf="@id/afd_imp_heading" />-->
 
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/afd_application_last_date"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginBottom="@dimen/_8sdp"-->
-<!--                            android:text="24/16/2023"-->
-<!--                            android:textColor="@color/textColorPrimary"-->
-<!--                            android:textSize="@dimen/_12ssp"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="@id/afd_last_date_Heading"-->
-<!--                            app:layout_constraintTop_toBottomOf="@id/afd_last_date_Heading" />-->
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/afd_last_date_Heading"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginTop="@dimen/_7sdp"-->
+            <!--                            android:text="Last Date apply Online"-->
+            <!--                            android:textColor="@color/textColorSecondary"-->
+            <!--                            android:textSize="@dimen/_8ssp"-->
+            <!--                            app:layout_constraintStart_toStartOf="@id/afd_application_begin_date"-->
+            <!--                            app:layout_constraintTop_toBottomOf="@id/afd_application_begin_date" />-->
 
 
-<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/afd_application_last_date"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginBottom="@dimen/_8sdp"-->
+            <!--                            android:text="24/16/2023"-->
+            <!--                            android:textColor="@color/textColorPrimary"-->
+            <!--                            android:textSize="@dimen/_12ssp"-->
+            <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                            app:layout_constraintStart_toStartOf="@id/afd_last_date_Heading"-->
+            <!--                            app:layout_constraintTop_toBottomOf="@id/afd_last_date_Heading" />-->
 
 
-<!--                </com.google.android.material.card.MaterialCardView>-->
+            <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-<!--                <com.google.android.material.card.MaterialCardView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/_4sdp"-->
-<!--                    android:layout_marginTop="@dimen/_8sdp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    app:cardBackgroundColor="@android:color/transparent"-->
-<!--                    app:cardCornerRadius="8dp"-->
-<!--                    app:cardPreventCornerOverlap="true"-->
-<!--                    app:strokeColor="@color/textColorSecondary"-->
-<!--                    app:strokeWidth="0.5dp">-->
 
-<!--                    -->
-<!--                </com.google.android.material.card.MaterialCardView>-->
-<!--            </LinearLayout>-->
+            <!--                </com.google.android.material.card.MaterialCardView>-->
+
+            <!--                <com.google.android.material.card.MaterialCardView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="@dimen/_4sdp"-->
+            <!--                    android:layout_marginTop="@dimen/_8sdp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    app:cardBackgroundColor="@android:color/transparent"-->
+            <!--                    app:cardCornerRadius="8dp"-->
+            <!--                    app:cardPreventCornerOverlap="true"-->
+            <!--                    app:strokeColor="@color/textColorSecondary"-->
+            <!--                    app:strokeWidth="0.5dp">-->
+
+            <!--                    -->
+            <!--                </com.google.android.material.card.MaterialCardView>-->
+            <!--            </LinearLayout>-->
 
 
             <com.google.android.material.card.MaterialCardView
@@ -195,7 +194,7 @@
                 app:cardPreventCornerOverlap="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/afd_application_begin_date"
+                app:layout_constraintTop_toBottomOf="@+id/form_status"
                 app:strokeColor="@color/textColorSecondary"
                 app:strokeWidth="0.5dp">
 
@@ -317,112 +316,215 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
-                app:layout_constraintTop_toBottomOf="@id/afd_required_card"
-                />
+                app:layout_constraintTop_toBottomOf="@id/chargesCard" />
 
             <TextView
                 android:id="@+id/afd_application_begin_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:drawableStart="@drawable/ic_calendar"
                 android:drawablePadding="@dimen/_4sdp"
-                android:text="24/16/2023"
                 android:gravity="center_vertical"
-                android:layout_marginStart="@dimen/_12sdp"
+                android:text="24/16/2023"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintStart_toEndOf="@+id/afd_form_level"
                 app:layout_constraintTop_toTopOf="@+id/afd_form_level" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/form_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="Status Currently"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="@+id/afd_form_level"
+                app:layout_constraintTop_toBottomOf="@+id/afd_application_begin_date" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/chargesCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/afd_required_card"
-                >
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="8dp"
+                app:strokeColor="@color/textColorSecondary"
+                app:strokeWidth="0.5dp"
+                app:cardPreventCornerOverlap="true"
+                app:layout_constraintTop_toBottomOf="@id/afd_required_card">
 
-                <TextView
-                    android:id="@+id/afd_charge_heading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:text="Charges"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/afd_Govt_Heading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:text="Goverment Rate"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_8ssp"
-                    app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
-                    app:layout_constraintTop_toBottomOf="@id/afd_charge_heading" />
+                    <LinearLayout
+                        android:id="@+id/priceLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
+                        app:layout_constraintTop_toBottomOf="@id/afd_charge_heading">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/afd_govt_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="₹200"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintStart_toStartOf="@id/afd_Govt_Heading"
-                    app:layout_constraintTop_toBottomOf="@id/afd_Govt_Heading" />
-
-
-                <TextView
-                    android:id="@+id/afd_my_rate_Heading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_8sdp"
-                    android:text="Extra Charges"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_8ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/afd_Govt_Heading" />
-
-                <TextView
-                    android:id="@+id/afd_extra_charges"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="₹50"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/afd_my_rate_Heading"
-                    app:layout_constraintTop_toBottomOf="@id/afd_my_rate_Heading" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Goverment Rate"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/_8ssp"
+                                app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
+                                app:layout_constraintTop_toBottomOf="@id/afd_charge_heading" />
 
 
-                <TextView
-                    android:id="@+id/afd_total_Heading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:text="Total Price"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_8ssp"
-                    app:layout_constraintStart_toStartOf="@id/afd_govt_price"
-                    app:layout_constraintTop_toBottomOf="@id/afd_govt_price" />
+                            <TextView
+                                android:id="@+id/afd_govt_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₹200"
+                                android:textColor="@color/textColorPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                app:layout_constraintStart_toStartOf="@id/afd_Govt_Heading"
+                                app:layout_constraintTop_toBottomOf="@id/afd_Govt_Heading" />
+
+                        </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/afd_total_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8sdp"
-                    android:text="₹250"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/afd_total_Heading"
-                    app:layout_constraintTop_toBottomOf="@id/afd_total_Heading" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Result Price"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/_8ssp"
+                                app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
+                                app:layout_constraintTop_toBottomOf="@id/afd_charge_heading" />
+
+
+                            <TextView
+                                android:id="@+id/afd_result_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₹200"
+                                android:textColor="@color/textColorPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                app:layout_constraintStart_toStartOf="@id/afd_Govt_Heading"
+                                app:layout_constraintTop_toBottomOf="@id/afd_Govt_Heading" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:text="Admit Card"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/_8ssp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/afd_Govt_Heading" />
+
+                            <TextView
+                                android:id="@+id/afd_admit_charges"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₹50"
+                                android:textColor="@color/textColorPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                app:layout_constraintEnd_toEndOf="@+id/afd_my_rate_Heading"
+                                app:layout_constraintTop_toBottomOf="@id/afd_my_rate_Heading" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:text="Extra Charges"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/_8ssp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/afd_Govt_Heading" />
+
+                            <TextView
+                                android:id="@+id/afd_extra_charges"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₹50"
+                                android:textColor="@color/textColorPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                app:layout_constraintEnd_toEndOf="@+id/afd_my_rate_Heading"
+                                app:layout_constraintTop_toBottomOf="@id/afd_my_rate_Heading" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/afd_charge_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="Charges"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/afd_total_Heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:text="Total Charges"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintStart_toStartOf="@id/priceLayout"
+                        app:layout_constraintTop_toBottomOf="@id/priceLayout" />
+
+
+                    <TextView
+                        android:id="@+id/afd_total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="₹250"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/afd_total_Heading"
+                        app:layout_constraintTop_toBottomOf="@id/afd_total_Heading" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
