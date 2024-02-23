@@ -3,10 +3,9 @@ package aman.major.formpoint.adapter
 import aman.major.formpoint.R
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
-import aman.major.formpoint.modal.AppliedFormModal
 import aman.major.formpoint.modal.FormDataModal
+import aman.major.formpoint.modal.NewFormAppliedModal
 import aman.major.formpoint.ui.activity.ApplicationStatusActivity
-import aman.major.formpoint.ui.activity.FormDetailActivity
 import aman.major.formpoint.ui.activity.OtpActivity
 import android.content.Context
 import android.content.Intent
@@ -25,7 +24,7 @@ import retrofit2.Response
 
 class RecyclerAppliedFormAdapter(
     var context: Context,
-    var list: ArrayList<AppliedFormModal>,
+    var list: ArrayList<NewFormAppliedModal>,
     var status: Int
 ) : RecyclerView.Adapter<RecyclerAppliedFormAdapter.AppliedFormVH>() {
     class AppliedFormVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -49,9 +48,10 @@ class RecyclerAppliedFormAdapter(
     override fun onBindViewHolder(holder: AppliedFormVH, position: Int) {
         val modal = list[position]
 
-        holder.formTitle.text = modal.formname
+        holder.formTitle.text = modal.formdetails.name
         holder.formPostDate.text = modal.created_at
-
+        holder.formLocation.text = "Level: ${modal.formdetails.level}"
+        holder.formType.text = modal.formdetails.type
         when (status) {
             4 -> {
                 holder.titleImg.setImageResource(R.drawable.ic_application_status)
@@ -70,6 +70,7 @@ class RecyclerAppliedFormAdapter(
                             context,
                             ApplicationStatusActivity::class.java
                         ).putExtra("formId", modal.form_id)
+                            .putExtra("id",modal.id)
                             .putExtra("flag","admitCard")
                     )
                 }
@@ -80,6 +81,7 @@ class RecyclerAppliedFormAdapter(
                             context,
                             ApplicationStatusActivity::class.java
                         ).putExtra("formId", modal.form_id)
+                            .putExtra("id",modal.id)
                             .putExtra("flag","result")
                     )
                 }
@@ -91,6 +93,7 @@ class RecyclerAppliedFormAdapter(
                             context,
                             ApplicationStatusActivity::class.java
                         ).putExtra("formId", modal.form_id)
+                            .putExtra("id",modal.id)
                             .putExtra("flag","applicationStatus")
                     )
                 }
@@ -106,7 +109,7 @@ class RecyclerAppliedFormAdapter(
             }
         }
 
-        getFormDetails(modal.form_id,context,holder)
+        //getFormDetails(modal.form_id,context,holder)
         //holder.titleImg.setImageResource(R.drawable.)
 
     }

@@ -64,7 +64,7 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="@dimen/_8sdp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="@dimen/_12sdp" />
 
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
-        android:text="Forget Password"
+        android:text="@string/forget_password"
         android:textColor="@color/textColorSecondary"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="@+id/pass_Layout"
@@ -184,7 +184,7 @@
                 android:drawableStart="@drawable/ic_google"
                 android:drawablePadding="@dimen/_12sdp"
                 android:gravity="center"
-                android:text="Login with Google"
+                android:text="@string/login_with_google"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
@@ -207,7 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Don't have account? "
+            android:text="@string/don_t_have_account"
             android:textColor="@color/textColorSecondary" />
 
         <com.skydoves.elasticviews.ElasticLayout
@@ -220,7 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textColor="@color/colorOnPrimary"
                 android:textStyle="bold" />
 

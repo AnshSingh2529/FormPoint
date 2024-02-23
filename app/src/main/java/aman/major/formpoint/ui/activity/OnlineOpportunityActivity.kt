@@ -9,6 +9,7 @@ import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.modal.AppliedFormModal
 import aman.major.formpoint.modal.FormDataModal
 import aman.major.formpoint.modal.ImageDataModal
+import aman.major.formpoint.modal.NewFormAppliedModal
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +30,7 @@ class OnlineOpportunityActivity : AppCompatActivity() {
 
     var formDataList: ArrayList<ImageDataModal> = ArrayList()
 
-    var appliedFormList : ArrayList<AppliedFormModal> = ArrayList()
+    var appliedFormList : ArrayList<NewFormAppliedModal> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,31 +90,37 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     }
 
     private fun getAppliedForm() {
+        val userId = SharedPrefManager.getInstance(this@OnlineOpportunityActivity)?.user?.id.toString()
+        Log.d("getAppliedForm", "getAppliedForm: UserId: $userId")
         appliedFormList.clear()
         val call = RetrofitClient.getClient()
-            .getAppliedFormData(SharedPrefManager.getInstance(this@OnlineOpportunityActivity)?.user?.id.toString())
+            .getAppliedFormStatus(userId)
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
                     if (response.isSuccessful) {
+                        Log.d("getAppliedForm", "onResponse: response success : ${response.body()}")
                         val jsonObject = response.body();
                         if (jsonObject?.get("status")?.asString.equals("success", false)) {
                             val jsonArray = jsonObject?.get("data")?.asJsonArray
                             for (i in 0 until jsonArray!!.size()) {
-                                val jsonObject = jsonArray.get(i).asJsonObject
-                                val modal = Gson().fromJson(jsonObject,AppliedFormModal::class.java)
+                                val dataObject = jsonArray.get(i).asJsonObject
+                                val modal = Gson().fromJson(dataObject,NewFormAppliedModal::class.java)
                                 appliedFormList.add(modal)
                             }
+                            Log.d("getAppliedForm", "onResponse: list size: "+appliedFormList.size)
                             binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)
                         }
+                    }else{
+                        Log.d("getAppliedForm", "onResponse: response is not success :${response.errorBody()?.string()}")
                     }
                 } catch (e: Exception) {
-
+                    Log.d("getAppliedForm", "onResponse: Exception ${e.localizedMessage}")
                 }
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-
+                Log.d("getAppliedForm", "onFailure: "+t.localizedMessage)
             }
         })
 

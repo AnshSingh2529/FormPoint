@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/_16sdp"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="@dimen/_8sdp"
-            android:hint="User Name"
+            android:hint="@string/user_name"
             android:inputType="text"
             android:padding="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/reg_illustration"
@@ -62,7 +62,7 @@
             android:drawableStart="@drawable/ic_phone"
             android:drawablePadding="@dimen/_8sdp"
             android:ems="10"
-            android:hint="Mobile No."
+            android:hint="@string/mobile_no"
             android:inputType="text"
             android:padding="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/reg_name"
@@ -90,7 +90,7 @@
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="@dimen/_8sdp"
             android:ems="10"
-            android:hint="Email (optional)"
+            android:hint="@string/email_optional"
             android:inputType="text"
             android:padding="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/reg_mob"
@@ -126,7 +126,7 @@
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="@dimen/_8sdp"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="@dimen/_12sdp" />
 
@@ -170,7 +170,7 @@
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="@dimen/_8sdp"
                 android:ems="10"
-                android:hint="Confirm Password"
+                android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:padding="@dimen/_12sdp" />
 
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
@@ -236,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Already have account? "
+                android:text="@string/already_have_account"
                 android:textColor="@color/textColorSecondary" />
 
             <com.skydoves.elasticviews.ElasticLayout
@@ -249,7 +249,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Login Now"
+                    android:text="@string/login_now"
                     android:textColor="@color/colorOnPrimary"
                     android:textStyle="bold" />
 

@@ -4,7 +4,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">हैलो ब्लैंक फ्रैगमेंट</string>
     <string name="searchbar_hint">यहाँ खोजें</string>
-
     <string name="otp_title">कृपया 4 अंकों का सत्यापन कोड दर्ज करें</string>
     <string name="otp_button_text">सत्यापित करें</string>
     <string name="resend_msg">OTP प्राप्त नहीं हुआ है?</string>
@@ -63,5 +62,15 @@
     <string name="search_forms">फॉर्म खोजें...</string>
     <string name="all_videos">सभी वीडियो</string>
     <string name="success">सफलता</string>
+    <string name="password">पासवर्ड</string>
+    <string name="email_optional">ईमेल (वैकल्पिक)</string>
+    <string name="confirm_password">पासवर्ड की पुष्टि करें</string>
+    <string name="create_account">खाता बनाएं</string>
+    <string name="login_now">अब लॉगिन करें</string>
+    <string name="already_have_account">पहले से ही खाता है?</string>
+    <string name="forget_password">पासवर्ड भूल गए</string>
+    <string name="login_with_google">Google से लॉगिन करें</string>
+    <string name="don_t_have_account">खाता नहीं है?</string>
+    <string name="upload_reciept" />
 
 </resources>

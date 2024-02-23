@@ -63,4 +63,14 @@
     <string name="search_forms">Search Forms...</string>
     <string name="all_videos">All Videos</string>
     <string name="success">Success</string>
+    <string name="password">Password</string>
+    <string name="email_optional">Email (optional)</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="login_now">Login Now</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="don_t_have_account">Don not have account?</string>
+    <string name="upload_reciept" >Upload Reciept</string>
 </resources>

@@ -1,5 +1,6 @@
 package aman.major.formpoint.ui.activity
 
+import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityApplicationStatusBinding
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
@@ -7,6 +8,8 @@ import aman.major.formpoint.helper.UriToFileConverter
 import aman.major.formpoint.modal.ApplicantData
 import aman.major.formpoint.modal.AppliedFormModal
 import aman.major.formpoint.modal.FormDataModal
+import aman.major.formpoint.modal.NewFormAppliedModal
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -35,19 +38,20 @@ import java.io.File
 
 class ApplicationStatusActivity : AppCompatActivity() {
 
-    private val appliedFormList = ArrayList<AppliedFormModal>()
     var formId: String? = null
     lateinit var binding: ActivityApplicationStatusBinding
     private var flag: String? = null
     var uri: Uri? = null
+    var modal: NewFormAppliedModal? = null
+    var id: String? = null
 
-    var modal:AppliedFormModal? = null
-
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityApplicationStatusBinding.inflate(layoutInflater)
         setContentView(binding.root)
         formId = intent.getStringExtra("formId")
+        id = intent.getStringExtra("id")
         flag = intent.getStringExtra("flag")
 
         getSingleAppliedForm()
@@ -76,22 +80,47 @@ class ApplicationStatusActivity : AppCompatActivity() {
         }
 
         binding.asDownloadReciept.setOnClickListener {
-            if (flag.equals("applicationStatus",true)){
-                if (modal?.reciept.isNullOrBlank()){
-                    Toast.makeText(this, "Your Form Reciept Not Uploaded Yet...", Toast.LENGTH_SHORT).show()
+            if (flag.equals("applicationStatus", true)) {
+                if (modal?.reciept.isNullOrBlank()) {
+                    Toast.makeText(
+                        this,
+                        "Your Form Reciept Not Uploaded Yet...",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            }else if (modal?.reciept != null && modal?.admit_card == null && flag.equals("admitCard",true)){
-                if(uri.toString().isNotEmpty() && binding.transactionId.text.toString().isNotEmpty()){
-                    val file = UriToFileConverter.convertUriToFile(this@ApplicationStatusActivity,uri)
-                    uploadDocs(SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),formId.toString(),binding.transactionId.text.toString(),"result",file)
-                }else{
+            } else if (modal?.reciept.isNullOrBlank() && flag.equals(
+                    "admitCard",
+                    true
+                )
+            ) {
+                if (uri.toString().isNotEmpty() && binding.transactionId.text.toString()
+                        .isNotEmpty()
+                ) {
+                    val file =
+                        UriToFileConverter.convertUriToFile(this@ApplicationStatusActivity, uri)
+                    uploadDocs(
+                        SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
+                        formId.toString(),
+                        binding.transactionId.text.toString(),
+                        "result",
+                        file
+                    )
+                } else {
                     Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
                 }
-            } else if (modal?.result != null && flag.equals("Result",true)) {
-                if(uri.toString().isNotEmpty() && binding.transactionId.text.toString().isNotEmpty()){
-                    val file = UriToFileConverter.convertUriToFile2(this@ApplicationStatusActivity,uri)
-                    uploadDocs(SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),formId.toString(),binding.transactionId.text.toString(),"admit_card",file)
-                }else{
+            } else if (modal?.result.isNullOrBlank() && flag.equals("Result", true)) {
+                if (uri.toString().isNotEmpty() && binding.transactionId.text.toString()
+                        .isNotEmpty()
+                ) {
+                    val file = UriToFileConverter.convertUriToFile2(this@ApplicationStatusActivity, uri)
+                        uploadDocs(
+                        SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
+                        formId.toString(),
+                        binding.transactionId.text.toString(),
+                        "admit_card",
+                        file
+                    )
+                } else {
                     Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -155,9 +184,8 @@ class ApplicationStatusActivity : AppCompatActivity() {
 
     private fun getSingleAppliedForm() {
         Log.d("getSingleAppliedForm", "getAppliedForm: function call: formId: $formId")
-        appliedFormList.clear()
         val call = RetrofitClient.getClient()
-            .getAppliedFormData(SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString())
+            .getAppliedFormStatusInDetail(SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),formId,id)
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
@@ -166,33 +194,19 @@ class ApplicationStatusActivity : AppCompatActivity() {
                             "getSingleAppliedForm",
                             "onResponse: response success: ${response.body()}"
                         )
-                        val jsonObject = response.body();
+                       val jsonObject = response.body();
                         if (jsonObject?.get("status")?.asString.equals("success", false)) {
-                            val jsonArray = jsonObject?.get("data")?.asJsonArray
-                            appliedFormList.clear()
-                            for (i in 0 until jsonArray!!.size()) {
-                                val jsonObject = jsonArray.get(i).asJsonObject
-                                val modal =
-                                    Gson().fromJson(jsonObject, AppliedFormModal::class.java)
-                                if (modal.form_id == formId) {
-                                    appliedFormList.add(modal)
-                                    Log.d(
-                                        "getSingleAppliedForm",
-                                        "onResponse: modalFormId: ${modal.form_id}"
-                                    )
-                                }
-                            }
-                            setTheDataOfForm()
-                            Log.d(
-                                "getSingleAppliedForm",
-                                "onResponse: appliedFormList: Size: ${appliedFormList.size}"
-                            )
-                            // binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)
-                        }
+                            val dataObject = jsonObject?.get("data")?.asJsonObject
+                            val dataModal = Gson().fromJson(dataObject,AppliedFormModal::class.java)
+
+                            setTheDataOfForm(dataModal)
+
+                           /* // binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)*/
+                       }
                     } else {
                         Log.d(
                             "getSingleAppliedForm",
-                            "onResponse: respone not success: ${response.errorBody()?.string()}"
+                            "onResponse: resposne not success: ${response.errorBody()?.string()}"
                         )
                     }
                 } catch (e: Exception) {
@@ -208,37 +222,37 @@ class ApplicationStatusActivity : AppCompatActivity() {
 
     }
 
-
-    private fun setTheDataOfForm() {
-        Log.d("setTheDataOfForm", "setTheDataOfForm: ${appliedFormList.size}")
-        val modal = appliedFormList[0]
-        this.modal = modal
+    private fun setTheDataOfForm(modal: AppliedFormModal) {
         getFormDetails(modal.form_id, this@ApplicationStatusActivity)
-        /*val applicantsDetail = deserializedPhpArray(modal.applicant_details)
-        binding.asName.text = applicantsDetail.applicantName
+        val applicantsDetail = modal.applicant_details
+        binding.asName.text = applicantsDetail.applicant_name
         binding.asEmail.text = applicantsDetail.email
         binding.asPhone.text = applicantsDetail.mobile
-        binding.asAddress.text = applicantsDetail.address*/
+        binding.asAddress.text = applicantsDetail.address
         binding.asTxnId.text = modal.txn_id
         binding.asFormStatus.text = modal.status
-        binding.afdFormName.text = modal.formname
-        binding.asApplyNow.text = modal.created_at
-
+        binding.afdFormName.text = modal.form_details.name
+        binding.asApplyNow.text = "Applied On: ${modal.created_at}"
         handleTheButtonText(modal)
     }
 
     private fun handleTheButtonText(modal: AppliedFormModal) {
-        if (flag.equals("applicationStatus",true)){
-            binding.downloadText.text = "Download The Receipt"
+        Log.d("handleTheButtonText", "handleTheButtonText: flag: $flag -> application status")
+        if (flag.equals("applicationStatus", true)) {
+            binding.downloadText.text = resources.getString(R.string.download_reciept)
             binding.uploadRecievingLay.visibility = View.GONE
-        }else if (modal.reciept != null && modal.admit_card == null && flag.equals("admitCard",true)){
-            binding.downloadText.text = "Upload Your Reciept"
+        } else if (modal.admit_card.isNullOrBlank() && flag.equals(
+                "admitCard",
+                true
+            )
+        ) {
+            binding.downloadText.text = resources.getString(R.string.upload_reciept)
             binding.uploadRecievingLay.visibility = View.VISIBLE
-        } else if (modal.result != null && flag.equals("Result",true)) {
-            binding.downloadText.text = "Upload Admit Card"
+        } else if (modal.result.isNullOrBlank()&& flag.equals("Result", true)) {
+            binding.downloadText.text = resources.getString(R.string.upload_reciept)
+            binding.uploadRecievingLay.visibility = View.VISIBLE
         }
     }
-
 
     fun deserializedPhpArray(serializedData: String): ApplicantData {
         val jsonString = Gson().toJson(serializedData)
@@ -294,7 +308,6 @@ class ApplicationStatusActivity : AppCompatActivity() {
         })
     }
 
-
     private fun uploadDocs(
         uId: String,
         fId: String,
@@ -306,15 +319,16 @@ class ApplicationStatusActivity : AppCompatActivity() {
         progressDialog.setCancelable(false)
         progressDialog.setMessage("Uploading $typeDocs...")
         progressDialog.show()
-        Log.d("uploadDocs", "uploadDocs: UserId: $uId formId: $fId transactionId $transactionId type $typeDocs img status ${imageFile.exists()} file name ${imageFile.name}")
+        Log.d(
+            "uploadDocs",
+            "uploadDocs: UserId: $uId formId: $fId transactionId $transactionId type $typeDocs img status ${imageFile.exists()} file name ${imageFile.name}"
+        )
 
 
         val userId = uId.toRequestBody("text/plain".toMediaTypeOrNull())
         val formId = fId.toRequestBody("text/plain".toMediaTypeOrNull())
-        // val imageFile = File("/Volumes/Ankesh/codingchamp-qr.png")
         val imageRequestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-        val imagePart = prepareFilePart("reciept",uri.toString())
-//        val imagePart = MultipartBody.Part.createFormData("reciept", imageFile.name, imageRequestBody)
+        val imagePart = prepareFilePart("reciept", uri.toString())
         val type = typeDocs.toRequestBody("text/plain".toMediaTypeOrNull())
         val txnId = transactionId.toRequestBody("text/plain".toMediaTypeOrNull())
 
@@ -329,7 +343,10 @@ class ApplicationStatusActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Log.d("uploadDocs", "onResponse: response success: ${response.body()}")
                         val jsonObject = response.body()
-                        Log.d("uploadDocs", "onResponse: messages: ${jsonObject?.get("message")?.asString}")
+                        Log.d(
+                            "uploadDocs",
+                            "onResponse: messages: ${jsonObject?.get("message")?.asString}"
+                        )
                         Toast.makeText(
                             this@ApplicationStatusActivity,
                             "${jsonObject?.get("message")?.asString}",
@@ -341,7 +358,9 @@ class ApplicationStatusActivity : AppCompatActivity() {
                         // Handle the error response
                         Log.d(
                             "uploadDocs",
-                            "onResponse: respones not success ${response.errorBody()?.string()} code ${response.code()}"
+                            "onResponse: respones not success ${
+                                response.errorBody()?.string()
+                            } code ${response.code()}"
                         )
                     }
                 } catch (e: Exception) {
@@ -364,7 +383,10 @@ class ApplicationStatusActivity : AppCompatActivity() {
         Log.d("prepareFilePart", "prepareFilePart: key: $key uri: $filePath")
 
         val file =
-            UriToFileConverter.convertUriToFile2(this@ApplicationStatusActivity, Uri.parse(filePath))
+            UriToFileConverter.convertUriToFile2(
+                this@ApplicationStatusActivity,
+                Uri.parse(filePath)
+            )
         val requestBody = RequestBody.create(
             contentResolver.getType(Uri.parse(filePath))?.let { it.toMediaTypeOrNull() }, file
         )
@@ -380,7 +402,7 @@ class ApplicationStatusActivity : AppCompatActivity() {
 
         return multipartBody
     }
-    
+
 
     /*private fun removeQuotesAndUnescape(uncleanJson: String): String? {
         val noQuotes = uncleanJson.replace("^\"|\"$".toRegex(), "")

@@ -2,14 +2,17 @@ package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityDocumentUploadBinding
+import aman.major.formpoint.helper.BitmapToMultipart
+import aman.major.formpoint.helper.Helper
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
-import aman.major.formpoint.helper.UriToFileConverter
 import aman.major.formpoint.modal.FormDataModal
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -29,6 +32,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.skydoves.elasticviews.ElasticCardView
+import okhttp3.MediaType.Companion.parse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -37,31 +41,38 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class DocumentUploadActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityDocumentUploadBinding
 
-    var aadharUri: Uri? = null
-    var photoUri: Uri? = null
-    var signUri: Uri? = null
-    var eightMarksUri: Uri? = null
-    var tentUri: Uri? = null
-    var twelUri: Uri? = null
-    var gradUri: Uri? = null
-    var pGradUri: Uri? = null
-    var incmUri: Uri? = null
-    var residence: Uri? = null
-    var cast: Uri? = null
-    var panCardUri: Uri? = null
-    var bankPass: Uri? = null
-    var ewsUri: Uri? = null
-    var ncc: Uri? = null
-    var sportUri: Uri? = null
-    var nss: Uri? = null
-    var affeDevitUri: Uri? = null
-    var otherUri: Uri? = null
+    var aadharUri: Bitmap? = null
+    var photoUri: Bitmap? = null
+    var signUri: Bitmap? = null
+    var eightMarksUri: Bitmap? = null
+    var tentUri: Bitmap? = null
+    var twelUri: Bitmap? = null
+    var gradUri: Bitmap? = null
+    var pGradUri: Bitmap? = null
+    var incmUri: Bitmap? = null
+    var residence: Bitmap? = null
+    var cast: Bitmap? = null
+    var panCardUri: Bitmap? = null
+    var bankPass: Bitmap? = null
+    var ewsUri: Bitmap? = null
+    var ncc: Bitmap? = null
+    var sportUri: Bitmap? = null
+    var nss: Bitmap? = null
+    var affeDevitUri: Bitmap? = null
+    var otherUri: Bitmap? = null
     var formId: String? = null
+
+
+    private val REQUEST_IMAGE_CAPTURE = 366
+    private val REQUEST_PICK_IMAGE = 466
+
+    var flag: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,13 +110,13 @@ class DocumentUploadActivity : AppCompatActivity() {
             binding.signaturLay,
             binding.eightMarksLay,
             binding.tenthMarksLay,
-            binding.tenthMarksLay,
             binding.twelMarksLay,
             binding.gradMarksLay,
             binding.pGradLay,
             binding.incmLay,
             binding.residenceLay,
             binding.castLay,
+            binding.pancardLay,
             binding.bankPassbookLay,
             binding.ewsLay,
             binding.ncclay,
@@ -129,64 +140,64 @@ class DocumentUploadActivity : AppCompatActivity() {
         }
 
         binding.uploadPhoto.setOnClickListener {
-            sendIntentToPick(101)
+            openAlertDialog(101)
         }
 
         binding.aadharUpload.setOnClickListener {
-            sendIntentToPick(102)
+            openAlertDialog(102)
         }
 
         binding.uploadSign.setOnClickListener {
-            sendIntentToPick(103)
+            openAlertDialog(103)
         }
 
         binding.uploadEightMarks.setOnClickListener {
-            sendIntentToPick(104)
+            openAlertDialog(104)
         }
         binding.uploadtenth.setOnClickListener {
-            sendIntentToPick(105)
+            openAlertDialog(105)
         }
         binding.uploadTwelth.setOnClickListener {
-            sendIntentToPick(106)
+            openAlertDialog(106)
         }
         binding.uploadGrad.setOnClickListener {
-            sendIntentToPick(107)
+            openAlertDialog(107)
         }
         binding.uploadpGrad.setOnClickListener {
-            sendIntentToPick(108)
+            openAlertDialog(108)
         }
         binding.uploadIncm.setOnClickListener {
-            sendIntentToPick(109)
+            openAlertDialog(109)
         }
         binding.uploadCast.setOnClickListener {
-            sendIntentToPick(110)
+            openAlertDialog(110)
         }
         binding.uploadResidence.setOnClickListener {
-            sendIntentToPick(111)
+            openAlertDialog(111)
         }
         binding.uploadPancard.setOnClickListener {
-            sendIntentToPick(112)
+            openAlertDialog(112)
         }
         binding.uploadBankPass.setOnClickListener {
-            sendIntentToPick(113)
+            openAlertDialog(113)
         }
         binding.uploadEws.setOnClickListener {
-            sendIntentToPick(114)
+            openAlertDialog(114)
         }
         binding.uploadNcc.setOnClickListener {
-            sendIntentToPick(115)
+            openAlertDialog(115)
         }
         binding.uploadSports.setOnClickListener {
-            sendIntentToPick(116)
+            openAlertDialog(116)
         }
         binding.uploadNss.setOnClickListener {
-            sendIntentToPick(117)
+            openAlertDialog(117)
         }
         binding.uploadAffidevit.setOnClickListener {
-            sendIntentToPick(118)
+            openAlertDialog(118)
         }
         binding.uploadOther.setOnClickListener {
-            sendIntentToPick(119)
+            openAlertDialog(119)
         }
 
         binding.duUploadButton.setOnClickListener {
@@ -262,7 +273,10 @@ class DocumentUploadActivity : AppCompatActivity() {
     ) {
         Log.d("getFormDetails", "getFormDetails: function call: formId: $formId")
         val call = RetrofitClient.getClient()
-            .getSingleFormData(formId.toString(), SharedPrefManager.getInstance(this@DocumentUploadActivity)?.user?.id.toString());
+            .getSingleFormData(
+                formId.toString(),
+                SharedPrefManager.getInstance(this@DocumentUploadActivity)?.user?.id.toString()
+            );
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
@@ -274,17 +288,19 @@ class DocumentUploadActivity : AppCompatActivity() {
                             val dataObj = dataArray?.get(0)?.asJsonObject
                             val modal = Gson().fromJson(dataObj, FormDataModal::class.java)
 
-                            val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()+modal.result_charges.toInt()+modal.admit_card_charges.toInt()
+                            val totalPrice =
+                                modal.charges.toInt() + modal.extra_charges.toInt() + modal.result_charges.toInt() + modal.admit_card_charges.toInt()
                             totalCharge?.text = "₹$totalPrice"
-                            govtCharge?.text = "₹"+modal.charges.toString()
-                            resultCharge?.text = "₹"+modal.result_charges.toString()
-                            admitCardCharge?.text = "₹"+modal.admit_card_charges.toString()
-                            platFormCharge?.text = "₹"+modal.extra_charges.toString()
+                            govtCharge?.text = "₹" + modal.charges.toString()
+                            resultCharge?.text = "₹" + modal.result_charges.toString()
+                            admitCardCharge?.text = "₹" + modal.admit_card_charges.toString()
+                            platFormCharge?.text = "₹" + modal.extra_charges.toString()
 
 
-                            Glide.with(this@DocumentUploadActivity).load(jsonObject?.get("qr_code_path")?.asString).into(
-                                qrCodeImages!!
-                            )
+                            Glide.with(this@DocumentUploadActivity)
+                                .load(jsonObject?.get("qr_code_path")?.asString).into(
+                                    qrCodeImages!!
+                                )
 
 //                            holder.formType.text = modal.type
 //                            holder.formLocation.text = "Level: ${modal.level}"
@@ -343,25 +359,77 @@ class DocumentUploadActivity : AppCompatActivity() {
         val useNameRequestBody = userName.toRequestBody("text/plain".toMediaTypeOrNull())
         val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
         val txnIdRequestBody = txnId.toRequestBody("text/plain".toMediaTypeOrNull())
-        val photoPart = prepareFilePart("Photo", photoUri.toString())
-        val aadharPart = prepareFilePart("Aadhar", photoUri.toString())
-        val signaturePart = prepareFilePart("Signature", signUri.toString())
-        val eightMarksPart = prepareFilePart("8th-Marksheet", eightMarksUri.toString())
-        val tenthMarksPart = prepareFilePart("10th-Marksheet", tentUri.toString())
-        val twelthMarksPart = prepareFilePart("12th-Marksheet", twelUri.toString())
-        val gradMarksPart = prepareFilePart("Graduation-Marksheet", gradUri.toString())
-        val postgradMarksPart = prepareFilePart("Post-Graduation", pGradUri.toString())
-        val incmPart = prepareFilePart("Income-Certificate", incmUri.toString())
-        val residencePart = prepareFilePart("Residence-Certificate", residence.toString())
-        val castPart = prepareFilePart("Caste-Certificate", cast.toString())
-        val pancardPart = prepareFilePart("Pancard", panCardUri.toString())
-        val bankPart = prepareFilePart("Bank-Passbook", bankPass.toString())
-        val ewsPart = prepareFilePart("EWS", bankPass.toString())
-        val nccPart = prepareFilePart("NCC-Certificate", ncc.toString())
-        val sportsPart = prepareFilePart("Sports-Certificate", sportUri.toString())
-        val nssPart = prepareFilePart("NSS-Certificate", nss.toString())
-        val affedivitPart = prepareFilePart("Affidavit", affeDevitUri.toString())
-        val otherPart = prepareFilePart("Other", otherUri.toString())
+        val photoPart =
+            BitmapToMultipart.bitmapToMultipart("Photo", photoUri, this@DocumentUploadActivity)
+        val aadharPart =
+            BitmapToMultipart.bitmapToMultipart("Aadhar", photoUri, this@DocumentUploadActivity)
+        val signaturePart =
+            BitmapToMultipart.bitmapToMultipart("Signature", signUri, this@DocumentUploadActivity)
+        val eightMarksPart = BitmapToMultipart.bitmapToMultipart(
+            "8th-Marksheet",
+            eightMarksUri,
+            this@DocumentUploadActivity
+        )
+        val tenthMarksPart = BitmapToMultipart.bitmapToMultipart(
+            "10th-Marksheet",
+            tentUri,
+            this@DocumentUploadActivity
+        )
+        val twelthMarksPart = BitmapToMultipart.bitmapToMultipart(
+            "12th-Marksheet",
+            twelUri,
+            this@DocumentUploadActivity
+        )
+        val gradMarksPart = BitmapToMultipart.bitmapToMultipart(
+            "Graduation-Marksheet",
+            gradUri,
+            this@DocumentUploadActivity
+        )
+        val postgradMarksPart = BitmapToMultipart.bitmapToMultipart(
+            "Post-Graduation",
+            pGradUri,
+            this@DocumentUploadActivity
+        )
+        val incmPart = BitmapToMultipart.bitmapToMultipart(
+            "Income-Certificate",
+            incmUri,
+            this@DocumentUploadActivity
+        )
+        val residencePart = BitmapToMultipart.bitmapToMultipart(
+            "Residence-Certificate",
+            residence,
+            this@DocumentUploadActivity
+        )
+        val castPart = BitmapToMultipart.bitmapToMultipart(
+            "Caste-Certificate",
+            cast,
+            this@DocumentUploadActivity
+        )
+        val pancardPart =
+            BitmapToMultipart.bitmapToMultipart("Pancard", panCardUri, this@DocumentUploadActivity)
+        val bankPart = BitmapToMultipart.bitmapToMultipart(
+            "Bank-Passbook",
+            bankPass,
+            this@DocumentUploadActivity
+        )
+        val ewsPart =
+            BitmapToMultipart.bitmapToMultipart("EWS", bankPass, this@DocumentUploadActivity)
+        val nccPart =
+            BitmapToMultipart.bitmapToMultipart("NCC-Certificate", ncc, this@DocumentUploadActivity)
+        val sportsPart = BitmapToMultipart.bitmapToMultipart(
+            "Sports-Certificate",
+            sportUri,
+            this@DocumentUploadActivity
+        )
+        val nssPart =
+            BitmapToMultipart.bitmapToMultipart("NSS-Certificate", nss, this@DocumentUploadActivity)
+        val affedivitPart = BitmapToMultipart.bitmapToMultipart(
+            "Affidavit",
+            affeDevitUri,
+            this@DocumentUploadActivity
+        )
+        val otherPart =
+            BitmapToMultipart.bitmapToMultipart("Other", otherUri, this@DocumentUploadActivity)
 
 
         val call = RetrofitClient.getClient().saveForm(
@@ -454,10 +522,38 @@ class DocumentUploadActivity : AppCompatActivity() {
         bottomSheetDialog.show()
     }
 
-    private fun sendIntentToPick(requestCode: Int) {
-        if (checkPermission()) {
+    private fun openAlertDialog(requestCode: Int) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Action")
+        builder.setPositiveButton(
+            "Take Photo",
+            DialogInterface.OnClickListener { dialog, id ->
+                flag = requestCode
+                dispatchTakePictureIntent()
+            })
+        builder.setNegativeButton("Choose from Gallery",
+            DialogInterface.OnClickListener { dialog, id -> // User clicked Choose from Gallery
+                flag = requestCode
+                dispatchPickImageIntent()
+            })
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    private fun dispatchPickImageIntent() {
+        if (checkPermission() && checkCameraPermission()) {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, requestCode)
+            startActivityForResult(intent, REQUEST_PICK_IMAGE)
+        } else {
+            requestPermission()
+        }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        if (checkPermission() && checkCameraPermission()) {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
         } else {
             requestPermission()
         }
@@ -477,17 +573,30 @@ class DocumentUploadActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkCameraPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
     private fun requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES),
+                arrayOf(
+                    android.Manifest.permission.READ_MEDIA_IMAGES,
+                    android.Manifest.permission.CAMERA
+                ),
                 20
             )
         } else {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                arrayOf(
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.CAMERA
+                ),
                 20
             )
         }
@@ -495,123 +604,249 @@ class DocumentUploadActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val data = data?.data!!
-        if (data != null) {
-            Log.d("gettingPhotoUri", "onActivityResult: photoUri")
-            when (requestCode) {
-                101 -> {
-                    binding.photoImg.setImageURI(data)
-                    setInvisibleLottie(binding.photoJson)
-                    photoUri = data
+        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
+            val imageUri = data?.data!!
+            val galleryBitmap =
+                MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri)
+            if (galleryBitmap != null) {
+                Log.d("gettingPhotoUri", "onActivityResult: photoUri")
+                when (flag) {
+                    101 -> {
+                        binding.photoImg.setImageBitmap(galleryBitmap)
+                        setInvisibleLottie(binding.photoJson)
+                        photoUri = galleryBitmap
+                    }
+
+                    102 -> {
+                        binding.aadharImg.setImageBitmap(galleryBitmap)
+                        aadharUri = galleryBitmap
+                        setInvisibleLottie(binding.aadharJson)
+                    }
+
+                    103 -> {
+                        binding.signaturImg.setImageBitmap(galleryBitmap)
+                        setInvisibleLottie(binding.signatureJson)
+                        signUri = galleryBitmap
+                    }
+
+                    104 -> {
+                        binding.eightMarkImg.setImageBitmap(galleryBitmap)
+                        eightMarksUri = galleryBitmap
+                        setInvisibleLottie(binding.eightMarkJson)
+                    }
+
+                    105 -> {
+                        binding.tenthMarksImg.setImageBitmap(galleryBitmap)
+                        setInvisibleLottie(binding.tenthJson)
+                        tentUri = galleryBitmap
+                    }
+
+                    106 -> {
+                        binding.twelMarksImg.setImageBitmap(galleryBitmap)
+                        twelUri = galleryBitmap
+                        setInvisibleLottie(binding.twelthMarksJson)
+                    }
+
+                    107 -> {
+                        binding.gradImg.setImageBitmap(galleryBitmap)
+                        gradUri = galleryBitmap
+                        setInvisibleLottie(binding.gradMarksJson)
+                    }
+
+                    108 -> {
+                        binding.pGradImg.setImageBitmap(galleryBitmap)
+                        pGradUri = galleryBitmap
+                        setInvisibleLottie(binding.pGradJson)
+                    }
+
+                    109 -> {
+                        binding.incmImg.setImageBitmap(galleryBitmap)
+                        incmUri = galleryBitmap
+                        setInvisibleLottie(binding.incmJson)
+                    }
+
+                    110 -> {
+                        binding.castImg.setImageBitmap(galleryBitmap)
+                        cast = galleryBitmap
+                        setInvisibleLottie(binding.castJson)
+                    }
+
+                    111 -> {
+                        binding.residenceImg.setImageBitmap(galleryBitmap)
+                        residence = galleryBitmap
+                        setInvisibleLottie(binding.residenceJson)
+                    }
+
+                    112 -> {
+                        binding.panCardImg.setImageBitmap(galleryBitmap)
+                        panCardUri = galleryBitmap
+                        setInvisibleLottie(binding.pancardJson)
+                    }
+
+                    113 -> {
+                        binding.bankPassbookImg.setImageBitmap(galleryBitmap)
+                        bankPass = galleryBitmap
+                        setInvisibleLottie(binding.bankPassBookJson)
+                    }
+
+
+                    114 -> {
+                        binding.ewsImg.setImageBitmap(galleryBitmap)
+                        ewsUri = galleryBitmap
+                        setInvisibleLottie(binding.ewsJson)
+                    }
+
+                    115 -> {
+                        binding.nccImg.setImageBitmap(galleryBitmap)
+                        ncc = galleryBitmap
+                        setInvisibleLottie(binding.nccjson)
+                    }
+
+                    116 -> {
+                        binding.sportsCerfImg.setImageBitmap(galleryBitmap)
+                        sportUri = galleryBitmap
+                        setInvisibleLottie(binding.sportsCerfJson)
+                    }
+
+                    117 -> {
+                        binding.nssImg.setImageBitmap(galleryBitmap)
+                        nss = galleryBitmap
+                        setInvisibleLottie(binding.nssJson)
+                    }
+
+                    118 -> {
+                        binding.affedivitImg.setImageBitmap(galleryBitmap)
+                        affeDevitUri = galleryBitmap
+                        setInvisibleLottie(binding.affedivitJson)
+                    }
+
+                    119 -> {
+                        binding.otherIMg.setImageBitmap(galleryBitmap)
+                        otherUri = galleryBitmap
+                        setInvisibleLottie(binding.otherJson)
+                    }
                 }
+            }
+        }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val cameraBitmap = data?.extras?.get("data") as Bitmap
+            if (cameraBitmap != null) {
+                Log.d("gettingPhotoUri", "onActivityResult: photoUri")
+                when (flag) {
+                    101 -> {
+                        binding.photoImg.setImageBitmap(cameraBitmap)
+                        setInvisibleLottie(binding.photoJson)
+                        photoUri = cameraBitmap
+                    }
 
-                102 -> {
-                    binding.aadharImg.setImageURI(data)
-                    aadharUri = data
-                    setInvisibleLottie(binding.aadharJson)
-                }
+                    102 -> {
+                        binding.aadharImg.setImageBitmap(cameraBitmap)
+                        aadharUri = cameraBitmap
+                        setInvisibleLottie(binding.aadharJson)
+                    }
 
-                103 -> {
-                    binding.signaturImg.setImageURI(data)
-                    setInvisibleLottie(binding.signatureJson)
-                    signUri = data
-                }
+                    103 -> {
+                        binding.signaturImg.setImageBitmap(cameraBitmap)
+                        setInvisibleLottie(binding.signatureJson)
+                        signUri = cameraBitmap
+                    }
 
-                104 -> {
-                    binding.eightMarkImg.setImageURI(data)
-                    eightMarksUri = data
-                    setInvisibleLottie(binding.eightMarkJson)
-                }
+                    104 -> {
+                        binding.eightMarkImg.setImageBitmap(cameraBitmap)
+                        eightMarksUri = cameraBitmap
+                        setInvisibleLottie(binding.eightMarkJson)
+                    }
 
-                105 -> {
-                    binding.tenthMarksImg.setImageURI(data)
-                    setInvisibleLottie(binding.tenthJson)
-                    tentUri = data
-                }
+                    105 -> {
+                        binding.tenthMarksImg.setImageBitmap(cameraBitmap)
+                        setInvisibleLottie(binding.tenthJson)
+                        tentUri = cameraBitmap
+                    }
 
-                106 -> {
-                    binding.twelMarksImg.setImageURI(data)
-                    twelUri = data
-                    setInvisibleLottie(binding.twelthMarksJson)
-                }
+                    106 -> {
+                        binding.twelMarksImg.setImageBitmap(cameraBitmap)
+                        twelUri = cameraBitmap
+                        setInvisibleLottie(binding.twelthMarksJson)
+                    }
 
-                107 -> {
-                    binding.gradImg.setImageURI(data)
-                    gradUri = data
-                    setInvisibleLottie(binding.gradMarksJson)
-                }
+                    107 -> {
+                        binding.gradImg.setImageBitmap(cameraBitmap)
+                        gradUri = cameraBitmap
+                        setInvisibleLottie(binding.gradMarksJson)
+                    }
 
-                108 -> {
-                    binding.pGradImg.setImageURI(data)
-                    pGradUri = data
-                    setInvisibleLottie(binding.pGradJson)
-                }
+                    108 -> {
+                        binding.pGradImg.setImageBitmap(cameraBitmap)
+                        pGradUri = cameraBitmap
+                        setInvisibleLottie(binding.pGradJson)
+                    }
 
-                109 -> {
-                    binding.incmImg.setImageURI(data)
-                    incmUri = data
-                    setInvisibleLottie(binding.incmJson)
-                }
+                    109 -> {
+                        binding.incmImg.setImageBitmap(cameraBitmap)
+                        incmUri = cameraBitmap
+                        setInvisibleLottie(binding.incmJson)
+                    }
 
-                110 -> {
-                    binding.castImg.setImageURI(data)
-                    cast = data
-                    setInvisibleLottie(binding.castJson)
-                }
+                    110 -> {
+                        binding.castImg.setImageBitmap(cameraBitmap)
+                        cast = cameraBitmap
+                        setInvisibleLottie(binding.castJson)
+                    }
 
-                111 -> {
-                    binding.residenceImg.setImageURI(data)
-                    residence = data
-                    setInvisibleLottie(binding.residenceJson)
-                }
+                    111 -> {
+                        binding.residenceImg.setImageBitmap(cameraBitmap)
+                        residence = cameraBitmap
+                        setInvisibleLottie(binding.residenceJson)
+                    }
 
-                112 -> {
-                    binding.panCardImg.setImageURI(data)
-                    panCardUri = data
-                    setInvisibleLottie(binding.pancardJson)
-                }
+                    112 -> {
+                        binding.panCardImg.setImageBitmap(cameraBitmap)
+                        panCardUri = cameraBitmap
+                        setInvisibleLottie(binding.pancardJson)
+                    }
 
-                113 -> {
-                    binding.bankPassbookImg.setImageURI(data)
-                    bankPass = data
-                    setInvisibleLottie(binding.bankPassBookJson)
-                }
+                    113 -> {
+                        binding.bankPassbookImg.setImageBitmap(cameraBitmap)
+                        bankPass = cameraBitmap
+                        setInvisibleLottie(binding.bankPassBookJson)
+                    }
 
 
-                114 -> {
-                    binding.ewsImg.setImageURI(data)
-                    ewsUri = data
-                    setInvisibleLottie(binding.ewsJson)
-                }
+                    114 -> {
+                        binding.ewsImg.setImageBitmap(cameraBitmap)
+                        ewsUri = cameraBitmap
+                        setInvisibleLottie(binding.ewsJson)
+                    }
 
-                115 -> {
-                    binding.nccImg.setImageURI(data)
-                    ncc = data
-                    setInvisibleLottie(binding.nccjson)
-                }
+                    115 -> {
+                        binding.nccImg.setImageBitmap(cameraBitmap)
+                        ncc = cameraBitmap
+                        setInvisibleLottie(binding.nccjson)
+                    }
 
-                116 -> {
-                    binding.sportsCerfImg.setImageURI(data)
-                    sportUri = data
-                    setInvisibleLottie(binding.sportsCerfJson)
-                }
+                    116 -> {
+                        binding.sportsCerfImg.setImageBitmap(cameraBitmap)
+                        sportUri = cameraBitmap
+                        setInvisibleLottie(binding.sportsCerfJson)
+                    }
 
-                117 -> {
-                    binding.nssImg.setImageURI(data)
-                    nss = data
-                    setInvisibleLottie(binding.nssJson)
-                }
+                    117 -> {
+                        binding.nssImg.setImageBitmap(cameraBitmap)
+                        nss = cameraBitmap
+                        setInvisibleLottie(binding.nssJson)
+                    }
 
-                118 -> {
-                    binding.affedivitImg.setImageURI(data)
-                    affeDevitUri = data
-                    setInvisibleLottie(binding.affedivitJson)
-                }
+                    118 -> {
+                        binding.affedivitImg.setImageBitmap(cameraBitmap)
+                        affeDevitUri = cameraBitmap
+                        setInvisibleLottie(binding.affedivitJson)
+                    }
 
-                119 -> {
-                    binding.otherIMg.setImageURI(data)
-                    otherUri = data
-                    setInvisibleLottie(binding.otherJson)
+                    119 -> {
+                        binding.otherIMg.setImageBitmap(cameraBitmap)
+                        otherUri = cameraBitmap
+                        setInvisibleLottie(binding.otherJson)
+                    }
                 }
             }
         }
@@ -621,27 +856,30 @@ class DocumentUploadActivity : AppCompatActivity() {
         photoJson.visibility = View.INVISIBLE
     }
 
-    private fun prepareFilePart(key: String, filePath: String): MultipartBody.Part {
+    /*private fun prepareFilePart(key: String, filePath: Bitmap?): MultipartBody.Part {
+        try {
+            Log.d("prepareFilePart", "prepareFilePart: key: $key uri: $filePath")
 
-        Log.d("prepareFilePart", "prepareFilePart: key: $key uri: $filePath")
-
-        val file =
-            UriToFileConverter.convertUriToFile2(this@DocumentUploadActivity, Uri.parse(filePath))
-        val requestBody = RequestBody.create(
-            contentResolver.getType(Uri.parse(filePath))?.let { it.toMediaTypeOrNull() }, file
-        )
-        Log.d(
-            "prepareFilePart",
-            "prepareFilePart: file exist status ${file.exists()} name ${file.name}"
-        )
-        Log.d(
-            "prepareFilePart",
-            "content type ${requestBody.contentType()} request file ${requestBody.contentLength()} duplex ${requestBody.isDuplex()} "
-        )
-        val multipartBody = MultipartBody.Part.createFormData(key, file.name, requestBody)
-
-        return multipartBody
-    }
+            //val file = UriToFileConverter.convertUriToFile2(this@DocumentUploadActivity, Uri.parse(filePath))
+            val file = Helper.saveBitmapToFile(filePath)
+            val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file!!)
 
 
+            Log.d(
+                "prepareFilePart",
+                "prepareFilePart: file exist status ${file.exists()} name ${file.name}"
+            )
+            Log.d(
+                "prepareFilePart",
+                "content type ${requestBody.contentType()} request file ${requestBody.contentLength()} duplex ${requestBody.isDuplex()} "
+            )
+            val multipartBody = MultipartBody.Part.createFormData(key, file.name, requestBody)
+            return multipartBody
+        }catch (e:Exception){
+
+        }
+    }*/
+
+}
+     */
 }

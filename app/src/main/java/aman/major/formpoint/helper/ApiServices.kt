@@ -31,29 +31,38 @@ interface ApiServices {
     ): Call<JsonObject>
 
     @GET("APIs/slider")
-    fun slider() : Call<JsonObject>
+    fun slider(): Call<JsonObject>
 
     @GET("APIs/youtube")
-    fun video() : Call<JsonObject>
+    fun video(): Call<JsonObject>
 
 
     @GET("APIs/forms")
     fun getOnlineForms(
-        @Query("type") type:String
+        @Query("type") type: String
     ): Call<JsonObject>
 
     @FormUrlEncoded
     @POST("APIs/get_form")
     fun getSingleFormData(
-        @Field("form_id") id:String,
-        @Field("user_id") userId:String
-    ):Call<JsonObject>
+        @Field("form_id") id: String,
+        @Field("user_id") userId: String
+    ): Call<JsonObject>
 
     @FormUrlEncoded
     @POST("APIs/applied_form_status")
-    fun getAppliedFormData(
-        @Field("user_id") userId:String
-    ):Call<JsonObject>
+    fun getAppliedFormStatus(
+        @Field("user_id") userId: String
+    ): Call<JsonObject>
+
+
+    @FormUrlEncoded
+    @POST("APIs/applied_form_status_in_details")
+    fun getAppliedFormStatusInDetail(
+        @Field("user_id") userId: String,
+        @Field("form_id") form_id: String?,
+        @Field("id") id: String?
+    ): Call<JsonObject>
 
 
     @Multipart
@@ -101,25 +110,25 @@ interface ApiServices {
         @Part("email") email: RequestBody,
         @Part("form_id") formId: RequestBody,
         @Part("txn_id") txnId: RequestBody,
-        @Part aadhar: MultipartBody.Part,
-        @Part photo: MultipartBody.Part,
-        @Part signature: MultipartBody.Part,
-        @Part eightMarks: MultipartBody.Part,
-        @Part tenthMarks: MultipartBody.Part,
-        @Part twelthMarks: MultipartBody.Part,
-        @Part gradMarks: MultipartBody.Part,
-        @Part postgradMarks: MultipartBody.Part,
-        @Part incm: MultipartBody.Part,
-        @Part residence: MultipartBody.Part,
-        @Part cast: MultipartBody.Part,
-        @Part pancard: MultipartBody.Part,
-        @Part bank: MultipartBody.Part,
-        @Part ews: MultipartBody.Part,
-        @Part ncc: MultipartBody.Part,
-        @Part sports: MultipartBody.Part,
-        @Part nss: MultipartBody.Part,
-        @Part affidevit: MultipartBody.Part,
-        @Part other: MultipartBody.Part,
+        @Part aadhar: MultipartBody.Part?,
+        @Part photo: MultipartBody.Part?,
+        @Part signature: MultipartBody.Part?,
+        @Part eightMarks: MultipartBody.Part?,
+        @Part tenthMarks: MultipartBody.Part?,
+        @Part twelthMarks: MultipartBody.Part?,
+        @Part gradMarks: MultipartBody.Part?,
+        @Part postgradMarks: MultipartBody.Part?,
+        @Part incm: MultipartBody.Part?,
+        @Part residence: MultipartBody.Part?,
+        @Part cast: MultipartBody.Part?,
+        @Part pancard: MultipartBody.Part?,
+        @Part bank: MultipartBody.Part?,
+        @Part ews: MultipartBody.Part?,
+        @Part ncc: MultipartBody.Part?,
+        @Part sports: MultipartBody.Part?,
+        @Part nss: MultipartBody.Part?,
+        @Part affidevit: MultipartBody.Part?,
+        @Part other: MultipartBody.Part?,
     ): Call<JsonObject>
 
     @GET("APIs/notification")
@@ -137,9 +146,9 @@ interface ApiServices {
     @FormUrlEncoded
     @POST("APIs/otp_manual")
     fun sendOtpToRecieve(
-        @Field("user_id")user_id: String?,
-        @Field("form_id")form_id: String?,
-        @Field("otp")otp: String
+        @Field("user_id") user_id: String?,
+        @Field("form_id") form_id: String?,
+        @Field("otp") otp: String
     ): Call<JsonObject>
 
     @Multipart

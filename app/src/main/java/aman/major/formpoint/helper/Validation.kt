@@ -76,16 +76,17 @@ class Validation {
             return if (pass.isEmpty()) {
                 passwordError.text = "Password is cannot be empty"
                 false
-            } else if (!pass.matches("^(?=.*[A-Za-z])(?=.*\\d)(?!.*\\s).{6,}$".toRegex())) {
+            } else if (pass.length < 4) {
+                passwordError.text = "Password too short, minimum 4 character required"
+                false
+            }/* else if (!pass.matches("^(?=.*[A-Za-z])(?=.*\\d)(?!.*\\s).{6,}$".toRegex())) {
                 passwordError.text = "Password Include Capital and small and one number"
                 false
-            } else {
+            }*/ else {
                 passwordError.visibility = View.GONE
                 true
             }
         }
-
-
     }
 
 

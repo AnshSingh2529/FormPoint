@@ -1,11 +1,11 @@
 package aman.major.formpoint.modal
 
-data class AppliedFormModal(
+data class NewFormAppliedModal(
     val admit_card: String,
     val applicant_details: ApplicantDetails,
     val created_at: String,
     val extra_details: String,
-    val form_details: FormDetails,
+    val formdetails: FormDetails,
     val form_id: String,
     val id: String,
     val otp: String,

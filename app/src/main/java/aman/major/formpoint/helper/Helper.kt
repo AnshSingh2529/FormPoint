@@ -6,6 +6,8 @@ import aman.major.formpoint.modal.VideoModal
 import android.content.ContentResolver
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.Bitmap.CompressFormat
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
@@ -25,6 +27,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
+import java.util.Calendar
+
 
 class Helper {
 
@@ -135,6 +140,23 @@ class Helper {
             }
             // If unable to retrieve the name, create a unique name
             return "file_${System.currentTimeMillis()}"
+        }
+
+        fun saveBitmapToFile(bitmap: Bitmap?): File? {
+            val file = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "${Calendar.getInstance().timeInMillis}_Major.jpg"
+            )
+            return try {
+                val os: OutputStream = FileOutputStream(file)
+                bitmap?.compress(CompressFormat.JPEG, 100, os)
+                os.flush()
+                os.close()
+                file
+            } catch (e: IOException) {
+                //e.printStackTrace()
+                null
+            }
         }
 
 

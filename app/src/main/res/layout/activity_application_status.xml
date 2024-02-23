@@ -49,11 +49,12 @@
                 <TextView
                     android:id="@+id/afd_form_name"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_weight="1"
                     android:text="Form name"
+                    android:layout_gravity="center"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/_16ssp"
                     app:layout_constraintEnd_toStartOf="@+id/formTypeCard"
@@ -66,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/black"
+                    android:layout_gravity="top"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumComponent"
@@ -183,20 +185,20 @@
                         android:paddingVertical="@dimen/_4sdp">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/email"
-                            android:layout_weight="1"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="@dimen/_12ssp"/>
 
                         <TextView
                             android:id="@+id/as_email"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Applicants name"
                             android:layout_weight="1"
                             android:gravity="end"
+                            android:layout_marginStart="12dp"
                             android:textColor="@color/textColorSecondary"
                             android:textSize="@dimen/_12ssp"/>
 
@@ -209,20 +211,20 @@
                         android:paddingVertical="@dimen/_4sdp">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/address"
-                            android:layout_weight="1"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="@dimen/_12ssp"/>
 
                         <TextView
                             android:id="@+id/as_address"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Applicants name"
                             android:layout_weight="1"
                             android:gravity="end"
+                            android:layout_marginStart="12dp"
                             android:textColor="@color/textColorSecondary"
                             android:textSize="@dimen/_12ssp"/>
 
