@@ -28,16 +28,16 @@ class SelectLanguageActivity : AppCompatActivity() {
 
         if (value.equals("en", ignoreCase = true)) {
             myStringValue = "en"
-            binding.englishLang.setChecked(true)
-            binding.hindiLang.setChecked(false)
+            binding.englishLang.isChecked = true
+            binding.hindiLang.isChecked = false
         } else if (value.equals("hi", ignoreCase = true)) {
             myStringValue = "hi"
-            binding.hindiLang.setChecked(true)
-            binding.englishLang.setChecked(false)
+            binding.hindiLang.isChecked = true
+            binding.englishLang.isChecked = false
         } else {
             myStringValue = "en"
-            binding.englishLang.setChecked(true)
-            binding.hindiLang.setChecked(false)
+            binding.englishLang.isChecked = true
+            binding.hindiLang.isChecked = false
         }
 
         binding.language.setOnCheckedChangeListener { radio, id ->
@@ -52,18 +52,21 @@ class SelectLanguageActivity : AppCompatActivity() {
         }
 
         binding.selecButton.setOnClickListener {
+            if(binding.language.checkedRadioButtonId > -1){
+                LocaleHelper.setLocale(this@SelectLanguageActivity, myStringValue)
+                val sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("my_string_key", myStringValue)
+                editor.commit()
 
-            LocaleHelper.setLocale(this@SelectLanguageActivity, myStringValue)
-            val sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("my_string_key", myStringValue)
-            editor.commit()
-
-            if (i == 1) {
-                startActivity(Intent(this, LoginActivity::class.java))
-            } else {
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
+                if (i == 1) {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                }
+            }else{
+                Toast.makeText(this, "Please Select Language", Toast.LENGTH_SHORT).show()
             }
         }
 

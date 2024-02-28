@@ -44,18 +44,16 @@ class RegisterActivity : AppCompatActivity() {
             val mob = binding.regMob.text.toString()
             val name = binding.regName.text.toString()
             val pass = binding.regPass.text.toString()
-            val cnfPass = binding.regCnfPass.text.toString()
+           // val cnfPass = binding.regCnfPass.text.toString()
 
             if(
-                !Validation.validateEmail(binding.regEmail.text.toString(),binding.regEmailErr) or
                 !Validation.validateMobile(binding.regMob.text.toString(),binding.regMobErr) or
                 !Validation.validateName(binding.regName.text.toString(),binding.regNameErr) or
-                !Validation.validatePass(binding.regPass.text.toString(),binding.regPassErr) or
-                !Validation.validateCnfPass(binding.regPass.text.toString(),binding.regCnfPass.text.toString(),binding.regCnfPassErr,binding.regPassErr)
+                !Validation.validatePass(binding.regPass.text.toString(),binding.regPassErr)
                 ){
                 return@setOnClickListener
             }
-            registerUser(email,mob,name,pass,cnfPass)
+            registerUser(email,mob,name,pass,pass)
         }
 
 

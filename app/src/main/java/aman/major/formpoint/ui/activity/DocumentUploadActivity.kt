@@ -3,10 +3,10 @@ package aman.major.formpoint.ui.activity
 import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityDocumentUploadBinding
 import aman.major.formpoint.helper.BitmapToMultipart
-import aman.major.formpoint.helper.Helper
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.modal.FormDataModal
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
@@ -31,11 +31,9 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.skydoves.elasticviews.ElasticButton
 import com.skydoves.elasticviews.ElasticCardView
-import okhttp3.MediaType.Companion.parse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,8 +45,8 @@ class DocumentUploadActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDocumentUploadBinding
 
-    var aadharUri: Bitmap? = null
-    var photoUri: Bitmap? = null
+    var aadharBitmap: Bitmap? = null
+    var photoBitmap: Bitmap? = null
     var signUri: Bitmap? = null
     var eightMarksUri: Bitmap? = null
     var tentUri: Bitmap? = null
@@ -66,7 +64,11 @@ class DocumentUploadActivity : AppCompatActivity() {
     var nss: Bitmap? = null
     var affeDevitUri: Bitmap? = null
     var otherUri: Bitmap? = null
+    var screenShotBit: Bitmap? = null
     var formId: String? = null
+
+    lateinit var btsImageView: ImageView
+    lateinit var btsScreenshotAnim: LottieAnimationView
 
 
     private val REQUEST_IMAGE_CAPTURE = 366
@@ -226,22 +228,35 @@ class DocumentUploadActivity : AppCompatActivity() {
         bottomSheetDialog.setCancelable(false)
         bottomSheetDialog.show()
         val qrCodeImages = bottomSheetDialog.findViewById<ImageView>(R.id.qrCodeImages)
-        val totalCharge = bottomSheetDialog.findViewById<TextView>(R.id.totalCharge)
-        val govtCharge = bottomSheetDialog.findViewById<TextView>(R.id.govtCharge)
-        val resultCharge = bottomSheetDialog.findViewById<TextView>(R.id.resultCharge)
-        val admitCardCharge = bottomSheetDialog.findViewById<TextView>(R.id.admitCardCharge)
-        val platFormCharge = bottomSheetDialog.findViewById<TextView>(R.id.platFormCharge)
+        val extraCharge = bottomSheetDialog.findViewById<TextView>(R.id.extraCharge)
+        val scCharge = bottomSheetDialog.findViewById<TextView>(R.id.scCharge)
+        val generalCharge = bottomSheetDialog.findViewById<TextView>(R.id.generalCharge)
         val userTxnId = bottomSheetDialog.findViewById<EditText>(R.id.userTxnId)
+        val screenShotImg = bottomSheetDialog.findViewById<ImageView>(R.id.screenShotImg)
+        val screenshotUploadBtn =
+            bottomSheetDialog.findViewById<ElasticButton>(R.id.screenshotUploadBtn)
+        val screenShotJson =
+            bottomSheetDialog.findViewById<LottieAnimationView>(R.id.screenShotJson)
         val submitButton = bottomSheetDialog.findViewById<ElasticCardView>(R.id.submitButton)
+
+        btsImageView = screenShotImg!!
+        btsScreenshotAnim = screenShotJson!!
+
 
         getFormsPaymentData(
             qrCodeImages,
-            totalCharge,
-            govtCharge,
-            resultCharge,
-            admitCardCharge,
-            platFormCharge
+            extraCharge,
+            scCharge,
+            generalCharge
         )
+
+
+        screenshotUploadBtn?.setOnClickListener {
+            openAlertDialog(120)
+        }
+
+
+
 
         submitButton?.setOnClickListener {
             if (userTxnId?.text.toString().isEmpty()) {
@@ -265,11 +280,9 @@ class DocumentUploadActivity : AppCompatActivity() {
 
     private fun getFormsPaymentData(
         qrCodeImages: ImageView?,
-        totalCharge: TextView?,
-        govtCharge: TextView?,
-        resultCharge: TextView?,
-        admitCardCharge: TextView?,
-        platFormCharge: TextView?
+        extraCharge: TextView?,
+        scCharge: TextView?,
+        generalCharge: TextView?
     ) {
         Log.d("getFormDetails", "getFormDetails: function call: formId: $formId")
         val call = RetrofitClient.getClient()
@@ -278,6 +291,7 @@ class DocumentUploadActivity : AppCompatActivity() {
                 SharedPrefManager.getInstance(this@DocumentUploadActivity)?.user?.id.toString()
             );
         call.enqueue(object : Callback<JsonObject> {
+            @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
                     if (response.isSuccessful) {
@@ -288,31 +302,15 @@ class DocumentUploadActivity : AppCompatActivity() {
                             val dataObj = dataArray?.get(0)?.asJsonObject
                             val modal = Gson().fromJson(dataObj, FormDataModal::class.java)
 
-                            val totalPrice =
-                                modal.charges.toInt() + modal.extra_charges.toInt() + modal.result_charges.toInt() + modal.admit_card_charges.toInt()
-                            totalCharge?.text = "₹$totalPrice"
-                            govtCharge?.text = "₹" + modal.charges.toString()
-                            resultCharge?.text = "₹" + modal.result_charges.toString()
-                            admitCardCharge?.text = "₹" + modal.admit_card_charges.toString()
-                            platFormCharge?.text = "₹" + modal.extra_charges.toString()
+                            extraCharge?.text = "₹" + modal.extra_charges
+                            generalCharge?.text = "₹" + modal.charge_general
+                            scCharge?.text = "₹" + modal.charge_sc_st
 
 
                             Glide.with(this@DocumentUploadActivity)
                                 .load(jsonObject?.get("qr_code_path")?.asString).into(
                                     qrCodeImages!!
                                 )
-
-//                            holder.formType.text = modal.type
-//                            holder.formLocation.text = "Level: ${modal.level}"
-//                            binding.afdFormName.text = modal.name
-//                            binding.afdFormLevel.text = "Level: ${modal.level}"
-//                            binding.afdGovtPrice.text = "₹${modal.charges}"
-//                            binding.afdExtraCharges.text = "₹${modal.extra_charges}"
-//
-//                            binding.afdTotalPrice.text = "₹${totalPrice}"
-//                            FormDetailActivity.requiredDocs = modal.requirements
-//                            setEligibilityList(modal.eligibility)
-//                            setRequiredDocsList(modal.requirements)
 
                         }
                     } else {
@@ -351,7 +349,7 @@ class DocumentUploadActivity : AppCompatActivity() {
             "uploadFormInApi",
             "uploadFormInApi: function call: userId: $userId formId: $formId phone $phone"
         )
-        Log.d("uploadFormInApi", "photo -> $photoUri")
+        Log.d("uploadFormInApi", "photo -> $photoBitmap")
         val userIdRequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())
         val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
         val formIdRequestBody = formId.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -360,9 +358,9 @@ class DocumentUploadActivity : AppCompatActivity() {
         val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
         val txnIdRequestBody = txnId.toRequestBody("text/plain".toMediaTypeOrNull())
         val photoPart =
-            BitmapToMultipart.bitmapToMultipart("Photo", photoUri, this@DocumentUploadActivity)
+            BitmapToMultipart.bitmapToMultipart("Photo", photoBitmap, this@DocumentUploadActivity)
         val aadharPart =
-            BitmapToMultipart.bitmapToMultipart("Aadhar", photoUri, this@DocumentUploadActivity)
+            BitmapToMultipart.bitmapToMultipart("Aadhar", aadharBitmap, this@DocumentUploadActivity)
         val signaturePart =
             BitmapToMultipart.bitmapToMultipart("Signature", signUri, this@DocumentUploadActivity)
         val eightMarksPart = BitmapToMultipart.bitmapToMultipart(
@@ -431,6 +429,8 @@ class DocumentUploadActivity : AppCompatActivity() {
         val otherPart =
             BitmapToMultipart.bitmapToMultipart("Other", otherUri, this@DocumentUploadActivity)
 
+        val screenshotPart = BitmapToMultipart.bitmapToMultipart("Screenshot",screenShotBit,this@DocumentUploadActivity)
+
 
         val call = RetrofitClient.getClient().saveForm(
             useNameRequestBody,
@@ -458,7 +458,8 @@ class DocumentUploadActivity : AppCompatActivity() {
             sportsPart,
             nssPart,
             affedivitPart,
-            otherPart
+            otherPart,
+            screenshotPart
         )
 
         call.enqueue(object : Callback<JsonObject> {
@@ -614,12 +615,12 @@ class DocumentUploadActivity : AppCompatActivity() {
                     101 -> {
                         binding.photoImg.setImageBitmap(galleryBitmap)
                         setInvisibleLottie(binding.photoJson)
-                        photoUri = galleryBitmap
+                        photoBitmap = galleryBitmap
                     }
 
                     102 -> {
                         binding.aadharImg.setImageBitmap(galleryBitmap)
-                        aadharUri = galleryBitmap
+                        aadharBitmap = galleryBitmap
                         setInvisibleLottie(binding.aadharJson)
                     }
 
@@ -725,6 +726,12 @@ class DocumentUploadActivity : AppCompatActivity() {
                         otherUri = galleryBitmap
                         setInvisibleLottie(binding.otherJson)
                     }
+
+                    120 -> {
+                        btsImageView?.setImageBitmap(galleryBitmap)
+                        screenShotBit = galleryBitmap
+                        setInvisibleLottie(btsScreenshotAnim)
+                    }
                 }
             }
         }
@@ -736,12 +743,12 @@ class DocumentUploadActivity : AppCompatActivity() {
                     101 -> {
                         binding.photoImg.setImageBitmap(cameraBitmap)
                         setInvisibleLottie(binding.photoJson)
-                        photoUri = cameraBitmap
+                        photoBitmap = cameraBitmap
                     }
 
                     102 -> {
                         binding.aadharImg.setImageBitmap(cameraBitmap)
-                        aadharUri = cameraBitmap
+                        aadharBitmap = cameraBitmap
                         setInvisibleLottie(binding.aadharJson)
                     }
 
@@ -846,6 +853,12 @@ class DocumentUploadActivity : AppCompatActivity() {
                         binding.otherIMg.setImageBitmap(cameraBitmap)
                         otherUri = cameraBitmap
                         setInvisibleLottie(binding.otherJson)
+                    }
+
+                    120 -> {
+                        btsImageView.setImageBitmap(cameraBitmap)
+                        screenShotBit = cameraBitmap
+                        setInvisibleLottie(btsScreenshotAnim)
                     }
                 }
             }

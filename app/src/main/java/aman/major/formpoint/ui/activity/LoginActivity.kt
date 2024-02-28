@@ -12,6 +12,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -20,12 +22,15 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
+    private var token: String? =""
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        getTokenWhileLogin()
 
         binding.toCreateAcc.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -50,7 +55,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(mob: String, pass: String) {
-        Log.d("loginUser", "loginUser: function Call: MobNo. ${mob} Password ${pass}")
+        Log.d(
+            "loginUser",
+            "loginUser: function Call: MobNo. ${mob} Password ${pass} fcm token $token"
+        )
         val pd = ProgressDialog(this)
         pd.setMessage("Please wait...")
         pd.setCancelable(false)
@@ -58,37 +66,41 @@ class LoginActivity : AppCompatActivity() {
         val call = RetrofitClient.getClient().login(
             mob,
             pass,
+            token.toString()
         )
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
-                   if(response.isSuccessful){
-                       Log.d("loginUser", "loginUser onResponse: success "+response.body())
+                    if (response.isSuccessful) {
+                        Log.d("loginUser", "loginUser onResponse: success " + response.body())
 
-                       val response: JsonObject? = response.body()
-                       val status = response?.get("status")?.asString
-                       if (status.equals("success")) {
-                           val data = response?.get("data")?.asJsonObject
-                           SharedPrefManager.getInstance(this@LoginActivity)?.userLogin(
-                               Gson().fromJson(
-                                   data,
-                                   UserModal::class.java
-                               )
-                           )
-                           startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                           finish()
-                       }
-                       Toast.makeText(
-                           this@LoginActivity,
-                           "${response?.get("msg")?.asString}",
-                           Toast.LENGTH_SHORT
-                       ).show()
-                       pd.dismiss()
-                   }else{
-                       Log.d("loginUser", "loginUser onResponse: not success "+response.errorBody()?.string())
-                   }
-                }catch (e:Exception){
+                        val response: JsonObject? = response.body()
+                        val status = response?.get("status")?.asString
+                        if (status.equals("success")) {
+                            val data = response?.get("data")?.asJsonObject
+                            SharedPrefManager.getInstance(this@LoginActivity)?.userLogin(
+                                Gson().fromJson(
+                                    data,
+                                    UserModal::class.java
+                                )
+                            )
+                            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                            finish()
+                        }
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "${response?.get("msg")?.asString}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        pd.dismiss()
+                    } else {
+                        Log.d(
+                            "loginUser",
+                            "loginUser onResponse: not success " + response.errorBody()?.string()
+                        )
+                    }
+                } catch (e: Exception) {
                     Log.d("loginUser", "loginUser: Exception  ${e.localizedMessage}")
                 }
             }
@@ -96,6 +108,28 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Log.d("loginUser", "loginUser: onFailure failed ${t.localizedMessage}")
             }
+        })
+    }
+
+    private fun getTokenWhileLogin(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(
+                    "getTokenWhileLogin",
+                    "Fetching FCM registration token failed",
+                    task.exception
+                )
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            token = task.result
+
+            Log.d("getTokenWhileLogin", "getTokenWhileLogin: token: $token")
+            /* // Log and toast
+             val msg = getString(R.string.msg_token_fmt, token)
+             Log.d("TAG", msg)*/
+            //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
     }
 }

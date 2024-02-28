@@ -10,7 +10,9 @@ import aman.major.formpoint.helper.UriToFileConverter
 import aman.major.formpoint.helper.Validation
 import aman.major.formpoint.modal.UserModal
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -18,11 +20,14 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import okhttp3.MediaType.Companion.parse
@@ -65,6 +70,19 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
+        binding.epToolbar.setOnMenuItemClickListener(object :Toolbar.OnMenuItemClickListener,
+            androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item?.itemId == R.id.logOutBtn){
+                    openAlertDialog()
+                }
+
+                return true
+            }
+        })
+
+
         binding.epUpdateProfileBtn.setOnClickListener {
             if (imgUri.toString().isNotEmpty()) {
                 if (!Validation.validateEmail(
@@ -86,6 +104,26 @@ class EditProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please Select Image", Toast.LENGTH_SHORT).show()
             }
         }
+
+    }
+
+    private fun openAlertDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Alert!")
+        alertDialog.setMessage("Are you sure to Log Out!")
+
+        alertDialog.setPositiveButton("Yes") { dialog, which ->
+            SharedPrefManager.getInstance(this@EditProfileActivity)?.logout()
+            startActivity(Intent(this,LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK))
+            dialog.dismiss()
+        }
+
+        alertDialog.setNegativeButton("No") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = alertDialog.create()
+        dialog.show()
+
 
     }
 

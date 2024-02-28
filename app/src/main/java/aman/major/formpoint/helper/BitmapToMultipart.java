@@ -20,10 +20,10 @@ public class BitmapToMultipart {
             try {
                 // Convert Bitmap to File
                 File file = convertBitmapToFile(imageBitmap,context);
-                Log.d("bitmapToMultipart", "convertBitmapToFile  :   " + file);
+                Log.d("bitmapToMultipart", "convertBitmapToFile  :   "+ file.getName() +" file status: "+file.exists());
                 Log.d("bitmapToMultipart", "bitmapToMultipart: Value "+path+"Bitmap: "+imageBitmap);
                 // Create RequestBody instance from file
-                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
 
                 // Create MultipartBody.Part instance from RequestBody
                 return MultipartBody.Part.createFormData(path, file.getName(), requestBody);
@@ -40,7 +40,7 @@ public class BitmapToMultipart {
     private static File convertBitmapToFile(Bitmap bitmap, Context context) throws IOException {
         // Create a temporary file to save the image
         File filesDir = context.getApplicationContext().getCacheDir();
-        File file = new File(filesDir, Calendar.getInstance().getTimeInMillis() +"_image.jpg");
+        File file = new File(filesDir, Calendar.getInstance().getTimeInMillis() +"_image.png");
         file.createNewFile();
 
         // Convert bitmap to byte array

@@ -28,6 +28,7 @@ interface ApiServices {
     fun login(
         @Field("mobile") mobile: String,
         @Field("password") password: String,
+        @Field("fcm_token") fcm_token: String
     ): Call<JsonObject>
 
     @GET("APIs/slider")
@@ -129,6 +130,7 @@ interface ApiServices {
         @Part nss: MultipartBody.Part?,
         @Part affidevit: MultipartBody.Part?,
         @Part other: MultipartBody.Part?,
+        @Part screenshotPart: MultipartBody.Part,
     ): Call<JsonObject>
 
     @GET("APIs/notification")

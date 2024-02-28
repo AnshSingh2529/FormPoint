@@ -129,9 +129,13 @@ class DocumentManageActivity : AppCompatActivity() {
 
 
         binding.dmUploadDocs.setOnClickListener {
-            uploadDocumentApiCall(
-                SharedPrefManager.getInstance(this@DocumentManageActivity)?.user?.id.toString()
-            )
+            if(photoUri.toString().isNotEmpty()){
+                uploadDocumentApiCall(
+                    SharedPrefManager.getInstance(this@DocumentManageActivity)?.user?.id.toString()
+                )
+            }else{
+                Toast.makeText(this, "Please Choose Photo", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

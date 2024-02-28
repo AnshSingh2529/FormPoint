@@ -31,6 +31,7 @@ class FormDetailActivity : AppCompatActivity() {
         var requiredDocs: List<String> = ArrayList<String>()
     }
 
+
     var id: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,14 +63,12 @@ class FormDetailActivity : AppCompatActivity() {
                             val modal = Gson().fromJson(dataObj, FormDataModal::class.java)
                             binding.afdFormName.text = modal.name
                             binding.afdFormLevel.text = "Level: ${modal.level}"
-                            binding.afdGovtPrice.text = "₹${modal.charges}"
+                            binding.afdGenPrice.text = "₹${modal.charge_general}"
                             binding.afdExtraCharges.text = "₹${modal.extra_charges}"
-                            binding.afdResultPrice.text = "₹${modal.result_charges}"
-                            binding.afdAdmitCharges.text = "₹${modal.admit_card_charges}"
+                           // binding.afdResultPrice.text = "₹${modal.result_charges}"
+                            binding.afdScCharges.text = "₹${modal.charge_sc_st}"
+                            binding.afdObcPrice.text = "₹${modal.charge_obc}"
                             binding.formStatus.text = "Status: ${modal.status}"
-                            val totalPrice =
-                                modal.charges.toInt() + modal.extra_charges.toInt() + modal.result_charges.toInt() + modal.admit_card_charges.toInt()
-                            binding.afdTotalPrice.text = "₹${totalPrice}"
                             binding.formType.text = modal.type
                             requiredDocs = modal.requirements
                             setEligibilityList(modal.eligibility)

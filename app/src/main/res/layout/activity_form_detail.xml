@@ -368,6 +368,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_8sdp"
                         android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
                         app:layout_constraintTop_toBottomOf="@id/afd_charge_heading">
@@ -381,15 +383,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Goverment Rate"
+                                android:text="General"
                                 android:textColor="@color/textColorSecondary"
-                                android:textSize="@dimen/_8ssp"
+                                android:textSize="@dimen/_10ssp"
                                 app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
                                 app:layout_constraintTop_toBottomOf="@id/afd_charge_heading" />
 
 
                             <TextView
-                                android:id="@+id/afd_govt_price"
+                                android:id="@+id/afd_gen_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="₹200"
@@ -410,15 +412,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Result Price"
+                                android:text="OBC Price"
                                 android:textColor="@color/textColorSecondary"
-                                android:textSize="@dimen/_8ssp"
+                                android:textSize="@dimen/_10ssp"
                                 app:layout_constraintStart_toStartOf="@id/afd_charge_heading"
                                 app:layout_constraintTop_toBottomOf="@id/afd_charge_heading" />
 
 
                             <TextView
-                                android:id="@+id/afd_result_price"
+                                android:id="@+id/afd_obc_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="₹200"
@@ -439,14 +441,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="@dimen/_8sdp"
-                                android:text="Admit Card"
+                                android:text="SC/ST"
                                 android:textColor="@color/textColorSecondary"
-                                android:textSize="@dimen/_8ssp"
+                                android:textSize="@dimen/_10ssp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/afd_Govt_Heading" />
 
                             <TextView
-                                android:id="@+id/afd_admit_charges"
+                                android:id="@+id/afd_sc_charges"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="₹50"
@@ -466,9 +468,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="@dimen/_8sdp"
-                                android:text="Extra Charges"
+                                android:text="Extra Price"
                                 android:textColor="@color/textColorSecondary"
-                                android:textSize="@dimen/_8ssp"
+                                android:textSize="@dimen/_10ssp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/afd_Govt_Heading" />
 
@@ -476,7 +478,7 @@
                                 android:id="@+id/afd_extra_charges"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="₹50"
+                                android:text="₹30"
                                 android:textColor="@color/textColorPrimary"
                                 android:textSize="@dimen/_12ssp"
                                 app:layout_constraintEnd_toEndOf="@+id/afd_my_rate_Heading"
@@ -505,6 +507,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_7sdp"
                         android:text="Total Charges"
+                        android:visibility="gone"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintStart_toStartOf="@id/priceLayout"
@@ -517,6 +520,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_8sdp"
                         android:text="₹250"
+                        android:visibility="gone"
                         android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/_12ssp"
                         app:layout_constraintBottom_toBottomOf="parent"

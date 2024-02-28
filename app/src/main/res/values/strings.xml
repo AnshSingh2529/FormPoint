@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Form Online</string>
+    <string name="app_name">Online Form India</string>
     <string name="login">Login</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -47,7 +47,7 @@
     <string name="affidavit">Affidavit</string>
     <string name="other">Other</string>
     <string name="upload_document">Upload Document</string>
-    <string name="user_name">User name</string>
+    <string name="user_name">Name</string>
     <string name="upload_file">Upload File</string>
     <string name="form_name">Form Name</string>
     <string name="edit_profile">Edit Profile</string>
@@ -73,4 +73,10 @@
     <string name="login_with_google">Login with Google</string>
     <string name="don_t_have_account">Don not have account?</string>
     <string name="upload_reciept" >Upload Reciept</string>
+    <string name="download_result">Download Result</string>
+    <string name="download_admit_card">Download Admit Card</string>
+    <string name="submit">Submit</string>
+    <string name="default_notification_channel_id">default_notification_channel_id</string>
+    <string name="channel_name">Form Point\n\n</string>
+    <string name="upload_admit_card">Upload Admit Card</string>
 </resources>

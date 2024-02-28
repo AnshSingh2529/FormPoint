@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.codebyashish.autoimageslider.Enums.ImageScaleType
 import com.codebyashish.autoimageslider.Models.ImageSlidesModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
         val value = sharedPreferences.getString("my_string_key", "")
 
         setHomeRecycler()
+        getTokenWhileLogin()
 
         if (value.equals("en", ignoreCase = true)) {
             LocaleHelper.setLocale(this@HomeActivity, "en")
@@ -226,6 +229,28 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    private fun getTokenWhileLogin(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(
+                    "getTokenWhileLogin",
+                    "Fetching FCM registration token failed",
+                    task.exception
+                )
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            Log.d("getTokenWhileLogin", "getTokenWhileLogin: token: $token")
+            /* // Log and toast
+             val msg = getString(R.string.msg_token_fmt, token)
+             Log.d("TAG", msg)*/
+            //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+        })
     }
 
 }

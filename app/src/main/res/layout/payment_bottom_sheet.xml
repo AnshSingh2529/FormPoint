@@ -1,260 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:scrollbars="none"
+    android:overScrollMode="never"
     android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="80dp"
-        android:layout_height="4dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="6dp"
-        app:strokeWidth="0dp"
-        app:cardBackgroundColor="@color/textColorSecondary"
-        app:dividerThickness="6dp" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:text="Scan the QR And Pay"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_16ssp"
-        android:textStyle="bold" />
-
-
-    <ImageView
-        android:id="@+id/qrCodeImages"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_130sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitXY" />
-
-
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"
-        app:strokeWidth="0dp">
+        android:orientation="vertical">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/textColorSecondary"
+            app:dividerThickness="6dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="6dp"
-                    android:text="Government Charges"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-                <TextView
-                    android:id="@+id/govtCharge"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:padding="6dp"
-                    android:text="₹200"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="6dp"
-                    android:text="Result Charge"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-                <TextView
-                    android:id="@+id/resultCharge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:padding="6dp"
-                    android:text="₹200"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="6dp"
-                    android:text="Admit Card Charge"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-                <TextView
-                    android:id="@+id/admitCardCharge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:padding="6dp"
-                    android:text="₹200"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="6dp"
-                    android:text="Platform Charge"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-                <TextView
-                    android:id="@+id/platFormCharge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:padding="6dp"
-                    android:text="₹200"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-            </LinearLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerColor="@color/textColorSecondary"
-                android:layout_marginHorizontal="2dp"
-                app:dividerThickness="1dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="6dp"
-                    android:text="Total Charges"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-                <TextView
-                    android:id="@+id/totalCharge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:padding="6dp"
-                    android:text="₹200"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="@dimen/_10ssp" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:gravity="start"
-        android:text="Enter the transaction id of your payment"
-        android:textColor="@color/black" />
-
-    <EditText
-        android:id="@+id/userTxnId"
-        style="@style/edit_text_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:drawableStart="@drawable/ic_password"
-        android:drawablePadding="@dimen/_8sdp"
-        android:hint="Transaction Id"
-        android:inputType="textPersonName"
-        android:padding="@dimen/_12sdp" />
-
-
-
-
-    <com.skydoves.elasticviews.ElasticCardView
-        android:id="@+id/submitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        app:cardBackgroundColor="@color/colorOnPrimary"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Scan the QR And Pay"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/qrCodeImages"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
             android:layout_gravity="center"
-            android:padding="12dp"
-            android:text="Submit"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp" />
-    </com.skydoves.elasticviews.ElasticCardView>
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY" />
 
 
-</LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        android:text="General / OBC"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                    <TextView
+                        android:id="@+id/generalCharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:text="₹200"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        android:text="SC/ST"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                    <TextView
+                        android:id="@+id/scCharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:text="₹200"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        android:text="Extra Charges"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                    <TextView
+                        android:id="@+id/extraCharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:text="₹200"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        android:text="Platform Charge"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                    <TextView
+                        android:id="@+id/platFormCharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:text="₹200"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </LinearLayout>
+
+                <!--<com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerColor="@color/textColorSecondary"
+                    android:layout_marginHorizontal="2dp"
+                    app:dividerThickness="1dp" />-->
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        android:text="Total Charges"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                    <TextView
+                        android:id="@+id/totalCharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:text="₹200"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_10ssp" />
+
+
+                </LinearLayout>-->
+
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:gravity="start"
+            android:text="Enter the transaction id of your payment"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/userTxnId"
+            style="@style/edit_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="@dimen/_8sdp"
+            android:hint="Transaction Id"
+            android:inputType="textPersonName"
+            android:padding="@dimen/_12sdp" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Screenshot of your payment"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:textSize="@dimen/_12ssp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:background="@drawable/background_doc_upload">
+
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/screenShotJson"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_12sdp"
+                    android:scaleType="fitStart"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/file_upload" />
+
+                <com.skydoves.elasticviews.ElasticButton
+                    android:id="@+id/screenshotUploadBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="@color/textColorSecondary"
+                    android:text="@string/upload_file"
+                    android:textColor="@color/colorOnSecondary"
+                    app:cornerRadius="8dp" />
+
+
+                <ImageView
+                    android:id="@+id/screenShotImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+
+
+
+        <com.skydoves.elasticviews.ElasticCardView
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/colorOnPrimary"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="12dp"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+        </com.skydoves.elasticviews.ElasticCardView>
+    </LinearLayout>
+
+
+</ScrollView>

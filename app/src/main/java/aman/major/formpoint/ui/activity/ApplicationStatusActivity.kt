@@ -2,13 +2,15 @@ package aman.major.formpoint.ui.activity
 
 import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityApplicationStatusBinding
+import aman.major.formpoint.helper.ADMIT_CARD_LOC
+import aman.major.formpoint.helper.ImageDownloadTask
+import aman.major.formpoint.helper.RECEIPT_LOC
+import aman.major.formpoint.helper.RESULT_LOC
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
 import aman.major.formpoint.helper.UriToFileConverter
-import aman.major.formpoint.modal.ApplicantData
 import aman.major.formpoint.modal.AppliedFormModal
 import aman.major.formpoint.modal.FormDataModal
-import aman.major.formpoint.modal.NewFormAppliedModal
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
@@ -35,14 +37,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-
 class ApplicationStatusActivity : AppCompatActivity() {
 
     var formId: String? = null
     lateinit var binding: ActivityApplicationStatusBinding
     private var flag: String? = null
     var uri: Uri? = null
-    var modal: NewFormAppliedModal? = null
+    var modal: AppliedFormModal? = null
     var id: String? = null
 
     @SuppressLint("SuspiciousIndentation")
@@ -55,6 +56,8 @@ class ApplicationStatusActivity : AppCompatActivity() {
         flag = intent.getStringExtra("flag")
 
         getSingleAppliedForm()
+
+        val task = ImageDownloadTask(this@ApplicationStatusActivity)
 
 
         binding.uploadFileButton.setOnClickListener {
@@ -81,12 +84,16 @@ class ApplicationStatusActivity : AppCompatActivity() {
 
         binding.asDownloadReciept.setOnClickListener {
             if (flag.equals("applicationStatus", true)) {
+                Log.d("checkingDoc", "onCreate: Button Clicked: Reciept: " + modal?.reciept)
+
                 if (modal?.reciept.isNullOrBlank()) {
                     Toast.makeText(
                         this,
-                        "Your Form Reciept Not Uploaded Yet...",
+                        "Your Form Receipt Not Uploaded Yet...",
                         Toast.LENGTH_SHORT
                     ).show()
+                }else{
+                    task.execute(RECEIPT_LOC+modal?.reciept)
                 }
             } else if (modal?.reciept.isNullOrBlank() && flag.equals(
                     "admitCard",
@@ -110,8 +117,7 @@ class ApplicationStatusActivity : AppCompatActivity() {
                 }
             } else if (modal?.result.isNullOrBlank() && flag.equals("Result", true)) {
                 if (uri.toString().isNotEmpty() && binding.transactionId.text.toString()
-                        .isNotEmpty()
-                ) {
+                        .isNotEmpty()) {
                     val file = UriToFileConverter.convertUriToFile2(this@ApplicationStatusActivity, uri)
                         uploadDocs(
                         SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
@@ -123,6 +129,11 @@ class ApplicationStatusActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
                 }
+            }else if (modal?.admit_card.toString().isNotEmpty() && flag.equals("admitCard", true)) {
+                task.execute(ADMIT_CARD_LOC+modal?.admit_card)
+            }
+            else if (modal?.result.toString().isNotEmpty() && flag.equals("Result", true)) {
+                task.execute(RESULT_LOC+modal?.result)
             }
         }
 
@@ -201,6 +212,10 @@ class ApplicationStatusActivity : AppCompatActivity() {
 
                             setTheDataOfForm(dataModal)
 
+                            modal = dataModal
+
+                            Log.d("checkingDoc", "onResponse: datamodal Reciept ${dataModal.reciept}")
+
                            /* // binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)*/
                        }
                     } else {
@@ -241,25 +256,25 @@ class ApplicationStatusActivity : AppCompatActivity() {
         if (flag.equals("applicationStatus", true)) {
             binding.downloadText.text = resources.getString(R.string.download_reciept)
             binding.uploadRecievingLay.visibility = View.GONE
-        } else if (modal.admit_card.isNullOrBlank() && flag.equals(
-                "admitCard",
-                true
-            )
+        } else if (modal.admit_card.isNullOrBlank() && flag.equals("admitCard",
+                true)
         ) {
             binding.downloadText.text = resources.getString(R.string.upload_reciept)
             binding.uploadRecievingLay.visibility = View.VISIBLE
-        } else if (modal.result.isNullOrBlank()&& flag.equals("Result", true)) {
-            binding.downloadText.text = resources.getString(R.string.upload_reciept)
+        } else if (modal.result.isNullOrBlank() and flag.equals("Result", true)) {
+            binding.downloadText.text = resources.getString(R.string.upload_admit_card)
             binding.uploadRecievingLay.visibility = View.VISIBLE
+        }else if (modal.admit_card.isNotEmpty() and flag.equals("admitCard", true)) {
+            binding.downloadText.text = resources.getString(R.string.download_admit_card)
+            binding.uploadRecievingLay.visibility = View.GONE
         }
+        else if (modal.result.isNotEmpty() and flag.equals("Result", true)) {
+            binding.downloadText.text = resources.getString(R.string.download_result)
+            binding.uploadRecievingLay.visibility = View.GONE
+        }
+
     }
 
-    fun deserializedPhpArray(serializedData: String): ApplicantData {
-        val jsonString = Gson().toJson(serializedData)
-        Log.d("deserializedPhpArray", "deserializedPhpArray: jsonString $jsonString")
-        Log.d("deserializedPhpArray", "deserializedPhpArray serializedData: $serializedData")
-        return Gson().fromJson(serializedData, ApplicantData::class.java)
-    }
 
     private fun getFormDetails(id: String, context: Context) {
         Log.d("getFormDetails", "getFormDetails: function call: formId: $id")
@@ -383,7 +398,7 @@ class ApplicationStatusActivity : AppCompatActivity() {
         Log.d("prepareFilePart", "prepareFilePart: key: $key uri: $filePath")
 
         val file =
-            UriToFileConverter.convertUriToFile2(
+            UriToFileConverter.convertUriToFile(
                 this@ApplicationStatusActivity,
                 Uri.parse(filePath)
             )

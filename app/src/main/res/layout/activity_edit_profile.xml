@@ -23,6 +23,7 @@
             app:navigationIcon="@drawable/ic_back"
             app:title="@string/edit_profile"
             app:titleCentered="true"
+            app:menu="@menu/logout_menu"
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>
 

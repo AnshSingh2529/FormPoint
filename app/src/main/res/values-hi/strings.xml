@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">फॉर्म ऑनलाइन</string>
+    <string name="app_name">Online Form India</string>
     <string name="login">लॉगिन</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">हैलो ब्लैंक फ्रैगमेंट</string>
@@ -46,7 +46,7 @@
     <string name="affidavit">शपथपत्र</string>
     <string name="other">अन्य</string>
     <string name="upload_document">दस्तावेज़ अपलोड करें</string>
-    <string name="user_name">उपयोगकर्ता नाम</string>
+    <string name="user_name">नाम</string>
     <string name="upload_file">फ़ाइल अपलोड करें</string>
     <string name="form_name">फ़ॉर्म का नाम</string>
     <string name="edit_profile">प्रोफाइल संपादित करें</string>
@@ -72,5 +72,8 @@
     <string name="login_with_google">Google से लॉगिन करें</string>
     <string name="don_t_have_account">खाता नहीं है?</string>
     <string name="upload_reciept" />
+    <string name="download_result">Download Result</string>
+    <string name="download_admit_card">Download Admit Card</string>
+    <string name="upload_admit_card">Upload Admit Card</string>
 
 </resources>
