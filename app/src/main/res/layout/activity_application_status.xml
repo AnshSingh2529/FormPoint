@@ -33,6 +33,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         android:layout_below="@id/as_appbar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -56,7 +57,7 @@
                     android:text="Form name"
                     android:layout_gravity="center"
                     android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_14ssp"
                     app:layout_constraintEnd_toStartOf="@+id/formTypeCard"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +67,7 @@
                     android:id="@+id/formTypeCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/black"
+                    app:cardBackgroundColor="@color/colorOnPrimary"
                     android:layout_gravity="top"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -84,6 +85,9 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12ssp" />
                 </com.google.android.material.card.MaterialCardView>
+
+
+
             </LinearLayout>
 
 
@@ -92,8 +96,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Applied On: 10/22/2222"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/_10ssp"
                 android:layout_marginHorizontal="@dimen/_8sdp"
                 />
 
@@ -287,6 +291,59 @@
             </com.google.android.material.card.MaterialCardView>
 
 
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/chargesCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:strokeWidth="0dp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/chargeTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="AdmitCard Charges"
+                        android:layout_weight="1"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/_12ssp"/>
+
+                    <TextView
+                        android:id="@+id/charge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/form_status"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/_12ssp"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <ImageView
+                android:id="@+id/qrCodeImages"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_130sdp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:scaleType="fitXY" />
+
+
+
             <LinearLayout
                 android:id="@+id/uploadRecievingLay"
                 android:layout_width="match_parent"
@@ -294,6 +351,19 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/transactionId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/edit_text_style"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginTop="8dp"
+                    android:inputType="number"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginHorizontal="12dp"
+                    android:hint="Enter your transaction Id"
+                    />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -359,20 +429,16 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <EditText
-                    android:id="@+id/transactionId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/edit_text_style"
-                    android:padding="@dimen/_10sdp"
-                    android:layout_marginTop="8dp"
-                    android:inputType="number"
-                    android:layout_marginBottom="@dimen/_8sdp"
-                    android:layout_marginHorizontal="12dp"
-                    android:hint="Enter your transaction Id"
-                    />
+
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_60sdp"
+                />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

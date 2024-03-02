@@ -71,9 +71,12 @@
     <string name="forget_password">पासवर्ड भूल गए</string>
     <string name="login_with_google">Google से लॉगिन करें</string>
     <string name="don_t_have_account">खाता नहीं है?</string>
-    <string name="upload_reciept" />
+    <string name="upload_reciept">Upload Reciept</string>
     <string name="download_result">Download Result</string>
     <string name="download_admit_card">Download Admit Card</string>
     <string name="upload_admit_card">Upload Admit Card</string>
+    <string name="result_charge">Result Charge</string>
+    <string name="admit_card_charge">Admit Card Charge</string>
+    <string name="privacy_policy">Privacy Policy</string>
 
 </resources>

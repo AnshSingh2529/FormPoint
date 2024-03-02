@@ -104,6 +104,7 @@ class RecyclerAppliedFormAdapter(
                             context,
                             OtpActivity::class.java
                         ).putExtra("formId", modal.form_id)
+                            .putExtra("id", modal.id)
                     )
                 }
             }

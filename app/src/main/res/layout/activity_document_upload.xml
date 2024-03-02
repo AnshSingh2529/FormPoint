@@ -64,6 +64,13 @@
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp" />
 
+            <TextView
+                android:id="@+id/userNameErr"
+                style="@style/error_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="Error" />
 
             <EditText
                 android:id="@+id/userMobile"
@@ -78,6 +85,14 @@
                 android:inputType="phone|number"
                 android:padding="@dimen/_12sdp" />
 
+            <TextView
+                style="@style/error_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mobileErr"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="Error" />
+
             <EditText
                 android:id="@+id/userEmail"
                 style="@style/edit_text_style"
@@ -91,6 +106,13 @@
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp" />
 
+            <TextView
+                style="@style/error_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailError"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="Error" />
 
             <EditText
                 android:id="@+id/userAddress"
@@ -102,9 +124,17 @@
                 android:drawableStart="@drawable/ic_location_2"
                 android:drawablePadding="@dimen/_8sdp"
                 android:hint="@string/address"
+                android:visibility="gone"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp" />
 
+            <TextView
+                style="@style/error_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addressErr"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="Error" />
 
 
             <com.google.android.material.card.MaterialCardView
@@ -173,6 +203,14 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/aadharErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -229,6 +267,15 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/photoError"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -284,6 +331,15 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/signerr"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -339,6 +395,15 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/eightError"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -394,6 +459,14 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tenthErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -449,6 +522,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/twelerr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -504,6 +584,14 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/gradErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -559,6 +647,14 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/pGradErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -614,6 +710,14 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/incmErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -669,6 +773,15 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/castErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -724,6 +837,15 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/residenceerr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -779,6 +901,15 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/panerr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -834,6 +965,14 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/bankPasserr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -889,6 +1028,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/ewserr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -944,6 +1090,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/nccerr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -999,6 +1152,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/sportserr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1054,6 +1214,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/nsserr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1109,6 +1276,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/affedevitErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
 
@@ -1165,6 +1339,13 @@
                                 android:scaleType="centerCrop" />
 
                         </FrameLayout>
+                        <TextView
+                            android:id="@+id/othersErr"
+                            style="@style/error_text_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:text="Error" />
                     </LinearLayout>
 
                 </LinearLayout>

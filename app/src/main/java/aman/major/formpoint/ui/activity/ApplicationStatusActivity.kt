@@ -4,6 +4,7 @@ import aman.major.formpoint.R
 import aman.major.formpoint.databinding.ActivityApplicationStatusBinding
 import aman.major.formpoint.helper.ADMIT_CARD_LOC
 import aman.major.formpoint.helper.ImageDownloadTask
+import aman.major.formpoint.helper.PdfDownloader
 import aman.major.formpoint.helper.RECEIPT_LOC
 import aman.major.formpoint.helper.RESULT_LOC
 import aman.major.formpoint.helper.RetrofitClient
@@ -26,6 +27,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -37,6 +39,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+
 class ApplicationStatusActivity : AppCompatActivity() {
 
     var formId: String? = null
@@ -84,27 +87,54 @@ class ApplicationStatusActivity : AppCompatActivity() {
 
         binding.asDownloadReciept.setOnClickListener {
             if (flag.equals("applicationStatus", true)) {
-                Log.d("checkingDoc", "onCreate: Button Clicked: Reciept: " + modal?.reciept)
-
+                Log.d("asDownloadReciept", " asDownloadReciept onclik: 1")
                 if (modal?.reciept.isNullOrBlank()) {
+                    Log.d("asDownloadReciept", " asDownloadReciept onclik: 1 a")
                     Toast.makeText(
                         this,
                         "Your Form Receipt Not Uploaded Yet...",
                         Toast.LENGTH_SHORT
                     ).show()
-                }else{
-                    task.execute(RECEIPT_LOC+modal?.reciept)
+                } else {
+                    Log.d("asDownloadReciept", " asDownloadReciept onclik: 1 b")
+                    val rcp = modal?.reciept.toString()
+                    if (rcp.contains(".pdf")) {
+                        PdfDownloader(this).downloadAndOpenPdf(
+                            RECEIPT_LOC + modal?.reciept,
+                            "${binding.asName.text}_receipt"
+                        )
+                    } else {
+                        task.execute(RECEIPT_LOC + modal?.reciept)
+                    }
                 }
-            } else if (modal?.reciept.isNullOrBlank() && flag.equals(
-                    "admitCard",
-                    true
-                )
-            ) {
+            } else if (modal?.reciept.isNullOrBlank() && flag.equals("admitCard", true)) {
+                Log.d("asDownloadReciept", " asDownloadReciept onclik: 2")
                 if (uri.toString().isNotEmpty() && binding.transactionId.text.toString()
                         .isNotEmpty()
                 ) {
+                    Log.d("asDownloadReciept", " asDownloadReciept onclik: 2a")
                     val file =
                         UriToFileConverter.convertUriToFile(this@ApplicationStatusActivity, uri)
+                    uploadDocs(
+                        SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
+                        formId.toString(),
+                        binding.transactionId.text.toString(),
+                        "admit_card",
+                        file
+                    )
+                } else {
+                    Log.d("asDownloadReciept", " asDownloadReciept onclik: 2b")
+                    Toast.makeText(this, "Choose File and Enter Transaction Id", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else if (modal?.result.isNullOrBlank() && flag.equals("Result", true)) {
+                Log.d("asDownloadReciept", " asDownloadReciept onclik: 3")
+                if (uri.toString().isNotEmpty() && binding.transactionId.text.toString()
+                        .isNotEmpty()
+                ) {
+                    Log.d("asDownloadReciept", " asDownloadReciept onclik: 3a")
+                    val file =
+                        UriToFileConverter.convertUriToFile2(this@ApplicationStatusActivity, uri)
                     uploadDocs(
                         SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
                         formId.toString(),
@@ -113,30 +143,45 @@ class ApplicationStatusActivity : AppCompatActivity() {
                         file
                     )
                 } else {
-                    Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    Log.d("asDownloadReciept", " asDownloadReciept onclik: 3b")
+                    Toast.makeText(this, "Please Upload Admit card", Toast.LENGTH_SHORT).show()
                 }
-            } else if (modal?.result.isNullOrBlank() && flag.equals("Result", true)) {
-                if (uri.toString().isNotEmpty() && binding.transactionId.text.toString()
-                        .isNotEmpty()) {
-                    val file = UriToFileConverter.convertUriToFile2(this@ApplicationStatusActivity, uri)
-                        uploadDocs(
-                        SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
-                        formId.toString(),
-                        binding.transactionId.text.toString(),
-                        "admit_card",
-                        file
+            } else if (modal?.admit_card.toString().isNotEmpty() && flag.equals(
+                    "admitCard",
+                    true
+                )
+            ) {
+                Log.d("asDownloadReciept", " asDownloadReciept onclik: 4")
+
+                val adm = modal?.admit_card.toString()
+                if(adm.toString().isNotEmpty()){
+                    if (adm.contains(".pdf")) {
+                        PdfDownloader(this).downloadAndOpenPdf(
+                            ADMIT_CARD_LOC + modal?.admit_card,
+                            "${binding.asName.text}_admit_card"
+                        )
+                    } else {
+                        task.execute(ADMIT_CARD_LOC + modal?.admit_card)
+                    }
+                }else{
+                    Toast.makeText(this, "Your Admit Card Not Uploaded Yet", Toast.LENGTH_SHORT).show()
+                }
+
+            } else if (modal?.result.toString().isNotEmpty() && flag.equals("Result", true)) {
+                Log.d("asDownloadReciept", " asDownloadReciept onclik: 5")
+
+                val res = modal?.result.toString()
+                if(res.contains(".pdf")){
+                    PdfDownloader(this).downloadAndOpenPdf(
+                        RESULT_LOC + modal?.result,
+                        "${binding.asName.text}_result"
                     )
-                } else {
-                    Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                }else{
+                    task.execute(RESULT_LOC + modal?.result)
                 }
-            }else if (modal?.admit_card.toString().isNotEmpty() && flag.equals("admitCard", true)) {
-                task.execute(ADMIT_CARD_LOC+modal?.admit_card)
-            }
-            else if (modal?.result.toString().isNotEmpty() && flag.equals("Result", true)) {
-                task.execute(RESULT_LOC+modal?.result)
+
             }
         }
-
     }
 
     private fun sendIntentToPick(requestCode: Int) {
@@ -196,7 +241,11 @@ class ApplicationStatusActivity : AppCompatActivity() {
     private fun getSingleAppliedForm() {
         Log.d("getSingleAppliedForm", "getAppliedForm: function call: formId: $formId")
         val call = RetrofitClient.getClient()
-            .getAppliedFormStatusInDetail(SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),formId,id)
+            .getAppliedFormStatusInDetail(
+                SharedPrefManager.getInstance(this@ApplicationStatusActivity)?.user?.id.toString(),
+                formId,
+                id
+            )
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {
@@ -205,19 +254,23 @@ class ApplicationStatusActivity : AppCompatActivity() {
                             "getSingleAppliedForm",
                             "onResponse: response success: ${response.body()}"
                         )
-                       val jsonObject = response.body();
+                        val jsonObject = response.body();
                         if (jsonObject?.get("status")?.asString.equals("success", false)) {
                             val dataObject = jsonObject?.get("data")?.asJsonObject
-                            val dataModal = Gson().fromJson(dataObject,AppliedFormModal::class.java)
+                            val dataModal =
+                                Gson().fromJson(dataObject, AppliedFormModal::class.java)
 
                             setTheDataOfForm(dataModal)
 
                             modal = dataModal
 
-                            Log.d("checkingDoc", "onResponse: datamodal Reciept ${dataModal.reciept}")
+                            Log.d(
+                                "checkingDoc",
+                                "onResponse: datamodal Reciept ${dataModal.reciept}"
+                            )
 
-                           /* // binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)*/
-                       }
+                            /* // binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)*/
+                        }
                     } else {
                         Log.d(
                             "getSingleAppliedForm",
@@ -256,22 +309,46 @@ class ApplicationStatusActivity : AppCompatActivity() {
         if (flag.equals("applicationStatus", true)) {
             binding.downloadText.text = resources.getString(R.string.download_reciept)
             binding.uploadRecievingLay.visibility = View.GONE
-        } else if (modal.admit_card.isNullOrBlank() && flag.equals("admitCard",
-                true)
+            Log.d("handleTheButtonText", "handleTheButtonText: Condition One")
+
+        } else if (modal.admit_card.isNullOrBlank() && flag.equals(
+                "admitCard",
+                true
+            )
         ) {
+            Log.d("handleTheButtonText", "handleTheButtonText: Condition two")
             binding.downloadText.text = resources.getString(R.string.upload_reciept)
             binding.uploadRecievingLay.visibility = View.VISIBLE
+            binding.chargesCard.visibility = View.VISIBLE
+            binding.chargeTitle.text = getString(R.string.admit_card_charge)
+            binding.charge.text = "₹" + modal.form_details.admit_card_charge
+            setQrcodeImage()
         } else if (modal.result.isNullOrBlank() and flag.equals("Result", true)) {
+            Log.d("handleTheButtonText", "handleTheButtonText: Condition three")
             binding.downloadText.text = resources.getString(R.string.upload_admit_card)
             binding.uploadRecievingLay.visibility = View.VISIBLE
-        }else if (modal.admit_card.isNotEmpty() and flag.equals("admitCard", true)) {
+            binding.chargesCard.visibility = View.VISIBLE
+            binding.chargeTitle.text = getString(R.string.result_charge)
+            binding.charge.text = "₹" + modal.form_details.result_charge
+            setQrcodeImage()
+        } else if (modal.admit_card.isNotEmpty() and flag.equals("admitCard", true)) {
+            Log.d("handleTheButtonText", "handleTheButtonText: Condition four")
             binding.downloadText.text = resources.getString(R.string.download_admit_card)
             binding.uploadRecievingLay.visibility = View.GONE
-        }
-        else if (modal.result.isNotEmpty() and flag.equals("Result", true)) {
+            binding.chargesCard.visibility = View.VISIBLE
+            binding.chargeTitle.text = getString(R.string.admit_card_charge)
+            binding.charge.text = "₹" + modal.form_details.admit_card_charge
+            setQrcodeImage()
+        } else if (modal.result.isNotEmpty() and flag.equals("Result", true)) {
+            Log.d("handleTheButtonText", "handleTheButtonText: Condition five")
             binding.downloadText.text = resources.getString(R.string.download_result)
             binding.uploadRecievingLay.visibility = View.GONE
+            binding.chargesCard.visibility = View.VISIBLE
+            binding.chargeTitle.text = getString(R.string.result_charge)
+            binding.charge.text = "₹" + modal.form_details.result_charge
+            setQrcodeImage()
         }
+
 
     }
 
@@ -368,6 +445,7 @@ class ApplicationStatusActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                         progressDialog.dismiss()
+                        finish()
                         // Handle the successful response
                     } else {
                         // Handle the error response
@@ -418,6 +496,41 @@ class ApplicationStatusActivity : AppCompatActivity() {
         return multipartBody
     }
 
+
+    private fun setQrcodeImage() {
+        binding.qrCodeImages.visibility = View.VISIBLE
+        val call = RetrofitClient.getClient().getSingleFormData(
+            formId.toString(),
+            SharedPrefManager.getInstance(this)?.user?.id.toString()
+        );
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                try {
+                    if (response.isSuccessful) {
+                        Log.d("getFormDetails", "onResponse: response success: ${response.body()}")
+                        val jsonObject = response.body();
+                        Glide.with(this@ApplicationStatusActivity)
+                            .load(jsonObject?.get("qr_code_path")?.asString)
+                            .into(binding.qrCodeImages)
+                    } else {
+                        Log.d(
+                            "getFormDetails",
+                            "onResponse: response not success: ${
+                                response.errorBody()?.string()
+                            } error code: ${response.code()}"
+                        )
+                    }
+                } catch (e: Exception) {
+                    Log.d("getFormDetails", "onResponse: Exception found ${e.localizedMessage}")
+                }
+
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("getFormDetails", "onFailure: ${t.localizedMessage}")
+            }
+        })
+    }
 
     /*private fun removeQuotesAndUnescape(uncleanJson: String): String? {
         val noQuotes = uncleanJson.replace("^\"|\"$".toRegex(), "")

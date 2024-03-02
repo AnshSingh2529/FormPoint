@@ -1,20 +1,35 @@
 package aman.major.formpoint.helper
 
+import android.graphics.Bitmap
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 
 class Validation {
 
     companion object {
 
-
         fun validateEmail(email: String, error: TextView): Boolean {
             error.visibility = View.VISIBLE
             return if (email.isBlank()) {
                 error.visibility = View.GONE
                 true
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                error.text = "Enter valid email address"
+                false
+            } else {
+                error.visibility = View.GONE
+                true
+            }
+        }
+
+        fun validateMandatoryEmail(email: String, error: TextView): Boolean {
+            error.visibility = View.VISIBLE
+            return if (email.isBlank()) {
+                error.text = "Email Cannot Be Empty"
+                false
             } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 error.text = "Enter valid email address"
                 false
@@ -38,11 +53,38 @@ class Validation {
             }
         }
 
+        fun validateTheImage(layout: LinearLayout, bitmap: Bitmap?, textViewError: TextView) :Boolean {
+
+            textViewError.visibility = View.VISIBLE
+            return if (layout.visibility == View.VISIBLE){
+                if (bitmap != null){
+                    textViewError.visibility = View.GONE
+                    true
+                }else{
+                    textViewError.text = "Please Upload File On This Field"
+                    false
+                }
+
+            }else{
+                textViewError.visibility = View.GONE
+                true
+            }
+        }
 
         fun validateName(name: String, personNameError: TextView): Boolean {
             personNameError.visibility = View.VISIBLE
             if (name.isEmpty()) {
                 personNameError.text = "Name is cannot be empty."
+                return false
+            }
+            personNameError.visibility = View.GONE
+            return true
+        }
+
+        fun validateAddress(name: String, personNameError: TextView): Boolean {
+            personNameError.visibility = View.VISIBLE
+            if (name.isEmpty()) {
+                personNameError.text = "Address is cannot be empty."
                 return false
             }
             personNameError.visibility = View.GONE

@@ -12,6 +12,7 @@ import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -30,6 +31,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (title != null && body != null) {
             sendNotificationOld(title, body)
         }
+        //Toast.makeText(this, "$body", Toast.LENGTH_SHORT).show()
         Log.d("MyFirebaseMessagingService", "onMessageReceived: Messages title $title")
     }
 

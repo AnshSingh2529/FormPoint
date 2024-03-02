@@ -5,6 +5,7 @@ import aman.major.formpoint.databinding.ActivityDocumentUploadBinding
 import aman.major.formpoint.helper.BitmapToMultipart
 import aman.major.formpoint.helper.RetrofitClient
 import aman.major.formpoint.helper.SharedPrefManager
+import aman.major.formpoint.helper.Validation
 import aman.major.formpoint.modal.FormDataModal
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -136,7 +137,6 @@ class DocumentUploadActivity : AppCompatActivity() {
             layout.visibility = View.VISIBLE
         }
 
-
         binding.duToolbar.setNavigationOnClickListener {
             finish()
         }
@@ -205,7 +205,7 @@ class DocumentUploadActivity : AppCompatActivity() {
         binding.duUploadButton.setOnClickListener {
 
 
-            if (binding.userName.text.toString().isNotEmpty()
+           /* if (binding.userName.text.toString().isNotEmpty()
                 and binding.userEmail.text.toString().isNotEmpty()
                 and binding.userEmail.text.toString().isNotEmpty()
                 and binding.userMobile.text.toString().isNotEmpty()
@@ -214,7 +214,36 @@ class DocumentUploadActivity : AppCompatActivity() {
                 handlePaymentBottomSheet()
             } else {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+            }*/
+
+            if(
+                !Validation.validateName(binding.userName.text.toString(),binding.userNameErr) or
+                !Validation.validateMandatoryEmail(binding.userEmail.text.toString(),binding.emailError) or
+                !Validation.validateMobile(binding.userMobile.text.toString(),binding.mobileErr) or
+                /*!Validation.validateAddress(binding.userAddress.text.toString(),binding.addressErr) or*/
+                !Validation.validateTheImage(binding.addharLay,aadharBitmap,binding.aadharErr) or
+                !Validation.validateTheImage(binding.photoLay,photoBitmap,binding.photoError) or
+                !Validation.validateTheImage(binding.signaturLay,signUri,binding.signerr) or
+                !Validation.validateTheImage(binding.eightMarksLay,eightMarksUri,binding.eightError) or
+                !Validation.validateTheImage(binding.tenthMarksLay,tentUri,binding.tenthErr) or
+                !Validation.validateTheImage(binding.twelMarksLay,twelUri,binding.twelerr) or
+                !Validation.validateTheImage(binding.gradMarksLay,gradUri,binding.gradErr) or
+                !Validation.validateTheImage(binding.pGradLay,pGradUri,binding.pGradErr) or
+                !Validation.validateTheImage(binding.incmLay,incmUri,binding.incmErr) or
+                !Validation.validateTheImage(binding.residenceLay,residence,binding.residenceerr) or
+                !Validation.validateTheImage(binding.castLay,cast,binding.castErr) or
+                !Validation.validateTheImage(binding.pancardLay,panCardUri,binding.panerr) or
+                !Validation.validateTheImage(binding.bankPassbookLay,bankPass,binding.bankPasserr) or
+                !Validation.validateTheImage(binding.ewsLay,ewsUri,binding.ewserr) or
+                !Validation.validateTheImage(binding.ncclay,ncc,binding.nccerr) or
+                !Validation.validateTheImage(binding.sportsCerfLay,sportUri,binding.sportserr) or
+                !Validation.validateTheImage(binding.nssLay,nss,binding.nsserr) or
+                !Validation.validateTheImage(binding.aafidevitLay,affeDevitUri,binding.affedevitErr) or
+                !Validation.validateTheImage(binding.otherLay,otherUri,binding.othersErr)
+                ){
+                return@setOnClickListener
             }
+            handlePaymentBottomSheet()
 
         }
 
@@ -231,6 +260,7 @@ class DocumentUploadActivity : AppCompatActivity() {
         val extraCharge = bottomSheetDialog.findViewById<TextView>(R.id.extraCharge)
         val scCharge = bottomSheetDialog.findViewById<TextView>(R.id.scCharge)
         val generalCharge = bottomSheetDialog.findViewById<TextView>(R.id.generalCharge)
+        val obcCharges = bottomSheetDialog.findViewById<TextView>(R.id.obcCharges)
         val userTxnId = bottomSheetDialog.findViewById<EditText>(R.id.userTxnId)
         val screenShotImg = bottomSheetDialog.findViewById<ImageView>(R.id.screenShotImg)
         val screenshotUploadBtn =
@@ -247,6 +277,7 @@ class DocumentUploadActivity : AppCompatActivity() {
             qrCodeImages,
             extraCharge,
             scCharge,
+            obcCharges,
             generalCharge
         )
 
@@ -263,7 +294,10 @@ class DocumentUploadActivity : AppCompatActivity() {
                 Toast.makeText(this, "Fill the Txn Id", Toast.LENGTH_SHORT).show()
             } else if (userTxnId?.text.toString().length != 12) {
                 Toast.makeText(this, "txn Id is of must be 12 digits", Toast.LENGTH_SHORT).show()
-            } else {
+            }  else if (screenShotBit == null){
+                Toast.makeText(this, "Upload Screenshot", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 uploadFormInApi(
                     SharedPrefManager.getInstance(this)?.user?.id.toString(),
                     binding.userEmail.text.toString(),
@@ -282,6 +316,7 @@ class DocumentUploadActivity : AppCompatActivity() {
         qrCodeImages: ImageView?,
         extraCharge: TextView?,
         scCharge: TextView?,
+        obcCharges : TextView?,
         generalCharge: TextView?
     ) {
         Log.d("getFormDetails", "getFormDetails: function call: formId: $formId")
@@ -305,6 +340,7 @@ class DocumentUploadActivity : AppCompatActivity() {
                             extraCharge?.text = "₹" + modal.extra_charges
                             generalCharge?.text = "₹" + modal.charge_general
                             scCharge?.text = "₹" + modal.charge_sc_st
+                            obcCharges?.text = "₹" + modal.charge_obc
 
 
                             Glide.with(this@DocumentUploadActivity)

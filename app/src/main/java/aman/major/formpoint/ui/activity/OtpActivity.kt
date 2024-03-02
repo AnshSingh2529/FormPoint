@@ -18,8 +18,8 @@ import retrofit2.Response
 
 class OtpActivity : AppCompatActivity() {
 
-    var formId : String? = null
-
+    private var formId : String? = null
+    var id : String? = null
     lateinit var binding: ActivityOtpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +28,7 @@ class OtpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         formId = intent.getStringExtra("formId")
+        id = intent.getStringExtra("id")
 
         binding.aoToolbar.setNavigationOnClickListener { finish() }
 
@@ -45,8 +46,8 @@ class OtpActivity : AppCompatActivity() {
     }
 
     private fun sendOtpToServer() {
-        Log.d("sendOtpToServer", "sendOtpToServer: formId: $formId userId: ${SharedPrefManager.getInstance(this@OtpActivity)?.user?.id.toString()}")
-        val call = RetrofitClient.getClient().sendOtpToRecieve(formId,SharedPrefManager.getInstance(this@OtpActivity)?.user?.id.toString(),binding.otpEditText.text.toString())
+        Log.d("sendOtpToServer", "sendOtpToServer: formId: $formId userId: ${SharedPrefManager.getInstance(this@OtpActivity)?.user?.id.toString()} otp: ${binding.otpEditText.text} id: $id")
+        val call = RetrofitClient.getClient().sendOtpToRecieve(formId,SharedPrefManager.getInstance(this@OtpActivity)?.user?.id.toString(),binding.otpEditText.text.toString(),id.toString())
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 try {

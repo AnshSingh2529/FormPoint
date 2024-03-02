@@ -134,7 +134,7 @@ class DocumentManageActivity : AppCompatActivity() {
                     SharedPrefManager.getInstance(this@DocumentManageActivity)?.user?.id.toString()
                 )
             }else{
-                Toast.makeText(this, "Please Choose Photo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "empty field", Toast.LENGTH_SHORT).show()
             }
         }
 

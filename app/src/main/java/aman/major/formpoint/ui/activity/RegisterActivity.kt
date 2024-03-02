@@ -87,12 +87,10 @@ class RegisterActivity : AppCompatActivity() {
 
                 if (status.equals("success")){
                     val data = response?.get("data")?.asJsonObject
-                    SharedPrefManager.getInstance(this@RegisterActivity)?.userLogin(Gson().fromJson(data,UserModal::class.java))
-                    startActivity(Intent(this@RegisterActivity,HomeActivity::class.java))
+                    //SharedPrefManager.getInstance(this@RegisterActivity)?.userLogin(Gson().fromJson(data,UserModal::class.java))
                     finish()
-
                 }
-                Toast.makeText(this@RegisterActivity, "${response?.get("msg")?.asString}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, "${response?.get("msg")?.asString} Login Please...", Toast.LENGTH_SHORT).show()
                 pd.dismiss()
             }
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {

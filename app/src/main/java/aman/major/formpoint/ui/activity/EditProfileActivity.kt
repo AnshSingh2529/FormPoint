@@ -60,8 +60,13 @@ class EditProfileActivity : AppCompatActivity() {
         binding.epName.setText(SharedPrefManager.getInstance(this)?.user?.username)
         binding.epMob.setText(SharedPrefManager.getInstance(this)?.user?.mobile)
         binding.epEmail.setText(SharedPrefManager.getInstance(this)?.user?.email)
-        Glide.with(this@EditProfileActivity).load(PROFILE_IMG_LOC +SharedPrefManager.getInstance(this@EditProfileActivity)?.user?.profile).placeholder(
-            R.drawable.profile_default).into(binding.epProfileImg)
+
+        val profileImage = SharedPrefManager.getInstance(this@EditProfileActivity)?.user?.profile
+
+        if (profileImage != null) {
+            Glide.with(this@EditProfileActivity).load(PROFILE_IMG_LOC +profileImage).into(binding.epProfileImg)
+        }
+
         binding.epChooseImg.setOnClickListener {
             if (checkPermission()) {
                 openImagePicker()

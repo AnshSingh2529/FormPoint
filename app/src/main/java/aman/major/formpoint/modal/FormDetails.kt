@@ -9,6 +9,8 @@ data class FormDetails(
     val level: String,
     val name: String,
     val requirements: String,
+    val admit_card_charge: String,
+    val result_charge: String,
     val status: String,
     val type: String,
     val updated_at: String
