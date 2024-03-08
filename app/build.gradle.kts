@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "aman.major.formpoint"
+    namespace = "coading.champ.online_form_india"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "aman.major.formpoint"
+        applicationId = "coading.champ.online_form_india"
         minSdk = 27
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 6
+        versionName = "1.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<external-path
-    name="download"
-    path="Download/" />
+<paths>
+    <files-path name="files" path="/" />
+</paths>

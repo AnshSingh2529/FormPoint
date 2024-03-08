@@ -122,7 +122,8 @@ tools:context=".ui.activity.RegisterActivity">
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="@dimen/_8sdp"
         android:ems="10"
-        android:hint="@string/password"
+        android:maxLength="10"
+        android:hint="@string/new_password"
         android:inputType="textPassword"
         android:padding="@dimen/_12sdp" />
 

@@ -6,4 +6,8 @@
     <paths>
         <external-files-path name="my_images" path="/" />
     </paths>
+
+    <paths>
+        <files-path name="files" path="/" />
+    </paths>
 </paths>

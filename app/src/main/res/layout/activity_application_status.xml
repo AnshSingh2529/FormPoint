@@ -212,6 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:paddingVertical="@dimen/_4sdp">
 
                         <TextView
@@ -360,9 +361,19 @@
                     android:padding="@dimen/_10sdp"
                     android:layout_marginTop="8dp"
                     android:inputType="number"
-                    android:layout_marginBottom="@dimen/_8sdp"
                     android:layout_marginHorizontal="12dp"
                     android:hint="Enter your transaction Id"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Error"
+                    style="@style/error_text_style"
+                    android:layout_marginBottom="12dp"
+                    android:id="@+id/transactionIdError"
+                    android:layout_marginHorizontal="12dp"
                     />
 
                 <com.google.android.material.card.MaterialCardView
@@ -376,12 +387,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_8sdp"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Upload Reciept"
-                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_marginStart="@dimen/_8sdp"
                             android:textColor="@color/black"/>
 
@@ -391,7 +402,6 @@
                             android:layout_height="@dimen/_120sdp"
                             android:layout_marginHorizontal="@dimen/_8sdp"
                             android:layout_marginTop="@dimen/_4sdp"
-                            android:layout_marginBottom="@dimen/_8sdp"
                             android:background="@drawable/background_doc_upload">
 
 
@@ -426,6 +436,15 @@
 
                         </FrameLayout>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ahello"
+                            style="@style/error_text_style"
+                            android:layout_marginHorizontal="12dp"
+                            android:id="@+id/recieptError"
+                            android:layout_marginTop="4dp"
+                            />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -442,30 +461,39 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <com.skydoves.elasticviews.ElasticCardView
-        android:id="@+id/as_download_reciept"
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_12sdp"
-        android:background="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/colorOnPrimary"
-        app:cardCornerRadius="@dimen/_8sdp"
-        app:cardUseCompatPadding="true">
+        android:background="@drawable/tab_background_fog"
+        >
 
-        <TextView
-            android:id="@+id/downloadText"
+        <com.skydoves.elasticviews.ElasticCardView
+            android:id="@+id/as_download_reciept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/download_reciept"
-            android:textColor="@color/colorOnSecondary"
-            android:textSize="@dimen/_16sdp"
-            android:textStyle="bold" />
+            android:layout_margin="@dimen/_12sdp"
+            android:background="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/colorOnPrimary"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true">
+
+            <TextView
+                android:id="@+id/downloadText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/download_reciept"
+                android:textColor="@color/colorOnSecondary"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
 
 
-    </com.skydoves.elasticviews.ElasticCardView>
+        </com.skydoves.elasticviews.ElasticCardView>
+    </FrameLayout>
 
 </RelativeLayout>
