@@ -2,6 +2,7 @@ package coading.champ.online_form_india.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import coading.champ.online_form_india.databinding.ActivityVideoPlayBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -22,6 +23,8 @@ class VideoPlayActivity : AppCompatActivity() {
             finish()
         }
 
+
+        Log.d("checkYoutubeLink", "onCreate: videoId: $videoId")
 
         binding.vpYoutubePlayerView.addYouTubePlayerListener(object :YouTubePlayerListener{
             override fun onApiChange(youTubePlayer: YouTubePlayer) {

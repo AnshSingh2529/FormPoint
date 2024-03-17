@@ -27,6 +27,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import coading.champ.online_form_india.helper.Helper
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -381,14 +382,14 @@ class DocumentUploadActivity : AppCompatActivity() {
         address: String,
         txnId: String
     ) {
-        val progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Applying Form")
+        val progressDialog = Helper.customProgressDialog(this)
         progressDialog.show()
         Log.d(
             "uploadFormInApi",
             "uploadFormInApi: function call: userId: $userId formId: $formId phone $phone"
         )
         Log.d("uploadFormInApi", "photo -> $photoBitmap")
+
         val userIdRequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())
         val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
         val formIdRequestBody = formId.toRequestBody("text/plain".toMediaTypeOrNull())

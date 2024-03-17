@@ -59,9 +59,7 @@ class LoginActivity : AppCompatActivity() {
             "loginUser",
             "loginUser: function Call: MobNo. ${mob} Password ${pass} fcm token $token"
         )
-        val pd = ProgressDialog(this)
-        pd.setMessage("Please wait...")
-        pd.setCancelable(false)
+        val pd = Helper.customProgressDialog(this@LoginActivity)
         pd.show()
         val call = RetrofitClient.getClient().login(
             mob,

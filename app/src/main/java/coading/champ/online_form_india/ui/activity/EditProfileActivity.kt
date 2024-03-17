@@ -25,6 +25,7 @@ import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import coading.champ.online_form_india.helper.Helper
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -239,10 +240,8 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun updateProfile(epName: String, epEmail: String, file: File?) {
-        val dialog = ProgressDialog(this@EditProfileActivity)
-        dialog.setCancelable(false)
-        dialog.setMessage("Updating Profile")
-        dialog.show()
+        val dialog = Helper.customProgressDialog(this@EditProfileActivity)
+        dialog.show();
         Log.d(
             "updateProfile",
             "updateProfile: file status: ${file?.exists()} file name ${file?.name}"

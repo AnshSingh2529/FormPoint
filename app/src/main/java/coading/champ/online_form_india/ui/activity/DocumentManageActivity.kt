@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import coading.champ.online_form_india.helper.Helper
 import com.airbnb.lottie.LottieAnimationView
 import com.google.gson.JsonObject
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -284,9 +285,8 @@ class DocumentManageActivity : AppCompatActivity() {
     fun uploadDocumentApiCall(
         userId: String,
     ) {
-        val dialog = ProgressDialog(this@DocumentManageActivity)
-        dialog.setCancelable(false)
-        dialog.setMessage("Uploading Documents")
+
+        val dialog = Helper.customProgressDialog(this)
         dialog.show()
 
         Log.d("uploadDocumentApiCall", "uploadDocumentApiCall: function call")

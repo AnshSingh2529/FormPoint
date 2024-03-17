@@ -99,6 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/forget_password"
+        android:visibility="gone"
         android:textColor="@color/textColorSecondary"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="@+id/pass_Layout"

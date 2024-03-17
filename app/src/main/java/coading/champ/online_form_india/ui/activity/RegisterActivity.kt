@@ -61,9 +61,7 @@ class RegisterActivity : AppCompatActivity() {
         pass: String,
         cnfPass: String
     ) {
-        var pd = ProgressDialog(this)
-        pd.setMessage("Please wait...")
-        pd.setCancelable(false)
+        val pd = Helper.customProgressDialog(this@RegisterActivity)
         pd.show()
         val call = RetrofitClient.getClient().registration(
             name,

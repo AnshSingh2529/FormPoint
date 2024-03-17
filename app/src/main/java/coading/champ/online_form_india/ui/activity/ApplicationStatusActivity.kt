@@ -28,6 +28,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import coading.champ.online_form_india.helper.Helper
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -60,9 +61,6 @@ class ApplicationStatusActivity : AppCompatActivity() {
         flag = intent.getStringExtra("flag")
 
         getSingleAppliedForm()
-
-        val task = ImageDownloadTask(this@ApplicationStatusActivity)
-
 
         binding.uploadFileButton.setOnClickListener {
             sendIntentToPick(201)
@@ -101,13 +99,9 @@ class ApplicationStatusActivity : AppCompatActivity() {
                     Log.d("asDownloadReciept", " asDownloadReciept onclik: 1 b")
                     val rcp = modal?.reciept.toString()
                     if (rcp.contains(".pdf")) {
-                      /*  PdfDownloader(this).downloadAndOpenPdf(
-                            RECEIPT_LOC + modal?.reciept,
-                            "receipt"
-                        )*/
                         DownloadPdfTask(this@ApplicationStatusActivity,RECEIPT_LOC+rcp).execute()
                     } else {
-                        task.execute(RECEIPT_LOC + modal?.reciept)
+                        ImageDownloadTask(this@ApplicationStatusActivity).execute(RECEIPT_LOC + modal?.reciept)
                     }
                 }
             } else if (modal?.admit_card.isNullOrBlank() && flag.equals("admitCard", true)) {
@@ -188,7 +182,7 @@ class ApplicationStatusActivity : AppCompatActivity() {
                         )*/
                         DownloadPdfTask(this@ApplicationStatusActivity, ADMIT_CARD_LOC+adm).execute()
                     } else {
-                        task.execute(ADMIT_CARD_LOC + modal?.admit_card)
+                        ImageDownloadTask(this@ApplicationStatusActivity).execute(ADMIT_CARD_LOC + modal?.admit_card)
                     }
                 }else{
                     Toast.makeText(this, "Your Admit Card Not Uploaded Yet", Toast.LENGTH_SHORT).show()
@@ -205,7 +199,7 @@ class ApplicationStatusActivity : AppCompatActivity() {
                     )*/
                     DownloadPdfTask(this@ApplicationStatusActivity, RESULT_LOC+res).execute()
                 }else{
-                    task.execute(RESULT_LOC + modal?.result)
+                    ImageDownloadTask(this@ApplicationStatusActivity).execute(RESULT_LOC + modal?.result)
                 }
 
             }
@@ -267,6 +261,8 @@ class ApplicationStatusActivity : AppCompatActivity() {
     }
 
     private fun getSingleAppliedForm() {
+        val pd = Helper.customProgressDialog(this@ApplicationStatusActivity)
+        pd.show()
         Log.d("getSingleAppliedForm", "getAppliedForm: function call: formId: $formId")
         val call = RetrofitClient.getClient()
             .getAppliedFormStatusInDetail(
@@ -296,9 +292,9 @@ class ApplicationStatusActivity : AppCompatActivity() {
                                 "checkingDoc",
                                 "onResponse: datamodal Reciept ${dataModal.reciept}"
                             )
-
                             /* // binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)*/
                         }
+                        pd.dismiss()
                     } else {
                         Log.d(
                             "getSingleAppliedForm",
@@ -396,16 +392,6 @@ class ApplicationStatusActivity : AppCompatActivity() {
                             val dataObj = dataArray?.get(0)?.asJsonObject
                             val modal = Gson().fromJson(dataObj, FormDataModal::class.java)
                             binding.formType.text = modal.type
-//                            binding.formLocation.text = "Level: ${modal.level}"
-//                            binding.afdFormName.text = modal.name
-//                            binding.afdFormLevel.text = "Level: ${modal.level}"
-//                            binding.afdGovtPrice.text = "₹${modal.charges}"
-//                            binding.afdExtraCharges.text = "₹${modal.extra_charges}"
-//                            val totalPrice = modal.charges.toInt() + modal.extra_charges.toInt()
-//                            binding.afdTotalPrice.text = "₹${totalPrice}"
-//                            FormDetailActivity.requiredDocs = modal.requirements
-//                            setEligibilityList(modal.eligibility)
-//                            setRequiredDocsList(modal.requirements)
 
                         }
                     } else {
@@ -435,9 +421,8 @@ class ApplicationStatusActivity : AppCompatActivity() {
         typeDocs: String,
         imageFile: File
     ) {
-        val progressDialog = ProgressDialog(this)
+        val progressDialog  = Helper.customProgressDialog(this)
         progressDialog.setCancelable(false)
-        progressDialog.setMessage("Uploading $typeDocs...")
         progressDialog.show()
         Log.d(
             "uploadDocs",

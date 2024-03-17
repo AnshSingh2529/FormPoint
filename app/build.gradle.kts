@@ -12,8 +12,8 @@ android {
         applicationId = "coading.champ.online_form_india"
         minSdk = 27
         targetSdk = 34
-        versionCode = 6
-        versionName = "1.0.6"
+        versionCode = 8
+        versionName = "1.0.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -8,6 +8,7 @@ import coading.champ.online_form_india.helper.SharedPrefManager
 import coading.champ.online_form_india.modal.FormDataModal
 import android.util.Log
 import android.widget.Toast
+import coading.champ.online_form_india.helper.Helper
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -45,6 +46,8 @@ class OtpActivity : AppCompatActivity() {
     }
 
     private fun sendOtpToServer() {
+        val dialog = Helper.customProgressDialog(this)
+        dialog.show()
         Log.d("sendOtpToServer", "sendOtpToServer: formId: $formId userId: ${SharedPrefManager.getInstance(this@OtpActivity)?.user?.id.toString()} otp: ${binding.otpEditText.text} id: $id")
         val call = RetrofitClient.getClient().sendOtpToRecieve(formId,SharedPrefManager.getInstance(this@OtpActivity)?.user?.id.toString(),binding.otpEditText.text.toString(),id.toString())
         call.enqueue(object : Callback<JsonObject> {
@@ -60,6 +63,7 @@ class OtpActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             finish()
+                            dialog.dismiss()
                         }
                     }
                 } catch (e: Exception) {

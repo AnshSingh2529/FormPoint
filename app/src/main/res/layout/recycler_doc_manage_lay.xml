@@ -32,7 +32,7 @@
             android:gravity="center"
             android:text="Document Name"
             android:textColor="@color/textColorPrimary"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>

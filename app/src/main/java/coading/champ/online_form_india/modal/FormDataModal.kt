@@ -11,6 +11,7 @@ data class FormDataModal(
     val name: String,
     val charge_obc: String,
     val charge_general: String,
+    var url: String,
     val charge_sc_st: String,
     val requirements: List<String>,
     val status: String,

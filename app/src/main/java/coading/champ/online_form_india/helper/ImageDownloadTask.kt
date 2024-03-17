@@ -1,5 +1,6 @@
 package coading.champ.online_form_india.helper
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -19,6 +20,11 @@ import java.net.URL
 
 @Suppress("DEPRECATION")
 class ImageDownloadTask(private val context: Context) : AsyncTask<String, Void, Bitmap?>() {
+
+    val pd = Helper.customProgressDialog(context)
+    init {
+        pd.show()
+    }
 
     override fun doInBackground(vararg params: String): Bitmap? {
         val imageUrl = params[0]
@@ -93,6 +99,7 @@ class ImageDownloadTask(private val context: Context) : AsyncTask<String, Void, 
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
         try {
+            pd.dismiss()
             context.startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             // Handle the exception if no activity is found to handle the intent

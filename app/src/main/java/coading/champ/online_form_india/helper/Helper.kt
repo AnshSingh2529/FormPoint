@@ -1,5 +1,6 @@
 package coading.champ.online_form_india.helper
 
+import android.app.Dialog
 import coading.champ.online_form_india.R
 import coading.champ.online_form_india.adapter.RecyclerVideoHomeAdapter
 import coading.champ.online_form_india.modal.VideoModal
@@ -14,6 +15,11 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.RotateAnimation
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.loader.content.CursorLoader
@@ -85,25 +91,52 @@ class Helper {
 
         }
 
-//        fun createFile(context: Context,imgUri: Uri,): File? {
-//            val inputStream: InputStream? = context.contentResolver.openInputStream(imgUri)
-//            inputStream?.let {
-//                try {
-//                   // val file = createImageFile(context)
-//                    val outputStream = FileOutputStream(file)
-//                    inputStream.use { input ->
-//                        outputStream.use { fileOut ->
-//                            input.copyTo(fileOut)
-//                        }
-//                    }
-//                    return file
-//                } catch (e: IOException) {
-//                    e.printStackTrace()
-//                }
-//            }
-//            return null
-//
-//        }
+
+        fun customProgressDialog(context: Context) :Dialog{
+
+            val  dialog = Dialog(context,R.style.main_dialog_style)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.progress_dialog_lay)
+            dialog.window?.attributes?.windowAnimations = R.style.animation
+
+
+            val progress_ring = dialog.findViewById<ImageView>(R.id.progress_ring)
+            val app_logo = dialog.findViewById<ImageView>(R.id.app_logo)
+
+
+            // Continuous rotation animation
+            val rotate = RotateAnimation(
+                0f, 360f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
+            )
+            rotate.duration = 1000 // 1 second for each rotation
+            rotate.repeatCount = Animation.INFINITE // Infinite rotation
+            progress_ring.startAnimation(rotate)
+
+            // Bounce animation
+            val bounce = AnimationSet(true)
+            val fadeIn = RotateAnimation(
+                0f, 10f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
+            )
+            fadeIn.duration = 100 // Adjust duration as per requirement
+            fadeIn.interpolator = AccelerateInterpolator()
+            val fadeOut = RotateAnimation(
+                10f, 0f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
+            )
+            fadeOut.duration = 100 // Adjust duration as per requirement
+            fadeOut.interpolator = DecelerateInterpolator()
+            bounce.addAnimation(fadeIn)
+            bounce.addAnimation(fadeOut)
+            bounce.repeatCount = Animation.INFINITE // Infinite bouncing
+            app_logo.startAnimation(bounce)
+
+            return dialog
+        }
 
         fun createFileFromUri(context: Context, uri: Uri): File? {
             val contentResolver: ContentResolver = context.contentResolver
@@ -130,6 +163,7 @@ class Helper {
             val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
             return File(storageDir, fileName)
         }
+
 
         private fun getFileName(context: Context, uri: Uri): String {
             val cursor: Cursor? = context.contentResolver.query(uri, null, null, null, null)

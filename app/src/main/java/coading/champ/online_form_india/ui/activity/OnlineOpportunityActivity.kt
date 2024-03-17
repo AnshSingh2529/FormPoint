@@ -11,7 +11,9 @@ import coading.champ.online_form_india.modal.ImageDataModal
 import coading.champ.online_form_india.modal.NewFormAppliedModal
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import coading.champ.online_form_india.helper.Helper
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -89,6 +91,8 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     }
 
     private fun getAppliedForm() {
+        val dialog = Helper.customProgressDialog(this@OnlineOpportunityActivity)
+        dialog.show()
         val userId = SharedPrefManager.getInstance(this@OnlineOpportunityActivity)?.user?.id.toString()
         Log.d("getAppliedForm", "getAppliedForm: UserId: $userId")
         appliedFormList.clear()
@@ -109,7 +113,11 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                             }
                             Log.d("getAppliedForm", "onResponse: list size: "+appliedFormList.size)
                             binding.ooRecycler.adapter = RecyclerAppliedFormAdapter(this@OnlineOpportunityActivity,appliedFormList,status)
+                        }else{
+                            binding.ooRecycler.visibility = View.GONE
+                            binding.noDataFoundImg.visibility = View.VISIBLE
                         }
+                        dialog.dismiss()
                     }else{
                         Log.d("getAppliedForm", "onResponse: response is not success :${response.errorBody()?.string()}")
                     }
@@ -126,6 +134,8 @@ class OnlineOpportunityActivity : AppCompatActivity() {
     }
 
     private fun getAdmissionForm() {
+        val dialog = Helper.customProgressDialog(this@OnlineOpportunityActivity)
+        dialog.show()
         val call = RetrofitClient.getClient().getOnlineForms(type)
         Log.d("getAdmissionForm", "getAdmissionForm: function call: type $type")
         call.enqueue(object : Callback<JsonObject> {
@@ -157,7 +167,11 @@ class OnlineOpportunityActivity : AppCompatActivity() {
                                     formDataList,
                                     status
                                 )
+                        }else{
+                            binding.ooRecycler.visibility = View.GONE
+                            binding.noDataFoundImg.visibility = View.VISIBLE
                         }
+                        dialog.dismiss()
 
                     } else {
                         Log.d(

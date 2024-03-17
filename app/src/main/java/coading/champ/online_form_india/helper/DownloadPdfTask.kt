@@ -14,6 +14,11 @@ import java.net.URL
 
 class DownloadPdfTask(private val context: Context, private val pdfUrl: String) : AsyncTask<Void, Void, String>() {
 
+    val pd = Helper.customProgressDialog(context)
+    init {
+       pd.show()
+    }
+
     override fun doInBackground(vararg params: Void?): String {
         try {
             val url = URL(pdfUrl)
@@ -53,6 +58,7 @@ class DownloadPdfTask(private val context: Context, private val pdfUrl: String) 
     }
 
     private fun openPdf(filePath: String) {
+
         Log.d("openPdf", "openPdf: call: $filePath")
         val intent = Intent(Intent.ACTION_VIEW)
         val file = File(filePath)
@@ -60,6 +66,7 @@ class DownloadPdfTask(private val context: Context, private val pdfUrl: String) 
         intent.setDataAndType(uri, "application/pdf")
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         try {
+            pd.dismiss()
             context.startActivity(intent)
         } catch (e: Exception) {
             Log.d("openPdf", "openPdf: Excepition ${e.localizedMessage}")

@@ -10,11 +10,14 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.LinearLayout.LayoutParams
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import coading.champ.online_form_india.helper.Helper
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -30,6 +33,7 @@ class FormDetailActivity : AppCompatActivity() {
     companion object {
         var requiredDocs: List<String> = ArrayList<String>()
     }
+    var youtube_link :String? = null
 
 
     var id: String = ""
@@ -45,9 +49,24 @@ class FormDetailActivity : AppCompatActivity() {
             startActivity(Intent(this, DocumentUploadActivity::class.java).putExtra("formId", id))
         }
 
+        binding.demoVideo.setOnClickListener{
+            if (!youtube_link.equals(null)){
+                startActivity(Intent(this,VideoPlayActivity::class.java).putExtra("youtubeLink",youtube_link))
+            }else{
+                Toast.makeText(this, "Video Not Available", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     private fun getFormDetails() {
+
+
+
+        binding.rootLayout.visibility = View.INVISIBLE
+        val dialog = Helper.customProgressDialog(this@FormDetailActivity)
+        dialog.show()
+
         Log.d(TAG, "getFormDetails: function call: formId: $id")
         val call = RetrofitClient.getClient()
             .getSingleFormData(id, SharedPrefManager.getInstance(this)?.user?.id.toString())
@@ -71,9 +90,19 @@ class FormDetailActivity : AppCompatActivity() {
                             binding.formStatus.text = "Status: ${modal.status}"
                             binding.formType.text = modal.type
                             requiredDocs = modal.requirements
+
+                            youtube_link = modal.url
+
+                            if (modal.status.equals("closed", true)) {
+                                binding.afdApplyNow.visibility = View.INVISIBLE
+                            }
+
                             setEligibilityList(modal.eligibility)
                             setRequiredDocsList(modal.requirements)
+                            binding.rootLayout.visibility = View.VISIBLE
 
+
+                            dialog.dismiss()
                         }
                     } else {
                         Log.d(

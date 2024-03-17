@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coading.champ.online_form_india.ui.activity.VideoActivity
 import com.google.android.material.card.MaterialCardView
 
 class RecyclerFormOnlineAdapter(var context: Context, var list: ArrayList<FormOnlineModal>) :
@@ -37,7 +38,7 @@ class RecyclerFormOnlineAdapter(var context: Context, var list: ArrayList<FormOn
         holder.root.setOnClickListener {
             when (position) {
                 7 -> {
-                    context.startActivity(Intent(context,VideoPlayActivity::class.java))
+                    context.startActivity(Intent(context,VideoActivity::class.java))
                 }
                 5 -> {
                     context.startActivity(Intent(context,DocumentManageActivity::class.java))

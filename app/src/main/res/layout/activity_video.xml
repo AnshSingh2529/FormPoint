@@ -27,12 +27,31 @@
             app:titleTextAppearance="@style/app_bar_text_style" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/va_recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+
+       <ImageView
+           android:id="@+id/noDataFoundImg"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentEnd="true"
+           android:visibility="gone"
+           android:src="@drawable/illu_no_data_found"
+          />
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/va_recycler"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:orientation="vertical"
+           android:layout_centerHorizontal="true"
+           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+   </RelativeLayout>
 
 </LinearLayout>

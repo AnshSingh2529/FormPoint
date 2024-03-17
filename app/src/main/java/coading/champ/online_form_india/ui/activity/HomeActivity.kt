@@ -10,19 +10,25 @@ import coading.champ.online_form_india.helper.RetrofitClient
 import coading.champ.online_form_india.helper.SharedPrefManager
 import coading.champ.online_form_india.modal.FormOnlineModal
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import coading.champ.online_form_india.adapter.RecyclerVideoHomeAdapter
+import coading.champ.online_form_india.modal.VideoModal
 import com.bumptech.glide.Glide
 import com.codebyashish.autoimageslider.Enums.ImageScaleType
 import com.codebyashish.autoimageslider.Models.ImageSlidesModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -96,7 +102,7 @@ class HomeActivity : AppCompatActivity() {
         getSliderImages()
 
 
-        Helper.getVideoList(binding.ahVideoRecycler, this)
+        getVideoList(binding.ahVideoRecycler, this)
 
         binding.searchBar.setOnClickListener {
             startActivity(Intent(this, SearchActivity::class.java).putExtra("searchKey", 0))
@@ -227,7 +233,12 @@ class HomeActivity : AppCompatActivity() {
                             imgArray?.let {
                                 for (element in it) {
                                     val imageUrl = element.asString
-                                    imgList.add(ImageSlidesModel(imageUrl, ImageScaleType.CENTER_CROP))
+                                    imgList.add(
+                                        ImageSlidesModel(
+                                            imageUrl,
+                                            ImageScaleType.CENTER_CROP
+                                        )
+                                    )
                                 }
                             }
                             Log.d(
@@ -259,6 +270,45 @@ class HomeActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Log.d("getSliderImages", "getSliderImages onFailure: failed " + t.localizedMessage)
+            }
+        })
+
+
+    }
+
+    fun getVideoList(recyclerView: RecyclerView, context: Context) {
+        val videoModalList = ArrayList<VideoModal>()
+        val call = RetrofitClient.getClient().video();
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+
+                try {
+                    if (response.isSuccessful) {
+                        val jsonObject = response.body();
+                        val path = jsonObject?.get("path")?.asString
+                        if (jsonObject?.get("status")?.asString.equals("success", false)) {
+                            binding.videoHeading.visibility = View.GONE
+                            binding.ahVideoViewMore.visibility = View.GONE
+                            val data = jsonObject?.get("data")?.asJsonArray
+                            for (i in 0 until data!!.size()) {
+                                val dataObj = data.get(i).asJsonObject
+                                val videoModal =
+                                    Gson().fromJson(dataObj, VideoModal::class.java)
+                                videoModalList.add(videoModal)
+                            }
+                            recyclerView.adapter = RecyclerVideoHomeAdapter(
+                                videoModalList,
+                                context,
+                                path.toString()
+                            )
+                        }
+                    }
+                } catch (e: Exception) {
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+
             }
         })
 
